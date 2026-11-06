@@ -178,6 +178,33 @@ border-bottom:var(--sv-harlinje) solid var(--sv-linje)}
 .valkommen .minikarta{margin-left:auto}
 @media (max-width:620px){.lador b{font-size:22px}.valkommen .minikarta{margin-left:0}}
 
+/* ---------- strategier ---------- */
+.strategilista{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:var(--sv-steg-2)}
+.strkort{display:flex;flex-direction:column;gap:6px;background:var(--sv-yta-2);border:var(--sv-harlinje) solid var(--sv-linje);
+border-radius:var(--sv-radie-kort);padding:var(--sv-steg-3);color:var(--sv-text);text-decoration:none}
+.strkort:active{transform:scale(.99)}
+.strkort .topp{display:flex;justify-content:space-between;align-items:center;gap:var(--sv-steg-1)}
+.strkort .nr{font-family:var(--sv-mono);font-size:12px;color:var(--sv-text-dampad)}
+.strkort b{font-weight:500;font-size:17px}
+.strkort p{margin:0;font-size:14px;color:var(--sv-text-sekundar);line-height:1.5}
+.strkort .fam{font-size:12px;color:var(--sv-text-dampad)}
+.status-klar{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;color:var(--sv-signal-klart);background:var(--sv-signal-klart-yta);border-radius:999px;padding:2px 10px}
+.status-nasta{font-size:12px;font-weight:500;color:var(--tema-text);background:var(--tema);border-radius:999px;padding:2px 10px}
+.chip-familj{font-size:12px;color:var(--tema-text);background:var(--tema-yta);border-radius:999px;padding:2px 10px}
+.str-demo{display:flex;gap:var(--sv-steg-4);align-items:center;flex-wrap:wrap;background:var(--sv-yta-1);border-radius:var(--sv-radie);padding:var(--sv-steg-3);min-height:180px}
+.str-rutnat{display:grid;gap:3px}
+.str-rutnat i{width:16px;height:16px;border-radius:3px;display:block}
+.str-rutnat i.a{background:var(--lila-djup)}
+.str-rutnat i.b{background:var(--amber)}
+.str-rutnat i.svag{background:var(--lila);opacity:.45}
+.str-rutnat i.tom{background:transparent;border:1.5px dashed var(--sv-linje-stark)}
+.str-rutnat i.glapp{margin-top:6px}
+.str-ekv{font-size:18px;line-height:1.8;min-width:0}
+.str-kontroller{display:flex;flex-direction:column;gap:var(--sv-steg-2);margin-top:var(--sv-steg-3)}
+.str-kontroller .etikett{margin:0}
+.str-kontroller input[type=range]{width:100%;max-width:360px;accent-color:var(--lila-djup)}
+@media (max-width:480px){.str-rutnat i{width:12px;height:12px}.str-ekv{font-size:16px}}
+
 /* ---------- tabellen ---------- */
 .rutnat{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;font-family:var(--sv-mono);font-size:15px;max-width:640px;margin:0 auto}
 .rutnat button,.rutnat div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;
@@ -320,6 +347,10 @@ max-width:760px;color:#000}
       <div class="minikarta" id="start-karta" aria-hidden="true"></div>
     </div>
     <div class="rutor">
+      <a class="ruta-kort tema-teal" href="#strategier">
+        <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><g fill="currentColor"><rect x="46" y="20" width="12" height="12" rx="2"/><rect x="62" y="20" width="12" height="12" rx="2"/><rect x="78" y="20" width="12" height="12" rx="2"/><rect x="94" y="20" width="12" height="12" rx="2"/><rect x="46" y="36" width="12" height="12" rx="2"/><rect x="62" y="36" width="12" height="12" rx="2"/><rect x="78" y="36" width="12" height="12" rx="2"/><rect x="94" y="36" width="12" height="12" rx="2"/></g><g fill="#fff"><rect x="46" y="58" width="12" height="12" rx="2"/><rect x="62" y="58" width="12" height="12" rx="2"/><rect x="78" y="58" width="12" height="12" rx="2"/><rect x="94" y="58" width="12" height="12" rx="2"/></g><line x1="40" y1="53" x2="112" y2="53" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"/></svg></div>
+        <span class="namn">Strategier</span><span class="besk">Sex sätt att räkna ut det du inte kan än.</span>
+      </a>
       <a class="ruta-kort tema-korall" href="#ova">
         <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="40" y1="38" x2="60" y2="58"/><line x1="60" y1="38" x2="40" y2="58"/><line x1="80" y1="42" x2="104" y2="42"/><line x1="80" y1="54" x2="104" y2="54"/></g><rect x="114" y="30" width="28" height="36" rx="4" fill="#fff"/><line x1="118" y1="62" x2="138" y2="62" stroke="currentColor" stroke-width="2"/></svg></div>
         <span class="namn">Öva fritt</span><span class="besk">Välj själv tabeller och räknesätt.</span>
@@ -358,6 +389,7 @@ max-width:760px;color:#000}
       <p id="pass-hem-text" style="margin:var(--sv-steg-3) 0"></p>
       <div class="rad">
         <button class="sv-knapp sv-knapp--primar" id="pass-starta">Starta dagens pass</button>
+        <a class="sv-knapp" id="pass-strategi-lank" href="#strategier">Strategier</a>
         <button class="sv-knapp" id="pass-nollstall">Börja om från början</button>
       </div>
       <p class="sv-notis" style="margin-top:var(--sv-steg-2)">Framstegen sparas i den här webbläsaren. Logga in med ditt eget konto, så följer de med dig på den här datorn.</p>
@@ -390,6 +422,44 @@ max-width:760px;color:#000}
       <div class="rad" style="margin-top:var(--sv-steg-3)">
         <button class="sv-knapp sv-knapp--primar" id="pass-klart-vidare">Till passet</button>
         <a class="sv-knapp" href="#spel">Spela ett spel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= STRATEGIER ================= -->
+  <section id="vy-strategier" class="vy tema-teal" hidden>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="8" rx="1"/><rect x="3" y="13" width="14" height="4" rx="1"/></svg></div>
+      <div><h2>Strategier</h2><p>Sex sätt att räkna ut det du inte kan än. Varje strategi tar ett par minuter och öppnar nya fakta i Dagens pass.</p></div>
+    </div>
+    <div class="strategilista" id="strategilista"></div>
+  </section>
+
+  <section id="vy-strategi" class="vy tema-teal" hidden>
+    <a class="sv-knapp tillbaka" href="#strategier">Alla strategier</a>
+    <div class="sv-kort" id="str-visa">
+      <div class="spelhuvud"><h2 id="str-namn"></h2><span class="chip-familj" id="str-familj"></span></div>
+      <p id="str-forklaring" style="max-width:62ch;margin:0 0 var(--sv-steg-3)"></p>
+      <div class="str-demo">
+        <div class="str-rutnat" id="str-rutnat" aria-hidden="true"></div>
+        <div class="ledtrad-text str-ekv" id="str-ekv" aria-live="polite"></div>
+      </div>
+      <div class="str-kontroller" id="str-kontroller"></div>
+      <div class="rad" style="margin-top:var(--sv-steg-4)"><button class="sv-knapp sv-knapp--primar" id="str-prova">Prova själv</button></div>
+    </div>
+    <div class="sv-kort" id="str-prova-kort" hidden>
+      <div class="status"><span id="str-raknare">uppgift 1 av 4</span><span id="str-prova-namn"></span></div>
+      <div class="uppgift" aria-live="polite"><span id="str-text"></span> = <span class="svar" id="str-svar"></span></div>
+      <div class="aterkoppling" id="str-fb" role="status"></div>
+      <div id="str-ledtrad"></div>
+      <div class="knappsats" id="str-knappsats"></div>
+    </div>
+    <div class="sv-kort" id="str-klar" hidden>
+      <h2 class="klar-rubrik" id="str-klar-rubrik"></h2>
+      <p id="str-klar-text" style="color:var(--sv-text-sekundar);margin:0 0 var(--sv-steg-3)"></p>
+      <div class="rad">
+        <a class="sv-knapp sv-knapp--primar" href="#pass">Till Dagens pass</a>
+        <a class="sv-knapp" id="str-nasta" href="#strategier">Nästa strategi</a>
       </div>
     </div>
   </section>
@@ -1038,9 +1108,10 @@ max-width:760px;color:#000}
 
   function idag() { return new Date().toLocaleDateString("sv-SE"); }
   function plusDagar(d, n) { var t = new Date(d + "T12:00:00"); t.setDate(t.getDate() + n); return t.toLocaleDateString("sv-SE"); }
-  function tomDb() { return { v: 1, fakta: {}, startprov: false, passDagar: [] }; }
+  function tomDb() { return { v: 1, fakta: {}, startprov: false, passDagar: [], moduler: {} }; }
   var DB = lasa("gt-fakta", null);
   if (!DB || DB.v !== 1) DB = tomDb();
+  if (!DB.moduler) DB.moduler = {};
   function dbSpara() { skriva("gt-fakta", DB); }
   function post(k) { return DB.fakta[k] || (DB.fakta[k] = { l: 0, fs: [], due: idag(), st: 0 }); }
   function lada(k) { return DB.fakta[k] ? DB.fakta[k].l : 0; }
@@ -1081,6 +1152,15 @@ max-width:760px;color:#000}
   }
   function nastaNya() { for (var i = 0; i < FAKTA.length; i++) if (lada(FAKTA[i].k) === 0) return FAKTA[i]; return null; }
 
+  // Vilka strategimoduler som låser upp nya fakta i en familj. 1:an och 10:an är alltid öppna.
+  var MODUL_FOR_RANG = { 1: ["vrid", "dubbelt"], 3: ["vrid", "halva"], 4: ["vrid", "dubbelt"], 5: ["vrid", "dubbelt"],
+    6: ["vrid", "dubbelt"], 7: ["vrid", "nio"], 7.5: ["vrid", "kvadrat"], 8: ["vrid", "dela"], 9: ["vrid", "dela"],
+    10: ["vrid", "kvadrat", "dela"] };
+  function saknadeModuler(f) {
+    return (MODUL_FOR_RANG[f.rang] || []).filter(function (m) { return !DB.moduler[m]; });
+  }
+  function familjOppen(f) { return saknadeModuler(f).length === 0; }
+
   function ritaPassHem() {
     var n = raknaLador();
     $("pass-lador").innerHTML = [0, 1, 2, 3].map(function (l) {
@@ -1095,12 +1175,22 @@ max-width:760px;color:#000}
       text = "Alla 55 sitter. Passet repeterar nu bara det som är dags att friska upp.";
       knapp = gjortIdag ? "Ett pass till" : "Starta dagens pass";
     } else {
+      var saknas = ny ? saknadeModuler(ny) : [];
       text = (gjortIdag ? "Dagens pass är gjort. Du kan köra ett till om du vill. " : "") +
-        (ny ? "Nästa nya att lära: " + ny.a + " × " + ny.b + "." : "Inga nya kvar, bara repetition.");
+        (!ny ? "Inga nya kvar, bara repetition." : saknas.length
+          ? "Nästa nya att lära är " + ny.a + " × " + ny.b + ". Det kommer in i passet när du gjort strategin " + modulNamn(saknas[0]) + "."
+          : "Nästa nya att lära: " + ny.a + " × " + ny.b + ".");
       knapp = gjortIdag ? "Ett pass till" : "Starta dagens pass";
     }
     $("pass-hem-text").textContent = text;
     $("pass-starta").textContent = knapp;
+    var klara = MODULER.filter(function (m) { return DB.moduler[m.id]; }).length;
+    var nastaM = ny && DB.startprov ? saknadeModuler(ny)[0] : null;
+    var lank = $("pass-strategi-lank");
+    lank.href = nastaM ? "#strategi/" + nastaM : "#strategier";
+    lank.textContent = nastaM ? "Gör strategin " + modulNamn(nastaM) : "Strategier (" + klara + " av " + MODULER.length + " klara)";
+    lank.className = "sv-knapp" + (nastaM ? " sv-knapp--primar" : "");
+    $("pass-starta").className = "sv-knapp" + (nastaM ? "" : " sv-knapp--primar");
   }
   function ritaStartkort() {
     var n = raknaLador();
@@ -1159,7 +1249,7 @@ max-width:760px;color:#000}
     var svaga = [], repetera = [], kanda = [], nya = [];
     FAKTA.forEach(function (f) {
       var l = lada(f.k);
-      if (l === 0) nya.push(f.k);
+      if (l === 0) { if (familjOppen(f)) nya.push(f.k); }
       else if (l === 1) svaga.push(f.k);
       else { kanda.push(f.k); if (DB.fakta[f.k].due <= d) repetera.push(f.k); }
     });
@@ -1173,12 +1263,14 @@ max-width:760px;color:#000}
     if (!k) k = minstNyligen(repetera) || minstNyligen(kanda) || minstNyligen(svaga);
     if (!k && nya.length) { pp.nyaKvar--; return { k: nya[0], typ: "ny" }; }
     if (!k) k = svaga[0] || kanda[0];
+    if (!k) return null;
     return { k: k, typ: "vanlig" };
   }
 
   function nastaPassfraga() {
     if (pp.i >= pp.max || (!pp.prov && Date.now() - pp.start >= pp.maxMs)) return avslutaDagensPass();
     var val = valjNasta();
+    if (!val) return avslutaDagensPass();
     var u = uppgiftFor(val.k);
     pp.aktuell = u; pp.typ = val.typ; pp.inmatning = "";
     $("pass-chip").innerHTML = val.typ === "ny" ? '<span class="chip-nytt">nytt</span>' : pp.prov ? "startprov" : "";
@@ -1356,6 +1448,224 @@ max-width:760px;color:#000}
     DB = tomDb(); dbSpara(); ritaPassHem();
   };
   function visaPassVy() { if (!pp) { passDel("hem"); ritaPassHem(); } }
+
+  // ================= STRATEGIER =================
+  // Varje modul: ett rutnät som eleven ändrar själv och fyra uppgifter med strategin som stöd.
+  function talKontroll(nyckel, etikett, varden) { return { typ: "tal", nyckel: nyckel, etikett: etikett, varden: varden }; }
+  function intervall(a, b) { var x = []; for (var i = a; i <= b; i++) x.push(i); return x; }
+  var MODULER = [
+    { id: "vrid", namn: "Vrid", familj: "alla tabeller",
+      besk: "3 × 7 och 7 × 3 är lika mycket. Då räcker det att lära sig hälften.",
+      forklaring: "Ett rutnät med 3 rader och 7 kolumner har lika många rutor som ett med 7 rader och 3 kolumner. Vrid rutnätet och se att antalet inte ändras. Därför blir 100 fakta bara 55 att lära sig.",
+      start: { r: 3, c: 7 },
+      kontroller: [talKontroll("r", "Rader", intervall(1, 10)), talKontroll("c", "Kolumner", intervall(1, 10)),
+        { typ: "knapp", etikett: "Vrid rutnätet", gor: function (st) { var t = st.r; st.r = st.c; st.c = t; } }],
+      rutnat: function (st) { return { rader: st.r, kol: st.c, cell: function () { return "a"; } }; },
+      ekv: function (st) { return [st.r + " × " + st.c + " = " + st.r * st.c, "vänt: " + st.c + " × " + st.r + " = " + st.r * st.c]; },
+      uppgift: function () { var a = 6 + slump(4), b = 2 + slump(4); return { typ: "mult", a: a, b: b, svar: a * b }; },
+      ledtrad: function (u) {
+        return '<div class="ledtrad"><div class="ledtrad-text"><div class="a">' + u.a + " × " + u.b + " är samma som " + u.b + " × " + u.a +
+          '</div><div>' + u.b + " × " + u.a + " = " + u.svar + '</div></div></div>';
+      } },
+    { id: "dubbelt", namn: "Dubbelt", familj: "2:an, 3:an, 4:an, 8:an",
+      besk: "4:an är dubbla 2:an och 8:an är dubbla 4:an. 3:an är 2:an och en grupp till.",
+      forklaring: "Dela rutnätet på mitten. Är båda halvorna lika stora räcker det att räkna ut den ena och ta dubbelt. 3:an fungerar likadant: två rader du kan och en rad till.",
+      start: { t: 4, n: 6 },
+      kontroller: [talKontroll("t", "Tabell", [2, 3, 4, 8]), talKontroll("n", "Gånger", intervall(1, 10))],
+      rutnat: function (st) { var del = st.t === 3 ? 2 : st.t / 2; return { rader: st.t, kol: st.n, glapp: del, cell: function (r) { return r < del ? "a" : "b"; } }; },
+      ekv: function (st) {
+        var n = st.n;
+        if (st.t === 2) return ["1 × " + n + " = " + n, "dubbelt: " + n + " + " + n + " = " + 2 * n];
+        if (st.t === 3) return ["2 × " + n + " = " + 2 * n, "+ en " + n + ":a till", 2 * n + " + " + n + " = " + 3 * n];
+        var h = st.t / 2;
+        return [h + " × " + n + " = " + h * n, "dubbelt: " + h * n + " + " + h * n + " = " + st.t * n];
+      },
+      uppgift: function () { var t = valj([3, 4, 8, 4, 8]), n = 3 + slump(7); return Math.random() < 0.5 ? { typ: "mult", a: t, b: n, svar: t * n } : { typ: "mult", a: n, b: t, svar: t * n }; } },
+    { id: "halva", namn: "Halva tian", familj: "5:an",
+      besk: "5 × 8 är hälften av 10 × 8.",
+      forklaring: "Tio rader är lätt: det är talet med en nolla på slutet. Fem rader är hälften så många. Räkna ut 10 gånger och ta hälften.",
+      start: { n: 8 },
+      kontroller: [talKontroll("n", "Gånger", intervall(1, 10))],
+      rutnat: function (st) { return { rader: 10, kol: st.n, glapp: 5, cell: function (r) { return r < 5 ? "a" : "svag"; } }; },
+      ekv: function (st) { var n = st.n; return ["10 × " + n + " = " + 10 * n, "hälften av " + 10 * n + " = " + 5 * n, "5 × " + n + " = " + 5 * n]; },
+      uppgift: function () { var n = 3 + slump(7); return Math.random() < 0.5 ? { typ: "mult", a: 5, b: n, svar: 5 * n } : { typ: "mult", a: n, b: 5, svar: 5 * n }; } },
+    { id: "nio", namn: "Tian minus en", familj: "9:an",
+      besk: "9 × 7 är 10 × 7 minus en sjua.",
+      forklaring: "Nio rader är en rad mindre än tio. Räkna ut 10 gånger och ta bort en grupp.",
+      start: { n: 7 },
+      kontroller: [talKontroll("n", "Gånger", intervall(1, 10))],
+      rutnat: function (st) { return { rader: 10, kol: st.n, glapp: 9, cell: function (r) { return r < 9 ? "a" : "tom"; } }; },
+      ekv: function (st) { var n = st.n; return ["10 × " + n + " = " + 10 * n, "− en " + n + ":a", "9 × " + n + " = " + 10 * n + " − " + n + " = " + 9 * n]; },
+      uppgift: function () { var n = 2 + slump(8); return Math.random() < 0.5 ? { typ: "mult", a: 9, b: n, svar: 9 * n } : { typ: "mult", a: n, b: 9, svar: 9 * n }; } },
+    { id: "kvadrat", namn: "Kvadrat och granne", familj: "kvadrattalen och grannarna",
+      besk: "7 × 8 är 7 × 7 och en sjua till.",
+      forklaring: "Kvadrattalen (6 × 6, 7 × 7, 8 × 8) är lätta att komma ihåg som bilder. Lägg till en rad, så får du grannen.",
+      start: { n: 7, granne: 1 },
+      kontroller: [talKontroll("n", "Kvadrat", intervall(2, 9)), talKontroll("granne", "Grannen", [0, 1])],
+      rutnat: function (st) { return { rader: st.n + (st.granne ? 1 : 0), kol: st.n, glapp: st.n, cell: function (r) { return r < st.n ? "a" : "b"; } }; },
+      ekv: function (st) {
+        var n = st.n, q = n * n;
+        if (!st.granne) return [n + " × " + n + " = " + q];
+        return [n + " × " + n + " = " + q, "+ en " + n + ":a till", (n + 1) + " × " + n + " = " + q + " + " + n + " = " + (q + n)];
+      },
+      uppgift: function () { var n = 6 + slump(3); return Math.random() < 0.4 ? { typ: "mult", a: n, b: n, svar: n * n } : (Math.random() < 0.5 ? { typ: "mult", a: n, b: n + 1, svar: n * (n + 1) } : { typ: "mult", a: n + 1, b: n, svar: n * (n + 1) }); } },
+    { id: "dela", namn: "Dela upp", familj: "6:an och 7:an",
+      besk: "7 × 8 är 5 × 8 och 2 × 8 tillsammans.",
+      forklaring: "Dela rutnätet i två delar som du redan kan. Räkna ut båda och lägg ihop. Fem rader är ofta ett bra ställe att dela.",
+      start: { r: 7, n: 8, k: 5 },
+      kontroller: [talKontroll("r", "Tabell", [6, 7, 8]), talKontroll("n", "Gånger", intervall(1, 10)), { typ: "reglage", nyckel: "k", etikett: "Dela efter rad" }],
+      rutnat: function (st) { return { rader: st.r, kol: st.n, glapp: st.k, cell: function (r) { return r < st.k ? "a" : "b"; } }; },
+      ekv: function (st) {
+        var a = st.k * st.n, b = (st.r - st.k) * st.n;
+        return [st.k + " × " + st.n + " = " + a, (st.r - st.k) + " × " + st.n + " = " + b, st.r + " × " + st.n + " = " + a + " + " + b + " = " + (a + b)];
+      },
+      uppgift: function () { var t = valj([6, 7]), n = 3 + slump(7); return Math.random() < 0.5 ? { typ: "mult", a: t, b: n, svar: t * n } : { typ: "mult", a: n, b: t, svar: t * n }; } }
+  ];
+  var MODUL_MAP = {}; MODULER.forEach(function (m) { MODUL_MAP[m.id] = m; });
+  function modulNamn(id) { return MODUL_MAP[id] ? MODUL_MAP[id].namn : id; }
+  function nastaModul() { for (var i = 0; i < MODULER.length; i++) if (!DB.moduler[MODULER[i].id]) return MODULER[i]; return null; }
+
+  function ritaStrategilista() {
+    var nasta = nastaModul();
+    $("strategilista").innerHTML = MODULER.map(function (m, i) {
+      var st = DB.moduler[m.id] ? '<span class="status-klar">' + IKON_RATT + 'Klar</span>'
+        : nasta && nasta.id === m.id ? '<span class="status-nasta">Nästa</span>' : "";
+      return '<a class="strkort" href="#strategi/' + m.id + '"><span class="topp"><span class="nr">' + (i + 1) + ' av ' + MODULER.length + '</span>' + st +
+        '</span><b>' + m.namn + '</b><p>' + m.besk + '</p><span class="fam">Öppnar: ' + m.familj + '</span></a>';
+    }).join("");
+  }
+
+  var aktivModul = null, mst = null, sp = null;
+  var strOk = byggKnappsats($("str-knappsats"), tryckStr);
+
+  function visaModul(id) {
+    var m = MODUL_MAP[id];
+    if (!m) { location.hash = "#strategier"; return; }
+    aktivModul = m; mst = JSON.parse(JSON.stringify(m.start)); sp = null;
+    $("str-namn").textContent = m.namn;
+    $("str-familj").textContent = m.familj;
+    $("str-forklaring").textContent = m.forklaring;
+    $("str-visa").hidden = false; $("str-prova-kort").hidden = true; $("str-klar").hidden = true;
+    byggKontroller();
+    ritaModul();
+  }
+
+  function byggKontroller() {
+    var el = $("str-kontroller"); el.innerHTML = "";
+    aktivModul.kontroller.forEach(function (k) {
+      var g = document.createElement("div");
+      if (k.typ === "tal") {
+        g.innerHTML = '<p class="etikett">' + k.etikett + '</p>';
+        var rad = document.createElement("div"); rad.className = "rad";
+        k.varden.forEach(function (v, i) {
+          var b = document.createElement("button");
+          b.className = "val" + (k.nyckel === "granne" ? " val--text" : "");
+          b.textContent = k.nyckel === "granne" ? (v ? "En rad till" : "Bara kvadraten") : v;
+          b.dataset.v = v;
+          b.onclick = function () { mst[k.nyckel] = v; ritaModul(); };
+          rad.appendChild(b);
+        });
+        g.appendChild(rad);
+        g.dataset.nyckel = k.nyckel;
+      } else if (k.typ === "knapp") {
+        var kb = document.createElement("button");
+        kb.className = "sv-knapp"; kb.textContent = k.etikett;
+        kb.onclick = function () { k.gor(mst); ritaModul(); };
+        g.appendChild(kb);
+      } else if (k.typ === "reglage") {
+        g.innerHTML = '<label class="etikett" for="str-reglage">' + k.etikett + ' <span class="mono" id="str-reglage-v"></span></label>' +
+          '<input type="range" id="str-reglage" min="1" step="1">';
+        g.querySelector("input").oninput = function () { mst[k.nyckel] = +this.value; ritaModul(); };
+        g.dataset.reglage = k.nyckel;
+      }
+      el.appendChild(g);
+    });
+  }
+
+  function ritaModul() {
+    var m = aktivModul;
+    if (mst.k !== undefined && mst.r !== undefined) mst.k = Math.max(1, Math.min(mst.r - 1, mst.k));
+    var g = m.rutnat(mst), h = "";
+    $("str-rutnat").style.gridTemplateColumns = "repeat(" + g.kol + ",auto)";
+    for (var r = 0; r < g.rader; r++) for (var c = 0; c < g.kol; c++) {
+      h += '<i class="' + g.cell(r, c) + (g.glapp && r === g.glapp && g.glapp < g.rader ? " glapp" : "") + '"></i>';
+    }
+    $("str-rutnat").innerHTML = h;
+    var rader = m.ekv(mst);
+    $("str-ekv").innerHTML = rader.map(function (t, i) {
+      var cls = rader.length > 1 && i === 0 ? "a" : rader.length > 2 && i === 1 ? "b" : "";
+      return '<div class="' + cls + '">' + t + '</div>';
+    }).join("");
+    $("str-kontroller").querySelectorAll("[data-nyckel]").forEach(function (gr) {
+      gr.querySelectorAll("button").forEach(function (b) { b.setAttribute("aria-pressed", String(mst[gr.dataset.nyckel]) === b.dataset.v); });
+    });
+    var rg = $("str-kontroller").querySelector("[data-reglage]");
+    if (rg) {
+      var inp = rg.querySelector("input"); inp.max = mst.r - 1; inp.value = mst.k;
+      $("str-reglage-v").textContent = mst.k;
+    }
+  }
+
+  $("str-prova").onclick = function () {
+    var lista = [], nycklar = {};
+    for (var f = 0; lista.length < 4 && f < 40; f++) {
+      var u = aktivModul.uppgift(), k = u.a + "x" + u.b;
+      if (!nycklar[k]) { nycklar[k] = 1; lista.push(u); }
+    }
+    sp = { lista: lista, i: 0, inmatning: "", lage: "svara", fel: 0 };
+    $("str-visa").hidden = true; $("str-prova-kort").hidden = false;
+    $("str-prova-namn").textContent = aktivModul.namn;
+    visaStrUppgift();
+  };
+  function visaStrUppgift() {
+    var u = sp.lista[sp.i];
+    sp.inmatning = ""; sp.lage = "svara";
+    $("str-raknare").textContent = "uppgift " + (sp.i + 1) + " av " + sp.lista.length;
+    $("str-text").textContent = text(u);
+    $("str-svar").textContent = "";
+    $("str-fb").className = "aterkoppling"; $("str-fb").textContent = "";
+    // stödet syns från början: det är strategin som ska övas
+    $("str-ledtrad").innerHTML = aktivModul.ledtrad ? aktivModul.ledtrad(u) : ledtradHtml(u);
+  }
+  function tryckStr(s) {
+    if (!sp || $("str-prova-kort").hidden || sp.lage === "vanta") return;
+    if (s === "sudda") sp.inmatning = sp.inmatning.slice(0, -1);
+    else if (s === "ok") return svaraStr();
+    else if (sp.inmatning.length < 3) sp.inmatning += s;
+    $("str-svar").textContent = sp.inmatning;
+  }
+  function svaraStr() {
+    if (sp.inmatning === "") return;
+    var u = sp.lista[sp.i], fb = $("str-fb");
+    if (+sp.inmatning === u.svar) {
+      var omskrivet = sp.lage === "omskriv";
+      sp.lage = "vanta";
+      fb.className = "aterkoppling aterkoppling--ratt"; fb.innerHTML = IKON_RATT + (omskrivet ? "Ja, " + text(u) + " = " + u.svar : "Rätt");
+      setTimeout(function () {
+        if (!sp) return;
+        sp.i++;
+        if (sp.i >= sp.lista.length) klarModul(); else visaStrUppgift();
+      }, 550);
+    } else {
+      sp.fel++; sp.lage = "omskriv"; sp.inmatning = ""; $("str-svar").textContent = "";
+      fb.className = "aterkoppling aterkoppling--neutral";
+      fb.textContent = text(u) + " = " + u.svar + ". Följ stegen och skriv svaret en gång till.";
+    }
+  }
+  function klarModul() {
+    var m = aktivModul, forst = !DB.moduler[m.id];
+    DB.moduler[m.id] = true; dbSpara();
+    $("str-prova-kort").hidden = true; $("str-klar").hidden = false;
+    $("str-klar-rubrik").innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="currentColor"/></svg>' + m.namn + " är klar";
+    var ny = nastaModul();
+    $("str-klar-text").textContent = (m.id === "vrid"
+      ? "Nu vet du att varje faktum räknas en gång, åt båda hållen. "
+      : "Fakta med " + m.familj + " kan nu komma in i Dagens pass, ett i taget. ") +
+      (forst ? "" : "Du hade redan gjort den, men det skadar inte att repetera.");
+    $("str-nasta").hidden = !ny;
+    if (ny) { $("str-nasta").href = "#strategi/" + ny.id; $("str-nasta").textContent = "Nästa strategi: " + ny.namn; }
+    sp = null;
+  }
 
   // ================= SPEL =================
   var spel = {};
@@ -1892,6 +2202,8 @@ max-width:760px;color:#000}
     var delar = h.split("/");
     var vy = "start", sektion = "";
     if (delar[0] === "spel" && SPEL_IDS.indexOf(delar[1]) >= 0) { vy = delar[1]; sektion = "spel"; }
+    else if (delar[0] === "strategi" && MODUL_MAP[delar[1]]) { vy = "strategi"; sektion = "pass"; }
+    else if (delar[0] === "strategier") { vy = "strategier"; sektion = "pass"; }
     else if (["pass", "ova", "spel", "kalkylblad", "tabell"].indexOf(delar[0]) >= 0) { vy = sektion = delar[0]; }
 
     Object.keys(spel).forEach(function (id) { if (id !== vy) spel[id].stopp(); });
@@ -1903,6 +2215,8 @@ max-width:760px;color:#000}
     if (spel[vy] && inst.tabeller.length) spel[vy].visa();
     if (vy === "kalkylblad") ritaKalkylblad();
     if (vy === "pass") visaPassVy();
+    if (vy === "strategier") ritaStrategilista();
+    if (vy === "strategi") visaModul(delar[1]);
     if (vy === "start") ritaStartkort();
     window.scrollTo(0, 0);
   }
@@ -1910,7 +2224,9 @@ max-width:760px;color:#000}
 
   document.addEventListener("keydown", function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
-    if (aktuellVy === "pass" && pp) {
+    if (aktuellVy === "strategi" && sp && !$("str-prova-kort").hidden) {
+      tangentTillKnapp(e, tryckStr);
+    } else if (aktuellVy === "pass" && pp) {
       if (e.key === "Escape") avslutaDagensPass();
       else if (pp.lage === "intro" && e.key === "Enter") { e.preventDefault(); $("pass-intro-ok").onclick(); }
       else tangentTillKnapp(e, tryckPassKnapp);
