@@ -225,6 +225,20 @@ border-radius:var(--sv-radie-kort);padding:var(--sv-steg-3);color:var(--sv-text)
 .ovas-lista{display:flex;flex-wrap:wrap;gap:var(--sv-steg-1)}
 .ovas-lista span{font-family:var(--sv-mono);background:var(--amber-yta);color:var(--amber-text);border-radius:var(--sv-radie);padding:4px 10px}
 
+/* ---------- visa för läraren ---------- */
+.lar-huvud{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--sv-steg-3);flex-wrap:wrap}
+.lar-namn{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--sv-text-sekundar)}
+.lar-namn input{min-height:var(--sv-tryckyta);border:var(--sv-harlinje) solid var(--sv-linje-stark);border-radius:var(--sv-radie);padding:0 var(--sv-steg-2);font:inherit;font-size:16px;color:var(--sv-text);background:var(--sv-yta-2);min-width:220px}
+.lar-rad{display:flex;gap:var(--sv-steg-4);flex-wrap:wrap;align-items:flex-start}
+.lar-signaler{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--sv-steg-1)}
+.lar-signaler li{display:flex;gap:var(--sv-steg-2);align-items:flex-start;background:var(--sv-yta-1);border-radius:var(--sv-radie);padding:var(--sv-steg-2)}
+.lar-signaler li .ikon{flex:none;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:500}
+.lar-signaler li.ok .ikon{background:var(--sv-signal-klart-yta);color:var(--sv-signal-klart)}
+.lar-signaler li.titta .ikon{background:var(--amber-yta);color:var(--amber-text)}
+.lar-signaler li b{font-weight:500}
+.lar-las{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--sv-text-sekundar)}
+.lar-las b{font-weight:500;color:var(--sv-text)}
+
 /* ---------- läs upp, stor text ---------- */
 .lasknapp{width:36px;height:36px;border-radius:50%;border:var(--sv-harlinje) solid var(--sv-linje-stark);background:var(--sv-yta-2);color:var(--sv-text);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
 body.stor-text{font-size:19px}
@@ -402,8 +416,11 @@ max-width:760px;color:#000}
 @media print{
   @page{size:A4;margin:14mm}
   html,body{background:#fff;padding:0}
-  .huvud,.vy:not(#vy-kalkylblad),.kontroller,.fot,.sidrubrik{display:none !important}
-  #vy-kalkylblad{display:block !important}
+  .huvud,.kontroller,.fot,.sidrubrik,.ej-utskrift{display:none !important}
+  #vy-larare{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  #vy-larare .sv-kort{border:0;padding:0 0 12px;margin:0;break-inside:avoid}
+  #vy-larare .lar-namn input{border:0;border-bottom:1px solid #000;border-radius:0;padding:0;min-height:28px}
+  #vy-larare .lar-rad{gap:12px}
   .ark{border:0;padding:0;margin:0;max-width:none;border-radius:0}
   .ark + .ark{break-before:page}
   .tal{font-size:16pt}
@@ -502,6 +519,7 @@ max-width:760px;color:#000}
         <button class="sv-knapp sv-knapp--primar" id="pass-starta">Starta dagens pass</button>
         <a class="sv-knapp" id="pass-strategi-lank" href="#strategier">Strategier</a>
         <a class="sv-knapp" href="#karta">Min karta</a>
+        <a class="sv-knapp" href="#larare">Visa för läraren</a>
       </div>
       <div class="grupp" style="margin-top:var(--sv-steg-4)">
         <p class="etikett">Nya tabeller</p>
@@ -550,7 +568,7 @@ max-width:760px;color:#000}
 
   <!-- ================= MIN KARTA ================= -->
   <section id="vy-karta" class="vy tema-teal" hidden>
-    <a class="sv-knapp tillbaka" href="#pass">Dagens pass</a>
+    <div class="rad tillbaka"><a class="sv-knapp" href="#pass">Dagens pass</a><a class="sv-knapp" href="#larare">Visa för läraren</a></div>
     <div class="sidrubrik">
       <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="11" y="3" width="6" height="6" rx="1"/><rect x="3" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="6" height="6" rx="1" fill="currentColor"/></svg></div>
       <div><h2>Min karta</h2><p>Varje ruta är ett faktum. Färgen visar hur säkert det sitter. Tryck på en ruta för att läsa mer.</p></div>
@@ -572,6 +590,62 @@ max-width:760px;color:#000}
     <div class="sv-kort" id="ovas-kort">
       <p class="etikett">Övas just nu</p>
       <div class="ovas-lista" id="ovas-lista"></div>
+    </div>
+  </section>
+
+  <!-- ================= VISA FÖR LÄRAREN ================= -->
+  <section id="vy-larare" class="vy tema-teal" hidden>
+    <div class="rad tillbaka ej-utskrift">
+      <a class="sv-knapp" href="#pass">Dagens pass</a>
+      <button class="sv-knapp sv-knapp--primar" id="lar-skriv">Skriv ut</button>
+    </div>
+    <div class="sv-kort">
+      <div class="lar-huvud">
+        <div>
+          <h2 style="margin:0">Visa för läraren</h2>
+          <p class="sv-notis" id="lar-datum"></p>
+        </div>
+        <label class="lar-namn">Namn <input type="text" id="lar-namn" autocomplete="off" maxlength="40" placeholder="Skriv ditt namn"></label>
+      </div>
+      <p class="sv-notis" style="margin-top:var(--sv-steg-1)">Namnet sparas inte. Allt på sidan kommer från den här webbläsaren och har inte skickats någonstans.</p>
+    </div>
+
+    <div class="sv-kort">
+      <h3>Läget just nu</h3>
+      <div class="lador" id="lar-lador"></div>
+      <div class="lar-rad">
+        <div class="minikarta stor" id="lar-karta" aria-hidden="true"></div>
+        <div style="flex:1;min-width:220px">
+          <p class="etikett">Startprov</p><p id="lar-prov" style="margin:0 0 var(--sv-steg-2)"></p>
+          <p class="etikett">Strategier klara</p><p id="lar-strategier" style="margin:0 0 var(--sv-steg-2)"></p>
+          <p class="etikett">Inställningar</p><p id="lar-inst" style="margin:0"></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="sv-kort">
+      <h3>Den här veckan, jämfört med förra</h3>
+      <div class="vecka" id="lar-vecka"></div>
+      <p class="sv-notis" id="lar-dagar" style="margin-top:var(--sv-steg-2)"></p>
+    </div>
+
+    <div class="sv-kort">
+      <h3>Att titta närmare på</h3>
+      <ul class="lar-signaler" id="lar-signaler"></ul>
+      <div class="lar-rad" style="margin-top:var(--sv-steg-3)">
+        <div style="flex:1;min-width:220px"><p class="etikett">Övas just nu</p><div class="ovas-lista" id="lar-ovas"></div></div>
+        <div style="flex:1;min-width:220px"><p class="etikett">Flest fel senaste tiden</p><div class="ovas-lista" id="lar-fel"></div></div>
+      </div>
+    </div>
+
+    <div class="sv-kort ej-utskrift">
+      <h3>Så läser du sidan</h3>
+      <ul class="lar-las">
+        <li><b>Sitter</b> betyder rätt och snabbt (cirka 3 s) två olika dagar. <b>Nästan</b> är rätt och snabbt en gång. <b>Övas</b> är nytt eller fel senast.</li>
+        <li><b>Långsamt på lätta fakta</b> (1:an, 2:an, 5:an, 10:an) tyder på att eleven räknar fram svaret. Det brukar hjälpa mer med en strategi tillsammans med läraren än med mer övning.</li>
+        <li><b>Andel rätt</b> bör ligga på 80 % eller mer. Lägre betyder att passet tar in för mycket nytt, eller att eleven behöver stöd med en strategi.</li>
+        <li>Sidan visar en elev i taget och jämför bara eleven med sig själv.</li>
+      </ul>
     </div>
   </section>
 
@@ -1924,6 +1998,57 @@ max-width:760px;color:#000}
     b.onclick = function () { DB.allaOppna = b.dataset.oppna === "true"; dbSpara(); ritaPassHem(); };
   });
 
+  // ================= VISA FÖR LÄRAREN =================
+  function median(x) { if (!x.length) return 0; var y = x.slice().sort(function (a, b) { return a - b; }), m = Math.floor(y.length / 2); return y.length % 2 ? y[m] : (y[m - 1] + y[m]) / 2; }
+  function ritaLarare() {
+    var d = new Date();
+    $("lar-datum").textContent = "Sammanställt " + d.toLocaleDateString("sv-SE") + " kl. " + d.toLocaleTimeString("sv-SE", { hour: "2-digit", minute: "2-digit" });
+    var n = raknaLador();
+    $("lar-lador").innerHTML = [0, 1, 2, 3].map(function (l) { return '<div class="l' + l + '"><b>' + n[l] + '</b><span>' + LADNAMN[l] + '</span></div>'; }).join("");
+    ritaMinikarta($("lar-karta"));
+    $("lar-prov").textContent = DB.startprov ? "Gjort." : "Inte gjort än.";
+    var klara = MODULER.filter(function (m) { return DB.moduler[m.id]; });
+    $("lar-strategier").textContent = klara.length + " av " + MODULER.length + (klara.length ? ": " + klara.map(function (m) { return m.namn; }).join(", ") + "." : ".");
+    var inst2 = [];
+    inst2.push(DB.allaOppna ? "alla tabeller öppna" : "nya tabeller efter strategin");
+    if (inst.stod === "alltid") inst2.push("rutnätsstöd vid varje fråga");
+    if (inst.uppl === "pa") inst2.push("uppläsning på");
+    if (inst.storText === "pa") inst2.push("större text");
+    $("lar-inst").textContent = inst2.join(", ").replace(/^./, function (c) { return c.toUpperCase(); }) + ".";
+
+    var nu = veckoSumma(0, 7), forra = veckoSumma(7, 14);
+    function andel(x) { return x.f ? Math.round(x.r / x.f * 100) + " %" : "–"; }
+    $("lar-vecka").innerHTML = [[nu.p, "pass", forra.p], [nu.f, "frågor", forra.f], [andel(nu), "rätt", andel(forra)], [nu.s, "nya som sitter", forra.s]].map(function (x) {
+      return '<div><b>' + x[0] + '</b><span>' + x[1] + '</span><small>förra veckan: ' + x[2] + '</small></div>';
+    }).join("");
+    var dagar = []; for (var i = 6; i >= 0; i--) { var dd = plusDagar(idag(), -i); if (DB.dagar[dd] && DB.dagar[dd].p) dagar.push(dd.slice(5)); }
+    $("lar-dagar").textContent = dagar.length ? "Dagar med pass: " + dagar.join(", ") + "." : "Inga pass de senaste sju dagarna.";
+
+    // signaler från svarstider och veckan
+    var logg = lasa("gt-svarstider", {}), signaler = [];
+    var latta = FAKTA.filter(function (f) { return f.rang <= 3 && f.a > 1; }).map(function (f) {
+      var x = (logg[f.k] || []).filter(function (e) { return e.r; }).map(function (e) { return e.ms; });
+      return { f: f, n: x.length, med: median(x) };
+    }).filter(function (o) { return o.n >= 2 && o.med > 5000; });
+    if (latta.length) signaler.push({ typ: "titta", text: "<b>Långsamt på lätta fakta</b>: " + latta.slice(0, 6).map(function (o) { return o.f.a + " × " + o.f.b + " (" + (o.med / 1000).toFixed(1).replace(".", ",") + " s)"; }).join(", ") + ". Eleven räknar troligen fram svaret." });
+    if (nu.f >= 10 && nu.r / nu.f < 0.8) signaler.push({ typ: "titta", text: "<b>Andel rätt " + andel(nu) + "</b> den här veckan. Under 80 % kan betyda att något nytt behöver gås igenom med en strategi." });
+    if (DB.startprov && !nu.p) signaler.push({ typ: "titta", text: "<b>Inga pass</b> de senaste sju dagarna." });
+    var ny = nastaNya();
+    if (DB.startprov && ny && !DB.allaOppna && saknadeModuler(ny).length) signaler.push({ typ: "titta", text: "<b>Nästa nya väntar på en strategi</b>: " + ny.a + " × " + ny.b + " kommer in efter strategin " + modulNamn(saknadeModuler(ny)[0]) + "." });
+    if (!DB.startprov) signaler.push({ typ: "titta", text: "<b>Startprovet är inte gjort</b>, så det finns inget att visa än." });
+    if (!signaler.length) signaler.push({ typ: "ok", text: "<b>Inget som sticker ut.</b> Övningen ser ut att gå som den ska." });
+    $("lar-signaler").innerHTML = signaler.map(function (sg) {
+      return '<li class="' + sg.typ + '"><span class="ikon" aria-hidden="true">' + (sg.typ === "ok" ? "✓" : "!") + '</span><span>' + sg.text + '</span></li>';
+    }).join("");
+
+    var ovas = FAKTA.filter(function (f) { return lada(f.k) === 1; });
+    $("lar-ovas").innerHTML = ovas.length ? ovas.map(function (f) { return "<span>" + f.a + " × " + f.b + "</span>"; }).join("") : '<span style="background:none;color:var(--sv-text-dampad);padding:4px 0">Inga</span>';
+    var fel = Object.keys(logg).map(function (k) { return { k: k, n: logg[k].filter(function (e) { return !e.r; }).length }; })
+      .filter(function (o) { return o.n > 0 && FAKTA_MAP[o.k]; }).sort(function (a, b) { return b.n - a.n; }).slice(0, 6);
+    $("lar-fel").innerHTML = fel.length ? fel.map(function (o) { var f = FAKTA_MAP[o.k]; return "<span>" + f.a + " × " + f.b + " (" + o.n + " fel)</span>"; }).join("") : '<span style="background:none;color:var(--sv-text-dampad);padding:4px 0">Inga fel</span>';
+  }
+  $("lar-skriv").onclick = function () { window.print(); };
+
   // ================= STRATEGIER =================
   // Varje modul: ett rutnät som eleven ändrar själv och fyra uppgifter med strategin som stöd.
   function talKontroll(nyckel, etikett, varden) { return { typ: "tal", nyckel: nyckel, etikett: etikett, varden: varden }; }
@@ -3052,6 +3177,7 @@ max-width:760px;color:#000}
     else if (delar[0] === "strategi" && MODUL_MAP[delar[1]]) { vy = "strategi"; sektion = "pass"; }
     else if (delar[0] === "strategier") { vy = "strategier"; sektion = "pass"; }
     else if (delar[0] === "karta") { vy = "karta"; sektion = "pass"; }
+    else if (delar[0] === "larare") { vy = "larare"; sektion = "pass"; }
     else if (delar[0] === "installningar" || delar[0] === "sa-funkar-det") { vy = delar[0]; }
     else if (["pass", "ova", "spel", "kalkylblad", "tabell"].indexOf(delar[0]) >= 0) { vy = sektion = delar[0]; }
 
@@ -3067,6 +3193,7 @@ max-width:760px;color:#000}
     if (vy === "strategier") ritaStrategilista();
     if (vy === "strategi") visaModul(delar[1]);
     if (vy === "karta") ritaKarta();
+    if (vy === "larare") { ritaLarare(); $("lar-namn").value = ""; }
     if (vy === "start") ritaStartkort();
     window.scrollTo(0, 0);
   }
