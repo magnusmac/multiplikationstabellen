@@ -205,6 +205,63 @@ border-radius:var(--sv-radie-kort);padding:var(--sv-steg-3);color:var(--sv-text)
 .str-kontroller input[type=range]{width:100%;max-width:360px;accent-color:var(--lila-djup)}
 @media (max-width:480px){.str-rutnat i{width:12px;height:12px}.str-ekv{font-size:16px}}
 
+/* ---------- min karta ---------- */
+.vecka{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--sv-steg-1)}
+.vecka div{background:var(--tema-yta);border-radius:var(--sv-radie);padding:var(--sv-steg-2);display:flex;flex-direction:column;gap:2px}
+.vecka b{font-family:var(--sv-mono);font-weight:400;font-size:30px;line-height:1.15;letter-spacing:-1px;color:var(--tema-text)}
+.vecka span{font-size:13px;color:var(--sv-text-sekundar)}
+.vecka small{font-size:12px;color:var(--sv-text-dampad)}
+@media (max-width:620px){.vecka{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.storkarta{display:grid;grid-template-columns:24px repeat(10,1fr);gap:3px;max-width:600px;font-family:var(--sv-mono);font-size:14px}
+.storkarta > *{aspect-ratio:1;display:flex;align-items:center;justify-content:center;border-radius:4px;border:0;padding:0;font:inherit}
+.storkarta .rk{color:var(--sv-text-dampad);font-size:12px;aspect-ratio:auto;min-height:20px}
+.storkarta button{cursor:pointer}
+.storkarta button.l0{color:var(--sv-text-dampad);background:var(--sv-yta-1);box-shadow:inset 0 0 0 1px var(--sv-linje-stark)}
+.storkarta button.l1{color:var(--amber-text);background:var(--amber)}
+.storkarta button.l2{color:var(--bla-text);background:var(--bla);box-shadow:inset 0 0 0 2px var(--bla-djup)}
+.storkarta button.l3{color:#fff;background:var(--teal-djup);font-weight:500}
+.storkarta button.vald{outline:2px solid var(--sv-text);outline-offset:1px}
+@media (max-width:480px){.storkarta{font-size:11px;gap:2px;grid-template-columns:18px repeat(10,1fr)}}
+.ovas-lista{display:flex;flex-wrap:wrap;gap:var(--sv-steg-1)}
+.ovas-lista span{font-family:var(--sv-mono);background:var(--amber-yta);color:var(--amber-text);border-radius:var(--sv-radie);padding:4px 10px}
+
+/* ---------- läs upp, stor text ---------- */
+.lasknapp{width:36px;height:36px;border-radius:50%;border:var(--sv-harlinje) solid var(--sv-linje-stark);background:var(--sv-yta-2);color:var(--sv-text);display:inline-flex;align-items:center;justify-content:center;cursor:pointer;padding:0}
+body.stor-text{font-size:19px}
+body.stor-text .uppgift{font-size:72px}
+body.stor-text .knappsats{max-width:420px}
+body.stor-text .knappsats button{min-height:68px;font-size:28px}
+body.stor-text .sv-notis,body.stor-text .etikett{font-size:15px}
+body.stor-text .aterkoppling{font-size:19px}
+body.stor-text .ledtrad-text{font-size:18px}
+@media (max-width:480px){body.stor-text .uppgift{font-size:52px}}
+
+/* ---------- kalkylblad: titta, täck, skriv ---------- */
+.ccc-steg{font-size:13px;margin:0 0 var(--sv-steg-3);padding-left:20px;line-height:1.6}
+.ccc{width:100%;border-collapse:collapse;font-family:var(--sv-mono);font-size:17px}
+.ccc th{font-family:var(--sv-sans);font-weight:500;font-size:12px;text-align:left;padding:4px 10px;color:#444}
+.ccc td{padding:7px 10px;border-bottom:1px solid #ddd}
+.ccc td.nr{font-size:11px;color:#777;width:24px;padding-right:0}
+.ccc .titta{border-right:1.5px dashed #000;width:38%}
+.ccc .linje{display:inline-block;min-width:52px;border-bottom:1px solid #000}
+.ccc .kryss span{display:inline-block;width:18px;height:18px;border:1.5px solid #000;border-radius:3px}
+
+/* ---------- så funkar det ---------- */
+.hjalp{max-width:68ch;display:flex;flex-direction:column;gap:var(--sv-steg-4)}
+.hjalp section{display:flex;flex-direction:column;gap:var(--sv-steg-1)}
+.hjalp h3{font-size:18px;margin:0}
+.hjalp p{margin:0}
+.hjalp ul,.hjalp ol{margin:0;padding-left:22px;display:flex;flex-direction:column;gap:6px}
+.hjalp .lada-forkl{display:grid;grid-template-columns:auto 1fr;gap:8px 12px;align-items:start}
+.hjalp .lada-forkl .lador-chip{font-size:13px;font-weight:500;border-radius:999px;padding:2px 12px;text-align:center}
+.hjalp details{border-bottom:var(--sv-harlinje) solid var(--sv-linje);padding:var(--sv-steg-1) 0}
+.hjalp summary{cursor:pointer;font-weight:500;min-height:var(--sv-tryckyta);display:flex;align-items:center}
+.hjalp details p{margin:0 0 var(--sv-steg-2);color:var(--sv-text-sekundar)}
+.foraldrar{display:flex;gap:var(--sv-steg-3);align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:var(--sv-steg-4);
+background:var(--sv-yta-2);border:var(--sv-harlinje) solid var(--sv-linje);border-radius:var(--sv-radie-kort);padding:var(--sv-steg-3) var(--sv-steg-4)}
+.foraldrar p{margin:0;color:var(--sv-text-sekundar);font-size:14px;max-width:56ch}
+.fot a{color:inherit}
+
 /* ---------- tabellen ---------- */
 .rutnat{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;font-family:var(--sv-mono);font-size:15px;max-width:640px;margin:0 auto}
 .rutnat button,.rutnat div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;
@@ -307,6 +364,13 @@ max-width:760px;color:#000}
   .ark{border:0;padding:0;margin:0;max-width:none;border-radius:0}
   .ark + .ark{break-before:page}
   .tal{font-size:16pt}
+  .ccc{font-size:12.5pt}
+  .ccc td{padding:3px 8px}
+  .ccc th{padding:2px 8px}
+  .ark-fot{margin-top:10px}
+  .ccc-steg{margin-bottom:8px}
+  .ark-namn{margin-bottom:12px}
+  .ark-huvud{margin-bottom:12px}
 }
 
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
@@ -368,6 +432,10 @@ max-width:760px;color:#000}
         <span class="namn">Tabellen</span><span class="besk">Hela tabellen 1–10 att titta och klicka i.</span>
       </a>
     </div>
+    <div class="foraldrar">
+      <div><b style="font-weight:500">För föräldrar och lärare</b><p>Hur passet fungerar, vad färgerna betyder och hur du kan hjälpa till hemma.</p></div>
+      <a class="sv-knapp" href="#sa-funkar-det">Så funkar det</a>
+    </div>
   </section>
 
   <!-- ================= DAGENS PASS ================= -->
@@ -390,13 +458,24 @@ max-width:760px;color:#000}
       <div class="rad">
         <button class="sv-knapp sv-knapp--primar" id="pass-starta">Starta dagens pass</button>
         <a class="sv-knapp" id="pass-strategi-lank" href="#strategier">Strategier</a>
+        <a class="sv-knapp" href="#karta">Min karta</a>
+      </div>
+      <div class="grupp" style="margin-top:var(--sv-steg-4)">
+        <p class="etikett">Nya tabeller</p>
+        <div class="rad">
+          <button class="val val--text" data-oppna="false">Efter strategin (rekommenderas)</button>
+          <button class="val val--text" data-oppna="true">Öppna alla tabeller</button>
+        </div>
+        <p class="sv-notis" style="margin-top:var(--sv-steg-1)">Med ”Öppna alla tabeller” kommer nya fakta in i ordning utan att strategin behöver göras först. Bra för den som redan kan strategierna.</p>
+      </div>
+      <div class="rad" style="margin-top:var(--sv-steg-3)">
         <button class="sv-knapp" id="pass-nollstall">Börja om från början</button>
       </div>
       <p class="sv-notis" style="margin-top:var(--sv-steg-2)">Framstegen sparas i den här webbläsaren. Logga in med ditt eget konto, så följer de med dig på den här datorn.</p>
     </div>
 
     <div id="pass-fraga" class="sv-kort" hidden>
-      <div class="status"><span id="pass-raknare">fråga 1</span><span id="pass-chip"></span></div>
+      <div class="status"><span id="pass-raknare">fråga 1</span><span class="rad" style="gap:8px"><span id="pass-chip"></span><button class="lasknapp" data-las hidden aria-label="Läs upp igen"><svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><polygon points="3,8 7,8 11,4 11,16 7,12 3,12"/><path d="M14 7.5a3.5 3.5 0 0 1 0 5"/><path d="M16 5a7 7 0 0 1 0 10"/></svg></button></span></div>
       <div class="matare" aria-hidden="true"><span id="pass-matare"></span></div>
       <div id="pass-intro" hidden>
         <p class="etikett" style="text-align:center">Nytt att lära</p>
@@ -422,6 +501,178 @@ max-width:760px;color:#000}
       <div class="rad" style="margin-top:var(--sv-steg-3)">
         <button class="sv-knapp sv-knapp--primar" id="pass-klart-vidare">Till passet</button>
         <a class="sv-knapp" href="#spel">Spela ett spel</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MIN KARTA ================= -->
+  <section id="vy-karta" class="vy tema-teal" hidden>
+    <a class="sv-knapp tillbaka" href="#pass">Dagens pass</a>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><rect x="3" y="3" width="6" height="6" rx="1"/><rect x="11" y="3" width="6" height="6" rx="1"/><rect x="3" y="11" width="6" height="6" rx="1"/><rect x="11" y="11" width="6" height="6" rx="1" fill="currentColor"/></svg></div>
+      <div><h2>Min karta</h2><p>Varje ruta är ett faktum. Färgen visar hur säkert det sitter. Tryck på en ruta för att läsa mer.</p></div>
+    </div>
+    <div class="sv-kort">
+      <p class="etikett">Den här veckan, jämfört med förra</p>
+      <div class="vecka" id="vecka"></div>
+    </div>
+    <div class="sv-kort">
+      <div class="karta-rad">
+        <div class="storkarta" id="storkarta" style="flex:1 1 320px"></div>
+        <div class="forklaring" style="max-width:240px">
+          <span><i class="l0"></i>Ny: inte övat än</span><span><i class="l1"></i>Övas: håller på att lära</span><span><i class="l2"></i>Nästan: rätt och snabbt en gång</span><span><i class="l3"></i>Sitter: rätt och snabbt två olika dagar</span>
+          <p class="sv-notis" style="margin-top:var(--sv-steg-1)">Kartan är spegelvänd över diagonalen, eftersom 3 × 7 och 7 × 3 är samma faktum.</p>
+        </div>
+      </div>
+      <div class="utlasning" id="karta-utlas" aria-live="polite" style="font-size:20px"></div>
+    </div>
+    <div class="sv-kort" id="ovas-kort">
+      <p class="etikett">Övas just nu</p>
+      <div class="ovas-lista" id="ovas-lista"></div>
+    </div>
+  </section>
+
+  <!-- ================= VISNING OCH LJUD ================= -->
+  <section id="vy-installningar" class="vy tema-bla" hidden>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><circle cx="10" cy="10" r="3"/><line x1="10" y1="2" x2="10" y2="5"/><line x1="10" y1="15" x2="10" y2="18"/><line x1="2" y1="10" x2="5" y2="10"/><line x1="15" y1="10" x2="18" y2="10"/></svg></div>
+      <div><h2>Visning och ljud</h2><p>Gäller hela sidan på den här datorn.</p></div>
+    </div>
+    <div class="sv-kort">
+      <div class="grupp">
+        <p class="etikett">Läs upp uppgifterna</p>
+        <div class="rad" data-grupp="uppl">
+          <button class="val val--text" data-v="av">Av</button>
+          <button class="val val--text" data-v="pa">På</button>
+          <button class="sv-knapp" id="prova-tal">Prova</button>
+        </div>
+        <p class="sv-notis" id="tal-notis" style="margin-top:var(--sv-steg-1)">Varje uppgift läses upp med datorns röst. En knapp med högtalare läser upp igen.</p>
+      </div>
+      <div class="grupp">
+        <p class="etikett">Större text och knappar</p>
+        <div class="rad" data-grupp="storText">
+          <button class="val val--text" data-v="av">Vanlig</button>
+          <button class="val val--text" data-v="pa">Större</button>
+        </div>
+      </div>
+      <div class="grupp">
+        <p class="etikett">Rutnätsstöd</p>
+        <div class="rad" data-grupp="stod">
+          <button class="val val--text" data-v="fel">Efter andra felet</button>
+          <button class="val val--text" data-v="alltid">Visa alltid</button>
+        </div>
+        <p class="sv-notis" style="margin-top:var(--sv-steg-1)">Med ”Visa alltid” syns ett sätt att räkna ut svaret vid varje fråga. Bra i början eller för den som behöver mer stöd. Startprovet visar aldrig stöd.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SÅ FUNKAR DET ================= -->
+  <section id="vy-sa-funkar-det" class="vy tema-teal" hidden>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7.5"/><line x1="10" y1="9" x2="10" y2="14"/><circle cx="10" cy="6.2" r=".6" fill="currentColor"/></svg></div>
+      <div><h2>Så funkar det</h2><p>För föräldrar, lärare och alla som undrar.</p></div>
+    </div>
+    <div class="sv-kort">
+      <div class="hjalp">
+        <section>
+          <p>Gångertabellen hjälper barn att lära sig multiplikationstabellen 1–10 så att svaren sitter. Sidan bygger på forskning om hur man lär sig tabellen bäst: först förstå hur man kan räkna ut ett svar, sedan öva kort och ofta tills svaret kommer direkt.</p>
+        </section>
+
+        <section>
+          <h3>Det viktigaste på en minut</h3>
+          <ul>
+            <li>Gör <b style="font-weight:500">Dagens pass</b> ungefär 10 minuter om dagen, gärna 4–5 dagar i veckan.</li>
+            <li>Passet väljer frågorna själv. Barnet behöver inte välja tabell.</li>
+            <li>Det är meningen att nästan alla svar ska bli rätt. Det är så minnet byggs upp, och det gör övningen lugn.</li>
+            <li>Ingen klocka syns och det finns inga topplistor. Hur snabbt barnet svarar mäts i det tysta och används bara för att välja nästa fråga.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Så går ett pass till</h3>
+          <ol>
+            <li><b style="font-weight:500">Första gången</b> gör barnet ett startprov med 20 frågor, utan tid. Det visar vad barnet redan kan, så att passet inte övar på det i onödan.</li>
+            <li><b style="font-weight:500">Varje pass</b> är högst 30 frågor eller 10 minuter. Ungefär var fjärde fråga är något barnet håller på att lära sig. Resten är sådant barnet redan kan.</li>
+            <li><b style="font-weight:500">Något nytt</b> visas först tillsammans med en bild som visar ett sätt att räkna. Barnet trycker ”Jag har tittat”, skriver svaret och får samma fråga igen efter en stund.</li>
+            <li><b style="font-weight:500">Vid fel</b> visas rätt svar och barnet skriver det en gång till. Blir det fel igen visas bilden med ett sätt att räkna.</li>
+            <li><b style="font-weight:500">Klart för idag</b> visar vilka fakta som har flyttat upp. Det går att köra ett pass till, men det behövs inte.</li>
+          </ol>
+        </section>
+
+        <section>
+          <h3>Lådorna och kartan</h3>
+          <p>Varje faktum, till exempel 7 × 8, ligger i en av fyra lådor. Lådorna syns på kartan under Dagens pass.</p>
+          <div class="lada-forkl">
+            <span class="lador-chip" style="border:1px dashed var(--sv-linje-stark)">Ny</span><span>Har inte övats än.</span>
+            <span class="lador-chip" style="background:var(--amber-yta);color:var(--amber-text)">Övas</span><span>Barnet håller på att lära sig det, eller svarade fel senast.</span>
+            <span class="lador-chip" style="background:var(--bla-yta);color:var(--bla-text)">Nästan</span><span>Rätt och snabbt en gång.</span>
+            <span class="lador-chip" style="background:var(--teal-yta);color:var(--teal-text)">Sitter</span><span>Rätt och snabbt två olika dagar. Det som sitter kommer tillbaka ibland, med längre och längre mellanrum, så att det inte glöms bort.</span>
+          </div>
+          <p>3 × 7 och 7 × 3 räknas som samma faktum. Därför finns det 55 fakta att lära, inte 100. ”Snabbt” betyder ungefär 3 sekunder. Det är ingen tävling, bara ett tecken på att svaret kommer ur minnet och inte räknas fram.</p>
+        </section>
+
+        <section>
+          <h3>Strategier</h3>
+          <p>Barn som förstår hur ett svar kan räknas ut lär sig tabellen lättare och kan använda den i nya sammanhang. Därför finns sex korta strategier, var och en med ett rutnät barnet kan ändra själv:</p>
+          <ul>
+            <li><b style="font-weight:500">Vrid:</b> 3 × 7 är lika mycket som 7 × 3.</li>
+            <li><b style="font-weight:500">Dubbelt:</b> 4:an är dubbla 2:an, 8:an är dubbla 4:an.</li>
+            <li><b style="font-weight:500">Halva tian:</b> 5 × 8 är hälften av 10 × 8.</li>
+            <li><b style="font-weight:500">Tian minus en:</b> 9 × 7 är 70 minus 7.</li>
+            <li><b style="font-weight:500">Kvadrat och granne:</b> 7 × 8 är 7 × 7 och en sjua till.</li>
+            <li><b style="font-weight:500">Dela upp:</b> 7 × 8 är 5 × 8 och 2 × 8.</li>
+          </ul>
+          <p>En ny tabell kommer in i Dagens pass när barnet har gjort strategin som hör till. Vill ni hoppa över det finns valet ”Öppna alla tabeller” under Dagens pass.</p>
+        </section>
+
+        <section>
+          <h3>I vilken ordning kommer tabellerna?</h3>
+          <p>Först 1:an och 10:an, sedan 2:an och 5:an, därefter 4:an, 8:an och 3:an, sedan 9:an och kvadrattalen, sedan 6:an och 7:an. Sist kommer de sex som brukar vara svårast: 6 × 6, 6 × 7, 6 × 8, 7 × 7, 7 × 8 och 8 × 8. Ordningen följer strategierna, så att varje nytt faktum kan räknas ut med något barnet redan kan.</p>
+        </section>
+
+        <section>
+          <h3>Så kan du hjälpa till hemma</h3>
+          <ul>
+            <li>Fråga hur barnet tänkte, inte bara vad svaret blev: ”Hur räknade du ut 7 × 8?”</li>
+            <li>Håll passen korta. Tio minuter om dagen ger mer än en timme en gång i veckan.</li>
+            <li>Undvik att räkna upp tabellen som en ramsa (7, 14, 21 …). Det blir lätt ett sätt att räkna fram svaret i stället för att minnas det.</li>
+            <li>Undvik tidspress och tävling mellan syskon. Jämför bara med hur det gick förra veckan. Det syns under Min karta.</li>
+            <li>Spelen och Öva fritt är bra som extra, men det är Dagens pass som håller ordning på vad som behöver övas.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Övriga delar</h3>
+          <ul>
+            <li><b style="font-weight:500">Öva fritt:</b> välj själv tabeller och räknesätt, även division.</li>
+            <li><b style="font-weight:500">Spel:</b> fem spel som övar de tabeller man väljer.</li>
+            <li><b style="font-weight:500">Kalkylblad:</b> skriv ut uppgifter med facit, eller bladet ”Titta, täck, skriv” för egen övning på papper.</li>
+            <li><b style="font-weight:500">Tabellen:</b> hela tabellen att titta i, med hoppräkning och strategi för varje ruta.</li>
+            <li><b style="font-weight:500">Visning och ljud:</b> uppläsning av uppgifterna, större text och rutnätsstöd vid varje fråga.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Var sparas det som barnet gör?</h3>
+          <ul>
+            <li>Allt sparas bara i webbläsaren på den här datorn. Inget skickas till skolan eller någon annan.</li>
+            <li>Därför följer framstegen inte med till en annan dator eller webbläsare.</li>
+            <li>Delar flera barn samma dator och inloggning blandas deras framsteg ihop. Låt varje barn logga in med sitt eget konto. På en skol-Chromebook är det barnets skolkonto.</li>
+            <li>Om webbläsarens data rensas försvinner framstegen, och barnet får börja med startprovet igen.</li>
+            <li>Läraren kan inte se resultaten via sidan.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h3>Vanliga frågor</h3>
+          <details><summary>Varför kommer inte 7:an fast mitt barn vill öva på den?</summary><p>Passet tar in tabellerna i en ordning där varje ny tabell kan räknas ut med något barnet redan kan. 7:an kommer nästan sist. Vill ni öva på den ändå går det bra i Öva fritt eller Spel.</p></details>
+          <details><summary>Mitt barn kan redan tabellen. Behövs det här?</summary><p>Startprovet känner av det. Det som redan sitter repeteras bara ibland, och passet blir kort och lätt. Är allt 55 i lådan Sitter är målet nått.</p></details>
+          <details><summary>Varför kommer samma fråga flera gånger?</summary><p>Det som är nytt eller blev fel kommer tillbaka efter två och fem frågor. Det är så det fastnar i minnet.</p></details>
+          <details><summary>Varför syns ingen klocka?</summary><p>Tidspress får en del barn att gissa i stället för att tänka. Snabbheten mäts ändå i det tysta. I Öva fritt finns valet ”Visa tiden” för den som vill.</p></details>
+          <details><summary>Ingenting nytt kommer in i passet. Varför?</summary><p>Nästa tabell väntar på att barnet gör strategin som hör till. Det står under Dagens pass vilken det är. Ni kan också välja ”Öppna alla tabeller”.</p></details>
+          <details><summary>Hur börjar vi om?</summary><p>Under Dagens pass finns knappen ”Börja om från början”. Tryck två gånger. Allt raderas och barnet börjar med startprovet.</p></details>
+          <details><summary>Behövs internet?</summary><p>Sidan behöver internet för att öppnas. Sedan fungerar den även om uppkopplingen försvinner.</p></details>
+        </section>
       </div>
     </div>
   </section>
@@ -512,7 +763,7 @@ max-width:760px;color:#000}
     </div>
 
     <div id="ova-pass" class="sv-kort" hidden>
-      <div class="status"><span id="raknare">1 / 10</span><span id="tid">0:00</span></div>
+      <div class="status"><span id="raknare">1 / 10</span><span class="rad" style="gap:8px"><span id="tid">0:00</span><button class="lasknapp" data-las hidden aria-label="Läs upp igen"><svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><polygon points="3,8 7,8 11,4 11,16 7,12 3,12"/><path d="M14 7.5a3.5 3.5 0 0 1 0 5"/><path d="M16 5a7 7 0 0 1 0 10"/></svg></button></span></div>
       <div class="matare" id="ova-matare" aria-hidden="true"><span id="matare"></span></div>
       <div class="uppgift" aria-live="polite"><span id="fraga"></span> = <span class="svar" id="svar"></span></div>
       <div class="aterkoppling" id="aterkoppling" role="status"></div>
@@ -705,6 +956,7 @@ max-width:760px;color:#000}
           <button class="val val--text" data-v="lucka">Saknad faktor</button>
           <button class="val val--text" data-v="blandat">Blandat</button>
           <button class="val val--text" data-v="tabell">Tom tabell</button>
+          <button class="val val--text" data-v="ccc">Titta, täck, skriv</button>
         </div>
       </div>
       <div class="grupp" id="kb-antal-grupp">
@@ -715,7 +967,7 @@ max-width:760px;color:#000}
           <button class="val val--text" data-v="60">60</button>
         </div>
       </div>
-      <div class="grupp">
+      <div class="grupp" id="kb-facit-grupp">
         <p class="etikett">Facit</p>
         <div class="rad" data-grupp="kbfacit">
           <button class="val val--text" data-v="ja">Med facit på egen sida</button>
@@ -745,7 +997,7 @@ max-width:760px;color:#000}
     </div>
   </section>
 
-  <p class="sv-notis fot" style="text-align:center">Gångertabellen · fungerar utan nät · inget lämnar den här datorn</p>
+  <p class="sv-notis fot" style="text-align:center"><a href="#sa-funkar-det">Så funkar det</a> · <a href="#installningar">Visning och ljud</a> · inget lämnar den här datorn</p>
 </main>
 
 <script>
@@ -796,7 +1048,7 @@ max-width:760px;color:#000}
   // ================= Gemensamma inställningar =================
   var inst = Object.assign({
     tabeller: [2, 3, 4, 5], raknesatt: "mult", tid: "dold", langd: "10",
-    loppfart: "snigel", kbtyp: "mult", kbantal: "40", kbfacit: "ja"
+    loppfart: "snigel", kbtyp: "mult", kbantal: "40", kbfacit: "ja", uppl: "av", storText: "av", stod: "fel"
   }, lasa("gangertabellen-inst", {}));
   if (!Array.isArray(inst.tabeller)) inst.tabeller = [2, 3, 4, 5];
 
@@ -844,7 +1096,10 @@ max-width:760px;color:#000}
     $("starta-notis").textContent = tom ? "Välj minst en tabell." :
       (inst.langd === "alla" ? byggUppgifter().length + " frågor" : "");
     $("kb-antal-grupp").hidden = inst.kbtyp === "tabell";
+    $("kb-facit-grupp").hidden = inst.kbtyp === "ccc";
     skriva("gangertabellen-inst", inst);
+    document.body.classList.toggle("stor-text", inst.storText === "pa");
+    document.querySelectorAll("[data-las]").forEach(function (b) { b.hidden = inst.uppl !== "pa" || !talFinns; });
     if (aktuellVy === "kalkylblad") ritaKalkylblad();
   }
 
@@ -978,7 +1233,8 @@ max-width:760px;color:#000}
     $("svar").textContent = "";
     $("aterkoppling").className = "aterkoppling";
     $("aterkoppling").textContent = "";
-    $("ledtrad").innerHTML = "";
+    $("ledtrad").innerHTML = inst.stod === "alltid" ? ledtradHtml(u) : "";
+    lasUpp(talText(u));
     okKnapp.textContent = "Svara";
     $("raknare").textContent = pass.tidsgrans ? pass.ratt + " rätt" : pass.nr + " / " + pass.antal;
     if (!pass.tidsgrans) $("matare").style.width = ((pass.nr - 1) / pass.antal * 100) + "%";
@@ -1108,10 +1364,12 @@ max-width:760px;color:#000}
 
   function idag() { return new Date().toLocaleDateString("sv-SE"); }
   function plusDagar(d, n) { var t = new Date(d + "T12:00:00"); t.setDate(t.getDate() + n); return t.toLocaleDateString("sv-SE"); }
-  function tomDb() { return { v: 1, fakta: {}, startprov: false, passDagar: [], moduler: {} }; }
+  function tomDb() { return { v: 1, fakta: {}, startprov: false, passDagar: [], moduler: {}, dagar: {} }; }
   var DB = lasa("gt-fakta", null);
   if (!DB || DB.v !== 1) DB = tomDb();
   if (!DB.moduler) DB.moduler = {};
+  if (!DB.dagar) DB.dagar = {};
+  function dagPost() { var d = idag(); return DB.dagar[d] || (DB.dagar[d] = { p: 0, f: 0, r: 0, s: 0 }); }
   function dbSpara() { skriva("gt-fakta", DB); }
   function post(k) { return DB.fakta[k] || (DB.fakta[k] = { l: 0, fs: [], due: idag(), st: 0 }); }
   function lada(k) { return DB.fakta[k] ? DB.fakta[k].l : 0; }
@@ -1127,7 +1385,7 @@ max-width:760px;color:#000}
       f.fs = f.fs.slice(-5);
       if (felIPass) f.l = Math.max(f.l, 1);
       else if (f.l <= 1) f.l = 2;
-      else if (f.l === 2 && tidigareDag) f.l = 3;
+      else if (f.l === 2 && tidigareDag) { f.l = 3; if (!f.sd) { f.sd = d; dagPost().s++; } }
       if (f.l === 3) { f.st = (f.st || 0) + 1; f.due = plusDagar(d, Math.min(30, 3 * Math.pow(2, f.st - 1))); }
       else f.due = f.l === 2 ? plusDagar(d, 1) : d;
     } else {
@@ -1159,7 +1417,7 @@ max-width:760px;color:#000}
   function saknadeModuler(f) {
     return (MODUL_FOR_RANG[f.rang] || []).filter(function (m) { return !DB.moduler[m]; });
   }
-  function familjOppen(f) { return saknadeModuler(f).length === 0; }
+  function familjOppen(f) { return !!DB.allaOppna || saknadeModuler(f).length === 0; }
 
   function ritaPassHem() {
     var n = raknaLador();
@@ -1175,7 +1433,7 @@ max-width:760px;color:#000}
       text = "Alla 55 sitter. Passet repeterar nu bara det som är dags att friska upp.";
       knapp = gjortIdag ? "Ett pass till" : "Starta dagens pass";
     } else {
-      var saknas = ny ? saknadeModuler(ny) : [];
+      var saknas = ny && !DB.allaOppna ? saknadeModuler(ny) : [];
       text = (gjortIdag ? "Dagens pass är gjort. Du kan köra ett till om du vill. " : "") +
         (!ny ? "Inga nya kvar, bara repetition." : saknas.length
           ? "Nästa nya att lära är " + ny.a + " × " + ny.b + ". Det kommer in i passet när du gjort strategin " + modulNamn(saknas[0]) + "."
@@ -1185,7 +1443,8 @@ max-width:760px;color:#000}
     $("pass-hem-text").textContent = text;
     $("pass-starta").textContent = knapp;
     var klara = MODULER.filter(function (m) { return DB.moduler[m.id]; }).length;
-    var nastaM = ny && DB.startprov ? saknadeModuler(ny)[0] : null;
+    var nastaM = ny && DB.startprov && !DB.allaOppna ? saknadeModuler(ny)[0] : null;
+    document.querySelectorAll("[data-oppna]").forEach(function (b) { b.setAttribute("aria-pressed", String(!!DB.allaOppna) === b.dataset.oppna); });
     var lank = $("pass-strategi-lank");
     lank.href = nastaM ? "#strategi/" + nastaM : "#strategier";
     lank.textContent = nastaM ? "Gör strategin " + modulNamn(nastaM) : "Strategier (" + klara + " av " + MODULER.length + " klara)";
@@ -1284,6 +1543,7 @@ max-width:760px;color:#000}
       $("pass-intro").hidden = false; $("pass-uppgift").hidden = true;
       $("pass-intro-faktum").textContent = text(u) + " = " + u.svar;
       $("pass-intro-ledtrad").innerHTML = ledtradHtml(u);
+      lasUpp("Nytt att lära. " + talText(u) + " är " + u.svar);
       pp.reask.push({ k: val.k, vid: pp.i + 2 }, { k: val.k, vid: pp.i + 5 });
       $("pass-intro-ok").focus();
       return;
@@ -1297,7 +1557,8 @@ max-width:760px;color:#000}
     $("pass-text").textContent = text(u);
     $("pass-svar").textContent = "";
     $("pass-fb").className = "aterkoppling"; $("pass-fb").textContent = "";
-    $("pass-ledtrad").innerHTML = "";
+    $("pass-ledtrad").innerHTML = inst.stod === "alltid" && !pp.prov ? ledtradHtml(u) : "";
+    lasUpp(talText(u));
   }
 
   $("pass-intro-ok").onclick = function () {
@@ -1338,6 +1599,7 @@ max-width:760px;color:#000}
     var ratt = givet === u.svar;
     if (pp.typ !== "kopia") {
       pp.svar++; if (ratt) pp.ratt++;
+      if (!pp.prov) { var dg = dagPost(); dg.f++; if (ratt) dg.r++; }
       sparaSvarstid(u, ms, ratt);
       if (pp.prov) pp.provSvar[u.k] = { ratt: ratt, snabb: ms <= snabbGrans(u.svar) };
       else {
@@ -1409,7 +1671,9 @@ max-width:760px;color:#000}
       pp = null; passDel("hem"); ritaPassHem(); return;
     }
     var min = Math.max(1, Math.round((Date.now() - pp.start) / 60000));
-    if (pp.i > 0 && DB.passDagar.indexOf(idag()) < 0) { DB.passDagar.push(idag()); DB.passDagar = DB.passDagar.slice(-60); dbSpara(); }
+    if (pp.i > 0) dagPost().p++;
+    if (pp.i > 0 && DB.passDagar.indexOf(idag()) < 0) { DB.passDagar.push(idag()); DB.passDagar = DB.passDagar.slice(-60); }
+    dbSpara();
     var upp = Object.keys(pp.flytt).filter(function (k) { return pp.flytt[k].till > pp.flytt[k].fran; });
     var rubrik = $("pass-klart-rubrik");
     rubrik.innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="currentColor"/></svg>' +
@@ -1448,6 +1712,76 @@ max-width:760px;color:#000}
     DB = tomDb(); dbSpara(); ritaPassHem();
   };
   function visaPassVy() { if (!pp) { passDel("hem"); ritaPassHem(); } }
+
+  // ================= TAL =================
+  var talFinns = typeof window.speechSynthesis !== "undefined" && typeof window.SpeechSynthesisUtterance !== "undefined";
+  var senasteTal = "";
+  function talText(u) { return u.a + (u.typ === "div" ? " delat med " : " gånger ") + u.b; }
+  function lasUpp(t, tvinga) {
+    senasteTal = t;
+    if ((!tvinga && inst.uppl !== "pa") || !talFinns) return;
+    try {
+      speechSynthesis.cancel();
+      var m = new SpeechSynthesisUtterance(t);
+      m.lang = "sv-SE"; m.rate = 0.9;
+      var rost = speechSynthesis.getVoices().filter(function (v) { return /^sv/i.test(v.lang); })[0];
+      if (rost) m.voice = rost;
+      speechSynthesis.speak(m);
+    } catch (e) {}
+  }
+  document.addEventListener("click", function (e) { if (e.target.closest("[data-las]")) lasUpp(senasteTal, true); });
+  $("prova-tal").onclick = function () { lasUpp("Sju gånger åtta är femtiosex.", true); };
+  if (!talFinns) {
+    $("tal-notis").textContent = "Den här webbläsaren kan inte läsa upp text.";
+    $("prova-tal").disabled = true;
+  }
+
+  // ================= MIN KARTA =================
+  function veckoSumma(fran, till) {
+    var sum = { p: 0, f: 0, r: 0, s: 0 };
+    for (var i = fran; i < till; i++) {
+      var d = DB.dagar[plusDagar(idag(), -i)];
+      if (d) { sum.p += d.p; sum.f += d.f; sum.r += d.r; sum.s += d.s; }
+    }
+    return sum;
+  }
+  function ritaKarta() {
+    var nu = veckoSumma(0, 7), forra = veckoSumma(7, 14);
+    function andel(x) { return x.f ? Math.round(x.r / x.f * 100) + " %" : "–"; }
+    var rutor = [
+      [nu.p, "pass", forra.p], [nu.f, "frågor", forra.f], [andel(nu), "rätt", andel(forra)], [nu.s, "nya som sitter", forra.s]
+    ];
+    $("vecka").innerHTML = rutor.map(function (x) {
+      return '<div><b>' + x[0] + '</b><span>' + x[1] + '</span><small>förra veckan: ' + x[2] + '</small></div>';
+    }).join("");
+    var h = '<span class="rk"></span>';
+    for (var c = 1; c <= MAX; c++) h += '<span class="rk">' + c + '</span>';
+    for (var r = 1; r <= MAX; r++) {
+      h += '<span class="rk">' + r + '</span>';
+      for (var c2 = 1; c2 <= MAX; c2++) {
+        var k = Math.min(r, c2) + "x" + Math.max(r, c2), l = lada(k);
+        h += '<button class="l' + l + '" data-r="' + r + '" data-c="' + c2 + '" aria-label="' + r + " gånger " + c2 + ": " + LADNAMN[l] + '">' + r * c2 + '</button>';
+      }
+    }
+    $("storkarta").innerHTML = h;
+    $("karta-utlas").textContent = "";
+    var ovas = FAKTA.filter(function (f) { return lada(f.k) === 1; });
+    $("ovas-kort").hidden = !ovas.length;
+    $("ovas-lista").innerHTML = ovas.map(function (f) { return "<span>" + f.a + " × " + f.b + "</span>"; }).join("");
+  }
+  $("storkarta").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    var r = +b.dataset.r, c = +b.dataset.c, k = Math.min(r, c) + "x" + Math.max(r, c), f = DB.fakta[k], l = lada(k);
+    $("storkarta").querySelectorAll("button.vald").forEach(function (x) { x.classList.remove("vald"); });
+    b.classList.add("vald");
+    var extra = l === 0 ? (familjOppen(FAKTA_MAP[k]) ? "kommer i passet så småningom" : "kommer efter strategin " + modulNamn(saknadeModuler(FAKTA_MAP[k])[0]))
+      : l === 3 && f && f.due ? "repeteras igen " + f.due : "";
+    $("karta-utlas").textContent = r + " × " + c + " = " + r * c + " · " + LADNAMN[l] + (extra ? " · " + extra : "");
+  });
+
+  document.querySelectorAll("[data-oppna]").forEach(function (b) {
+    b.onclick = function () { DB.allaOppna = b.dataset.oppna === "true"; dbSpara(); ritaPassHem(); };
+  });
 
   // ================= STRATEGIER =================
   // Varje modul: ett rutnät som eleven ändrar själv och fyra uppgifter med strategin som stöd.
@@ -1626,6 +1960,7 @@ max-width:760px;color:#000}
     $("str-fb").className = "aterkoppling"; $("str-fb").textContent = "";
     // stödet syns från början: det är strategin som ska övas
     $("str-ledtrad").innerHTML = aktivModul.ledtrad ? aktivModul.ledtrad(u) : ledtradHtml(u);
+    lasUpp(talText(u));
   }
   function tryckStr(s) {
     if (!sp || $("str-prova-kort").hidden || sp.lage === "vanta") return;
@@ -2080,7 +2415,7 @@ max-width:760px;color:#000}
     var r = kbSlump(kbFro);
     var ri = function (n) { return Math.floor(r() * n); };
     var tabText = inst.tabeller.length === MAX ? "1–10" : inst.tabeller.join(", ");
-    var typNamn = { mult: "Multiplikation", div: "Division", lucka: "Saknad faktor", blandat: "Blandat", tabell: "Fyll i tabellen" }[inst.kbtyp];
+    var typNamn = { mult: "Multiplikation", div: "Division", lucka: "Saknad faktor", blandat: "Blandat", tabell: "Fyll i tabellen", ccc: "Titta, täck, skriv, jämför" }[inst.kbtyp];
 
     function huvud(facit) {
       return '<div class="ark-huvud"><h3 class="' + (facit ? "facitrubrik" : "") + '">' + typNamn + (facit ? " · facit" : "") +
@@ -2109,6 +2444,32 @@ max-width:760px;color:#000}
         '<p style="font-size:13px;margin-top:16px">' + (rader ? "Fyll i de tomma rutorna i " + tabText + ":ans tabell." : "Fyll i alla tomma rutor.") + '</p>' + fot() + '</div>';
       if (inst.kbfacit === "ja") html += '<div class="ark">' + huvud(true) + bygg(true) + fot() + '</div>';
       behallare.innerHTML = html;
+      return;
+    }
+
+    if (inst.kbtyp === "ccc") {
+      // Cover-Copy-Compare: titta, vik undan, skriv ur minnet, jämför
+      var antalC = +inst.kbantal, alla = [], forraC = "", pa = {}, forsok = 0;
+      while (alla.length < antalC) {
+        var tc = inst.tabeller[ri(inst.tabeller.length)], kc = 1 + ri(MAX);
+        var fc = r() < 0.5 ? [kc, tc] : [tc, kc], nyckelC = fc.join("x");
+        // samma uppgift högst en gång per blad, så länge det finns nog med olika
+        if (alla.length % 20 === 0) pa = {};
+        if (nyckelC === forraC || (pa[nyckelC] && forsok++ < 200)) continue;
+        forraC = nyckelC; pa[nyckelC] = 1; forsok = 0; alla.push(fc);
+      }
+      var out = "";
+      for (var sida = 0; sida < alla.length; sida += 20) {
+        var rad = alla.slice(sida, sida + 20).map(function (f, i) {
+          return '<tr><td class="nr">' + (sida + i + 1) + '</td><td class="titta">' + f[0] + " × " + f[1] + " = " + f[0] * f[1] +
+            '</td><td>' + f[0] + " × " + f[1] + ' = <span class="linje"></span></td><td class="kryss"><span></span></td></tr>';
+        }).join("");
+        out += '<div class="ark">' + huvud(false) +
+          '<ol class="ccc-steg"><li>Titta på uppgiften och säg den högt.</li><li>Vik pappret längs den streckade linjen så att svaren döljs.</li><li>Skriv svaret ur minnet.</li><li>Vik tillbaka och jämför. Stämmer det, sätt en bock. Om inte, skriv rätt svar bredvid.</li></ol>' +
+          '<table class="ccc"><thead><tr><th></th><th class="titta">Titta</th><th>Skriv</th><th>Rätt?</th></tr></thead><tbody>' + rad + '</tbody></table>' +
+          fot(alla.slice(sida, sida + 20).length) + '</div>';
+      }
+      behallare.innerHTML = out;
       return;
     }
 
@@ -2204,6 +2565,8 @@ max-width:760px;color:#000}
     if (delar[0] === "spel" && SPEL_IDS.indexOf(delar[1]) >= 0) { vy = delar[1]; sektion = "spel"; }
     else if (delar[0] === "strategi" && MODUL_MAP[delar[1]]) { vy = "strategi"; sektion = "pass"; }
     else if (delar[0] === "strategier") { vy = "strategier"; sektion = "pass"; }
+    else if (delar[0] === "karta") { vy = "karta"; sektion = "pass"; }
+    else if (delar[0] === "installningar" || delar[0] === "sa-funkar-det") { vy = delar[0]; }
     else if (["pass", "ova", "spel", "kalkylblad", "tabell"].indexOf(delar[0]) >= 0) { vy = sektion = delar[0]; }
 
     Object.keys(spel).forEach(function (id) { if (id !== vy) spel[id].stopp(); });
@@ -2217,6 +2580,7 @@ max-width:760px;color:#000}
     if (vy === "pass") visaPassVy();
     if (vy === "strategier") ritaStrategilista();
     if (vy === "strategi") visaModul(delar[1]);
+    if (vy === "karta") ritaKarta();
     if (vy === "start") ritaStartkort();
     window.scrollTo(0, 0);
   }
