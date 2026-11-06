@@ -14,6 +14,10 @@ Valda tabeller sparas och följer med mellan Öva, Spel och Kalkylblad.
 - Fel frågas igen efter 2 och 5 frågor. Är felet ett grannfaktum (54 för 7 × 8) övas även grannen.
 - Första gången: ett startprov med 20 frågor utan synlig tid.
 
+**Strategier** – sex korta moduler med ett rutnät som eleven ändrar själv, följt av fyra uppgifter med strategin som stöd:
+*Vrid* (kommutativitet), *Dubbelt* (2, 3, 4, 8), *Halva tian* (5), *Tian minus en* (9), *Kvadrat och granne* (6×6, 7×7, 8×8 och grannarna), *Dela upp* (6, 7).
+En modul låser upp nya fakta ur sin familj i Dagens pass. Fakta eleven redan kan påverkas inte, och 1:an och 10:an är alltid öppna.
+
 **Öva** – blandade frågor med direkt återkoppling. Multiplikation, division eller båda; 10/20 frågor, hela tabellen eller 60 sekunder. Klockan är dold som standard.
 - Vid fel visas rätt svar och eleven skriver det en gång till innan nästa fråga.
 - Vid andra felet på samma faktum visas en strategi i ett rutnät (t.ex. 7 × 8 = 7 × 7 + 7).
