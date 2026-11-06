@@ -36,6 +36,9 @@ En modul låser upp nya fakta ur sin familj i Dagens pass. Under Dagens pass kan
 - *Kapplöpning* – svara rätt för att springa ifrån snigeln, katten eller haren. Vid fel skrivs rätt svar av.
 - *Bingo* – markera svaret på brickan, fyll en rad.
 - *Sant eller falskt* – så många du hinner på en minut (tangenter S/F).
+- *Rektanglar* – bygg alla rektanglar (högst 10 × 10) med ett visst antal rutor. Tränar faktorpar och rutnätsbilden.
+- *Kodlåset* – hitta den saknade faktorn i tre ledtrådar för att öppna låset. Kopplar till division.
+- *Fyra i rad* – två klämmor på 1–9: flytta en, markera produkten, först till fyra i rad mot datorn (lätt eller klurig).
 
 **Kalkylblad** – skapa utskrivbara blad: multiplikation, division, saknad faktor, blandat, tom tabell eller *Titta, täck, skriv, jämför* (20 rader per blad, eleven viker undan svaren och rättar själv). 20/40/60 uppgifter, facit på egen sida. Skriv ut eller välj ”Spara som PDF”.
 

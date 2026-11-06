@@ -262,6 +262,49 @@ background:var(--sv-yta-2);border:var(--sv-harlinje) solid var(--sv-linje);borde
 .foraldrar p{margin:0;color:var(--sv-text-sekundar);font-size:14px;max-width:56ch}
 .fot a{color:inherit}
 
+/* ---------- rektanglar ---------- */
+.rek-yta{display:flex;gap:var(--sv-steg-4);flex-wrap:wrap;align-items:flex-start}
+.rek-rutnat{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;width:340px;max-width:100%;flex:none}
+.rek-rutnat button{aspect-ratio:1;border:0;border-radius:3px;background:var(--sv-yta-1);box-shadow:inset 0 0 0 .5px var(--sv-linje-stark);cursor:pointer;padding:0}
+.rek-rutnat button.sel{background:var(--tema-djup);box-shadow:none}
+.rek-sida{display:flex;flex-direction:column;gap:var(--sv-steg-2);flex:1;min-width:220px}
+.rek-matt{font-family:var(--sv-mono);font-size:28px;letter-spacing:-.5px}
+.rek-sida .aterkoppling{margin:0}
+/* ---------- kodlåset ---------- */
+.kod-yta{display:flex;gap:var(--sv-steg-4);align-items:center;justify-content:center;flex-wrap:wrap;margin:var(--sv-steg-2) 0 var(--sv-steg-3)}
+.kod-las{width:80px;height:96px;flex:none}
+.kod-las.oppen #kod-bygel{transform:translateY(-10px)}
+.kod-rader{display:flex;flex-direction:column;gap:var(--sv-steg-1)}
+.kod-rad{display:flex;align-items:center;gap:var(--sv-steg-2);font-family:var(--sv-mono);font-size:26px}
+.kod-hjul{display:flex;align-items:center;gap:4px;background:var(--tema-yta);border-radius:var(--sv-radie);padding:2px}
+.kod-hjul span{min-width:2.2ch;text-align:center;color:var(--tema-text)}
+.kod-hjul button{width:44px;height:44px;border-radius:6px;border:0;background:var(--sv-yta-2);font-size:22px;cursor:pointer;color:var(--sv-text)}
+.kod-status{font-family:var(--sv-sans);font-size:13px;min-width:70px;color:var(--sv-text-sekundar)}
+.kod-status.ok{color:var(--sv-signal-klart)}
+/* ---------- fyra i rad ---------- */
+.fyra-plan{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--sv-steg-1);max-width:420px;margin:0 auto var(--sv-steg-2)}
+.fyra-plan button{aspect-ratio:1;border-radius:var(--sv-radie);border:1px solid var(--sv-linje-stark);background:var(--sv-yta-2);font-family:var(--sv-mono);font-size:20px;color:var(--sv-text);cursor:pointer;padding:0;position:relative}
+.fyra-plan button.du{background:var(--tema-djup);border-color:var(--tema-djup);color:#fff}
+.fyra-plan button.dator{background:var(--sv-text-sekundar);border-color:var(--sv-text-sekundar);color:#fff}
+.fyra-plan button.du::after,.fyra-plan button.dator::after{content:"";position:absolute;top:5px;right:5px;width:8px;height:8px;background:#fff}
+.fyra-plan button.du::after{border-radius:50%}
+.fyra-plan button.vinst{outline:3px solid var(--sv-text);outline-offset:-3px}
+.fyra-plan button.fel{background:var(--sv-signal-fel-yta);border-color:var(--sv-signal-fel);color:var(--sv-signal-fel)}
+.fyra-info{text-align:center;min-height:2.6em;margin:0 0 var(--sv-steg-2)}
+.fyra-klamma{display:grid;grid-template-columns:76px 1fr;align-items:center;gap:var(--sv-steg-1);max-width:520px;margin:0 auto var(--sv-steg-1)}
+.fyra-rad{display:grid;grid-template-columns:repeat(9,1fr);gap:4px}
+.fyra-rad button{min-height:var(--sv-tryckyta);border-radius:6px;border:var(--sv-harlinje) solid var(--sv-linje-stark);background:var(--sv-yta-2);font-family:var(--sv-mono);font-size:16px;cursor:pointer;padding:0;color:var(--sv-text)}
+.fyra-rad button.har{background:var(--tema);border-color:var(--tema-djup);color:var(--tema-text);font-weight:500}
+.fyra-forkl{display:flex;gap:var(--sv-steg-3);justify-content:center;font-size:13px;color:var(--sv-text-sekundar);margin-top:var(--sv-steg-2)}
+.fyra-forkl span{display:flex;align-items:center;gap:6px}
+.fyra-forkl i{width:14px;height:14px;border-radius:3px;display:inline-block}
+.fyra-forkl i.du{background:var(--tema-djup)}
+.fyra-forkl i.dator{background:var(--sv-text-sekundar)}
+@media (max-width:480px){.fyra-plan button{font-size:15px}.fyra-klamma{grid-template-columns:1fr}}
+/* ---------- kredit i punktmatris ---------- */
+.kredit{display:flex;justify-content:center;margin-top:var(--sv-steg-3);color:var(--sv-text-sekundar)}
+.kredit svg{width:300px;max-width:100%;height:auto}
+
 /* ---------- tabellen ---------- */
 .rutnat{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;font-family:var(--sv-mono);font-size:15px;max-width:640px;margin:0 auto}
 .rutnat button,.rutnat div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;
@@ -421,7 +464,7 @@ max-width:760px;color:#000}
       </a>
       <a class="ruta-kort tema-lila" href="#spel">
         <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><circle cx="50" cy="56" r="20" fill="#fff" stroke="currentColor" stroke-width="2.5"/><circle cx="92" cy="38" r="14" fill="#fff" stroke="currentColor" stroke-width="2.5"/><circle cx="118" cy="66" r="11" fill="currentColor"/><text x="50" y="63" text-anchor="middle" font-family="monospace" font-size="18" fill="currentColor">42</text></svg></div>
-        <span class="namn">Spel</span><span class="besk">Fem spel som tränar samma tabeller.</span>
+        <span class="namn">Spel</span><span class="besk">Åtta spel som tränar samma tabeller.</span>
       </a>
       <a class="ruta-kort tema-amber" href="#kalkylblad">
         <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><rect x="52" y="12" width="56" height="76" rx="3" fill="#fff"/><g stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="60" y1="28" x2="100" y2="28"/><line x1="60" y1="42" x2="84" y2="42"/><line x1="60" y1="54" x2="90" y2="54"/><line x1="60" y1="66" x2="80" y2="66"/><line x1="60" y1="78" x2="94" y2="78"/></g></svg></div>
@@ -932,6 +975,103 @@ max-width:760px;color:#000}
     </div>
   </section>
 
+  <!-- Spel: Rektanglar -->
+  <section id="vy-rektangel" class="vy tema-bla" hidden>
+    <a class="sv-knapp tillbaka" href="#spel">Alla spel</a>
+    <div class="sv-kort">
+      <div class="spelhuvud">
+        <h2>Rektanglar</h2>
+        <div class="matvarden"><span id="rek-runda">tal 1 / 5</span><span id="rek-antal">0 hittade</span></div>
+      </div>
+      <div id="rek-spel">
+        <p style="margin:0 0 var(--sv-steg-3)">Bygg rektanglar med <b id="rek-mal" class="mono" style="font-weight:500;font-size:24px">24</b> rutor. Tryck i rutnätet för att välja rader och kolumner.</p>
+        <div class="rek-yta">
+          <div class="rek-rutnat" id="rek-rutnat"></div>
+          <div class="rek-sida">
+            <div class="rek-matt" id="rek-matt" aria-live="polite">Tryck på en ruta</div>
+            <button class="sv-knapp sv-knapp--primar" id="rek-kolla" disabled>Kolla</button>
+            <div class="aterkoppling" id="rek-fb" role="status"></div>
+            <p class="etikett">Hittade för det här talet</p>
+            <div class="ovas-lista" id="rek-lista"></div>
+            <button class="sv-knapp" id="rek-visa">Visa resten och gå vidare</button>
+          </div>
+        </div>
+      </div>
+      <div class="startpanel" id="rek-start">
+        <p>Ett tal kan byggas som flera olika rektanglar. 24 rutor kan vara 3 rader med 8 i varje, eller 4 rader med 6. Hitta alla. 3 × 8 och 8 × 3 räknas som samma.</p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="rektangel">Starta</button>
+      </div>
+      <div class="slutpanel" id="rek-slut" hidden>
+        <div class="stor" id="rek-slutpoang">0</div>
+        <p id="rek-sluttext"></p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="rektangel">Spela igen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spel: Kodlåset -->
+  <section id="vy-kodlas" class="vy tema-amber" hidden>
+    <a class="sv-knapp tillbaka" href="#spel">Alla spel</a>
+    <div class="sv-kort">
+      <div class="spelhuvud">
+        <h2>Kodlåset</h2>
+        <div class="matvarden"><span id="kod-runda">lås 1 / 5</span><span id="kod-forsok">0 försök</span></div>
+      </div>
+      <div id="kod-spel">
+        <div class="kod-yta">
+          <svg class="kod-las" id="kod-las" viewBox="0 0 80 96" aria-hidden="true">
+            <path id="kod-bygel" d="M20 44V30a20 20 0 0 1 40 0v14" fill="none" stroke="var(--tema-djup)" stroke-width="7"/>
+            <rect x="8" y="44" width="64" height="48" rx="8" fill="var(--tema-djup)"/>
+            <circle cx="40" cy="64" r="6" fill="var(--sv-yta-2)"/><rect x="37" y="66" width="6" height="14" rx="2" fill="var(--sv-yta-2)"/>
+          </svg>
+          <div class="kod-rader" id="kod-rader"></div>
+        </div>
+        <div class="aterkoppling" id="kod-fb" role="status"></div>
+        <div class="rad" style="justify-content:center"><button class="sv-knapp sv-knapp--primar" id="kod-oppna">Öppna låset</button></div>
+      </div>
+      <div class="startpanel" id="kod-start">
+        <p>Varje rad saknar ett tal. Ställ in talen med plus och minus. När alla tre stämmer öppnas låset. Fem lås.</p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="kodlas">Starta</button>
+      </div>
+      <div class="slutpanel" id="kod-slut" hidden>
+        <div class="stor">5 lås</div>
+        <p id="kod-sluttext"></p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="kodlas">Spela igen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Spel: Fyra i rad -->
+  <section id="vy-fyra" class="vy tema-korall" hidden>
+    <a class="sv-knapp tillbaka" href="#spel">Alla spel</a>
+    <div class="sv-kort">
+      <div class="spelhuvud">
+        <h2>Fyra i rad</h2>
+        <div class="matvarden"><span id="fyra-tur">din tur</span></div>
+      </div>
+      <div class="startpanel" id="fyra-start">
+        <p>Under brickan finns två klämmor, A och B, på talen 1–9. På din tur flyttar du en klämma och markerar produkten av klämmornas tal på brickan. Först till fyra i rad, åt vilket håll som helst, vinner.</p>
+        <div class="rad" style="justify-content:center;margin-bottom:var(--sv-steg-3)" data-grupp="fyraniva">
+          <button class="val val--text" data-v="latt">Lätt motståndare</button>
+          <button class="val val--text" data-v="lagom">Klurig motståndare</button>
+        </div>
+        <button class="sv-knapp sv-knapp--primar" data-starta="fyra">Starta</button>
+      </div>
+      <div id="fyra-spel" hidden>
+        <div class="fyra-plan" id="fyra-plan"></div>
+        <p class="fyra-info" id="fyra-info" aria-live="polite"></p>
+        <div class="fyra-klamma"><span class="etikett">Klämma A</span><div class="fyra-rad" id="fyra-a"></div></div>
+        <div class="fyra-klamma"><span class="etikett">Klämma B</span><div class="fyra-rad" id="fyra-b"></div></div>
+        <div class="forklaring fyra-forkl"><span><i class="du"></i>Du</span><span><i class="dator"></i>Datorn</span></div>
+      </div>
+      <div class="slutpanel" id="fyra-slut" hidden>
+        <div class="stor" id="fyra-sluttitel"></div>
+        <p id="fyra-sluttext"></p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="fyra">Spela igen</button>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= KALKYLBLAD ================= -->
   <section id="vy-kalkylblad" class="vy tema-amber" hidden>
     <div class="sidrubrik">
@@ -998,6 +1138,7 @@ max-width:760px;color:#000}
   </section>
 
   <p class="sv-notis fot" style="text-align:center"><a href="#sa-funkar-det">Så funkar det</a> · <a href="#installningar">Visning och ljud</a> · inget lämnar den här datorn</p>
+  <p class="kredit fot" id="kredit" role="img" aria-label="Made By Magnus MacNeil"></p>
 </main>
 
 <script>
@@ -1048,7 +1189,7 @@ max-width:760px;color:#000}
   // ================= Gemensamma inställningar =================
   var inst = Object.assign({
     tabeller: [2, 3, 4, 5], raknesatt: "mult", tid: "dold", langd: "10",
-    loppfart: "snigel", kbtyp: "mult", kbantal: "40", kbfacit: "ja", uppl: "av", storText: "av", stod: "fel"
+    loppfart: "snigel", kbtyp: "mult", kbantal: "40", kbfacit: "ja", uppl: "av", storText: "av", stod: "fel", fyraniva: "lagom"
   }, lasa("gangertabellen-inst", {}));
   if (!Array.isArray(inst.tabeller)) inst.tabeller = [2, 3, 4, 5];
 
@@ -2014,7 +2155,13 @@ max-width:760px;color:#000}
     { id: "bingo", namn: "Bingo", tema: "korall", besk: "Markera svaret på brickan. Fyll en rad för bingo.",
       bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><g fill="#fff"><rect x="47" y="14" width="20" height="20" rx="3"/><rect x="93" y="14" width="20" height="20" rx="3"/><rect x="47" y="40" width="20" height="20" rx="3"/><rect x="70" y="66" width="20" height="20" rx="3"/><rect x="93" y="66" width="20" height="20" rx="3"/><rect x="93" y="40" width="20" height="20" rx="3"/></g><g fill="currentColor"><rect x="70" y="14" width="20" height="20" rx="3"/><rect x="70" y="40" width="20" height="20" rx="3"/><rect x="47" y="66" width="20" height="20" rx="3"/></g></svg>' },
     { id: "santfalskt", namn: "Sant eller falskt", tema: "teal", besk: "Stämmer det? Så många du hinner på en minut.",
-      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><rect x="34" y="28" width="40" height="40" rx="6" fill="#fff"/><rect x="86" y="28" width="40" height="40" rx="6" fill="currentColor"/><polyline points="44,48 51,56 64,40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g stroke="#fff" stroke-width="3" stroke-linecap="round"><line x1="98" y1="40" x2="114" y2="56"/><line x1="114" y1="40" x2="98" y2="56"/></g></svg>' }
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><rect x="34" y="28" width="40" height="40" rx="6" fill="#fff"/><rect x="86" y="28" width="40" height="40" rx="6" fill="currentColor"/><polyline points="44,48 51,56 64,40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g stroke="#fff" stroke-width="3" stroke-linecap="round"><line x1="98" y1="40" x2="114" y2="56"/><line x1="114" y1="40" x2="98" y2="56"/></g></svg>' },
+    { id: "rektangel", namn: "Rektanglar", tema: "bla", besk: "Bygg alla rektanglar som har lika många rutor som talet.",
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><g fill="#fff"><rect x="30" y="22" width="56" height="56" rx="3"/></g><g fill="currentColor"><rect x="30" y="22" width="56" height="21" rx="3"/></g><rect x="96" y="22" width="34" height="56" rx="3" fill="none" stroke="currentColor" stroke-width="2.5"/><text x="113" y="56" text-anchor="middle" font-family="monospace" font-size="15" fill="currentColor">24</text></svg>' },
+    { id: "kodlas", namn: "Kodlåset", tema: "amber", besk: "Hitta de saknade talen och öppna låset.",
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><path d="M62 46V34a18 18 0 0 1 36 0v12" fill="none" stroke="currentColor" stroke-width="5"/><rect x="50" y="46" width="60" height="40" rx="6" fill="currentColor"/><text x="80" y="72" text-anchor="middle" font-family="monospace" font-size="15" fill="#fff">? × 6</text></svg>' },
+    { id: "fyra", namn: "Fyra i rad", tema: "korall", besk: "Flytta en klämma, markera produkten och få fyra i rad före datorn.",
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><g fill="#fff"><rect x="40" y="14" width="18" height="18" rx="3"/><rect x="62" y="14" width="18" height="18" rx="3"/><rect x="84" y="14" width="18" height="18" rx="3"/><rect x="106" y="14" width="18" height="18" rx="3"/><rect x="40" y="36" width="18" height="18" rx="3"/><rect x="84" y="36" width="18" height="18" rx="3"/><rect x="106" y="36" width="18" height="18" rx="3"/></g><g fill="currentColor"><rect x="62" y="36" width="18" height="18" rx="3"/><rect x="40" y="58" width="18" height="18" rx="3"/><rect x="62" y="58" width="18" height="18" rx="3"/><rect x="84" y="58" width="18" height="18" rx="3"/><rect x="106" y="58" width="18" height="18" rx="3"/></g><path d="M40 86h84" stroke="currentColor" stroke-width="2"/></svg>' }
   ];
   SPELLISTA.forEach(function (s) {
     var a = document.createElement("a");
@@ -2400,6 +2547,345 @@ max-width:760px;color:#000}
         else if (e.key === "f" || e.key === "F") svara(false);
       }
     };
+  })();
+
+  // ---------- Rektanglar ----------
+  // Faktorpar som rutnät: hitta alla rektanglar (högst 10 × 10) med ett visst antal rutor.
+  spel.rektangel = (function () {
+    var RUNDOR = 5, runda = 0, mal = 0, par = [], hittat = {}, val = null, totalt = 0, felRunda = 0, gavUpp = 0, las = false;
+    function parFor(n) { var x = []; for (var a = 1; a <= MAX; a++) if (n % a === 0 && n / a <= MAX && a <= n / a) x.push([a, n / a]); return x; }
+    var rutnat = $("rek-rutnat");
+    for (var rr = 1; rr <= MAX; rr++) for (var cc = 1; cc <= MAX; cc++) {
+      var b = document.createElement("button"); b.dataset.r = rr; b.dataset.c = cc;
+      b.setAttribute("aria-label", rr + " rader, " + cc + " kolumner");
+      rutnat.appendChild(b);
+    }
+    rutnat.addEventListener("click", function (e) {
+      var b = e.target.closest("button"); if (!b || las) return;
+      val = [+b.dataset.r, +b.dataset.c]; ritaVal();
+    });
+    function ritaVal() {
+      rutnat.querySelectorAll("button").forEach(function (x) { x.classList.toggle("sel", !!val && +x.dataset.r <= val[0] && +x.dataset.c <= val[1]); });
+      $("rek-matt").textContent = val ? val[0] + " × " + val[1] + " = " + val[0] * val[1] : "Tryck på en ruta";
+      $("rek-kolla").disabled = !val || las;
+    }
+    function valjTal() {
+      var kand = unikaProdukter().filter(function (n) { return parFor(n).length >= 2; });
+      if (kand.length < 3) kand = [12, 16, 18, 20, 24, 30, 36, 40];
+      var n;
+      for (var f = 0; f < 20; f++) { n = valj(kand); if (n !== mal) break; }
+      return n;
+    }
+    function nyRunda() {
+      if (runda >= RUNDOR) return slut();
+      runda++; mal = valjTal(); par = parFor(mal); hittat = {}; val = null; felRunda = 0; las = false;
+      $("rek-mal").textContent = mal;
+      $("rek-runda").textContent = "tal " + runda + " / " + RUNDOR;
+      $("rek-fb").className = "aterkoppling"; $("rek-fb").textContent = par.length + " rektanglar att hitta.";
+      ritaLista(); ritaVal();
+    }
+    function ritaLista() {
+      var h = par.filter(function (p) { return hittat[p.join("x")]; }).map(function (p) { return "<span>" + p[0] + " × " + p[1] + "</span>"; }).join("");
+      $("rek-lista").innerHTML = h || '<span style="background:none;color:var(--sv-text-dampad);padding:4px 0">Inga än</span>';
+      $("rek-antal").textContent = totalt + " hittade";
+    }
+    $("rek-kolla").onclick = function () {
+      if (!val || las) return;
+      var fb = $("rek-fb"), n = val[0] * val[1], k = Math.min(val[0], val[1]) + "x" + Math.max(val[0], val[1]);
+      if (n !== mal) {
+        felRunda++;
+        fb.className = "aterkoppling aterkoppling--neutral";
+        var tips = "";
+        if (felRunda >= 2) { var kvar = par.filter(function (p) { return !hittat[p.join("x")]; })[0]; if (kvar) tips = " Prova med " + kvar[0] + (kvar[0] === 1 ? " rad." : " rader."); }
+        fb.textContent = val[0] + " × " + val[1] + " = " + n + ". Det blir " + (n < mal ? "för få" : "för många") + " rutor." + tips;
+        return;
+      }
+      if (hittat[k]) { fb.className = "aterkoppling aterkoppling--neutral"; fb.textContent = "Den har du redan. Vänd rektangel räknas som samma."; return; }
+      hittat[k] = 1; totalt++; ritaLista();
+      var klara = Object.keys(hittat).length;
+      if (klara === par.length) {
+        las = true; ritaVal();
+        fb.className = "aterkoppling aterkoppling--ratt"; fb.innerHTML = IKON_RATT + "Alla rektanglar för " + mal + " hittade.";
+        setTimeout(function () { if (runda) nyRunda(); }, 1300);
+      } else {
+        fb.className = "aterkoppling aterkoppling--ratt"; fb.innerHTML = IKON_RATT + "Rätt. " + (par.length - klara) + " kvar.";
+      }
+    };
+    $("rek-visa").onclick = function () {
+      if (las) return;
+      var kvar = par.filter(function (p) { return !hittat[p.join("x")]; });
+      if (kvar.length) gavUpp++;
+      las = true; val = null; ritaVal();
+      $("rek-fb").className = "aterkoppling aterkoppling--neutral";
+      $("rek-fb").textContent = kvar.length ? "Kvar var: " + kvar.map(function (p) { return p[0] + " × " + p[1]; }).join(", ") + "." : "Alla var redan hittade.";
+      setTimeout(function () { if (runda) nyRunda(); }, 2200);
+    };
+    function slut() {
+      $("rek-spel").hidden = true; $("rek-slut").hidden = false;
+      $("rek-slutpoang").textContent = totalt;
+      $("rek-sluttext").textContent = "rektanglar hittade på " + RUNDOR + " tal. " +
+        (gavUpp ? "Du visade resten " + gavUpp + (gavUpp === 1 ? " gång." : " gånger.") : "Du hittade alla själv. Rutnätet har inga fler hemligheter.");
+      runda = 0;
+    }
+    return {
+      starta: function () { runda = 0; totalt = 0; gavUpp = 0; mal = 0; $("rek-start").hidden = true; $("rek-slut").hidden = true; $("rek-spel").hidden = false; nyRunda(); },
+      visa: function () {},
+      stopp: function () { runda = 0; $("rek-start").hidden = false; $("rek-spel").hidden = true; $("rek-slut").hidden = true; }
+    };
+  })();
+
+  // ---------- Kodlåset ----------
+  // Saknad faktor: sambandet mellan multiplikation och division.
+  spel.kodlas = (function () {
+    var LAS = 5, las = 0, rader = [], forsok = 0, aktiv = false;
+    function nyttLas() {
+      if (las >= LAS) return slut();
+      las++; rader = []; aktiv = true;
+      var anv = {};
+      while (rader.length < 3) {
+        var f = slumpFaktum(), k = f.a + "x" + f.b;
+        // 1:an ger inget att leta efter i ett lås; hoppa över den om andra tabeller finns
+        if (anv[k] || ((f.a === 1 || f.b === 1) && inst.tabeller.some(function (t) { return t > 1; }))) continue;
+        anv[k] = 1;
+        var dolj = Math.random() < 0.5 ? "a" : "b";
+        rader.push({ f: f, dolj: dolj, svar: f[dolj], varde: null, ok: false });
+      }
+      $("kod-runda").textContent = "lås " + las + " / " + LAS;
+      $("kod-las").classList.remove("oppen");
+      $("kod-fb").className = "aterkoppling"; $("kod-fb").textContent = "";
+      rita();
+    }
+    function rita() {
+      $("kod-rader").innerHTML = rader.map(function (r, i) {
+        var hjul = '<span class="kod-hjul"><button data-kod="' + i + '" data-d="-1" aria-label="Minska">−</button><span>' + (r.varde === null ? "?" : r.varde) +
+          '</span><button data-kod="' + i + '" data-d="1" aria-label="Öka">+</button></span>';
+        var vanster = r.dolj === "a" ? hjul + " × " + r.f.b : r.f.a + " × " + hjul;
+        return '<div class="kod-rad">' + vanster + " = " + r.f.svar + '<span class="kod-status' + (r.ok ? " ok" : "") + '">' + (r.ok ? "stämmer" : r.status || "") + '</span></div>';
+      }).join("");
+      $("kod-forsok").textContent = forsok + (forsok === 1 ? " försök" : " försök");
+    }
+    $("kod-rader").addEventListener("click", function (e) {
+      var b = e.target.closest("button[data-kod]"); if (!b || !aktiv) return;
+      var r = rader[+b.dataset.kod], d = +b.dataset.d;
+      if (r.ok) return;
+      r.varde = r.varde === null ? (d > 0 ? 1 : MAX) : ((r.varde - 1 + d + MAX) % MAX) + 1;
+      r.status = "";
+      rita();
+    });
+    $("kod-oppna").onclick = function () {
+      if (!aktiv) return;
+      if (rader.some(function (r) { return r.varde === null; })) {
+        $("kod-fb").className = "aterkoppling aterkoppling--neutral"; $("kod-fb").textContent = "Ställ in alla tre talen först."; return;
+      }
+      forsok++;
+      rader.forEach(function (r) { r.ok = r.varde === r.svar; r.status = r.ok ? "" : "titta igen"; });
+      var fel = rader.filter(function (r) { return !r.ok; }).length;
+      rita();
+      if (!fel) {
+        aktiv = false;
+        $("kod-las").classList.add("oppen");
+        $("kod-fb").className = "aterkoppling aterkoppling--ratt"; $("kod-fb").innerHTML = IKON_RATT + "Låset är öppet.";
+        setTimeout(function () { if (las) nyttLas(); }, 1300);
+      } else {
+        $("kod-fb").className = "aterkoppling aterkoppling--neutral";
+        $("kod-fb").textContent = fel === 1 ? "Ett tal stämmer inte än." : fel + " tal stämmer inte än.";
+      }
+    };
+    function slut() {
+      $("kod-spel").hidden = true; $("kod-slut").hidden = false;
+      $("kod-sluttext").textContent = "öppnade på " + forsok + " försök. " + (forsok === LAS ? "Varje lås på första försöket." : "Det minsta möjliga är " + LAS + ".");
+      las = 0;
+    }
+    return {
+      starta: function () { las = 0; forsok = 0; $("kod-start").hidden = true; $("kod-slut").hidden = true; $("kod-spel").hidden = false; nyttLas(); },
+      visa: function () {},
+      stopp: function () { las = 0; aktiv = false; $("kod-start").hidden = false; $("kod-spel").hidden = true; $("kod-slut").hidden = true; }
+    };
+  })();
+
+  // ---------- Fyra i rad ----------
+  // Produktspel: två klämmor på 1–9, flytta en och markera produkten. Fyra i rad vinner.
+  spel.fyra = (function () {
+    var PROD = (function () { var x = {}; for (var a = 1; a <= 9; a++) for (var b = a; b <= 9; b++) x[a * b] = 1; return Object.keys(x).map(Number).sort(function (p, q) { return p - q; }); })();
+    var N = 6, LINJER = [];
+    (function () {
+      var dirs = [[0, 1], [1, 0], [1, 1], [1, -1]];
+      for (var r0 = 0; r0 < N; r0++) for (var c0 = 0; c0 < N; c0++) dirs.forEach(function (d) {
+        var l = [];
+        for (var i = 0; i < 4; i++) { var rr = r0 + d[0] * i, cc = c0 + d[1] * i; if (rr < 0 || rr >= N || cc < 0 || cc >= N) return; l.push(rr * N + cc); }
+        LINJER.push(l);
+      });
+    })();
+    var agare, A, B, tur, fas, flytt, aktiv = false;
+    function index(p) { return PROD.indexOf(p); }
+    function byggRader() {
+      ["a", "b"].forEach(function (rad) {
+        var el = $("fyra-" + rad); el.innerHTML = "";
+        for (var v = 1; v <= 9; v++) {
+          var b = document.createElement("button"); b.textContent = v; b.dataset.v = v; b.dataset.rad = rad;
+          b.setAttribute("aria-label", "Klämma " + rad.toUpperCase() + " till " + v);
+          el.appendChild(b);
+        }
+        el.onclick = function (e) { var b = e.target.closest("button"); if (b) valjKlamma(rad, +b.dataset.v); };
+      });
+    }
+    byggRader();
+    function rita(vinst) {
+      var plan = $("fyra-plan"); plan.innerHTML = "";
+      PROD.forEach(function (p, i) {
+        var b = document.createElement("button");
+        b.textContent = p;
+        b.className = (agare[i] || "") + (vinst && vinst.indexOf(i) >= 0 ? " vinst" : "");
+        b.setAttribute("aria-label", p + (agare[i] === "du" ? ", din" : agare[i] === "dator" ? ", datorns" : ""));
+        b.onclick = function () { markera(i, b); };
+        plan.appendChild(b);
+      });
+      $("fyra-a").querySelectorAll("button").forEach(function (b) { b.classList.toggle("har", +b.dataset.v === A); });
+      $("fyra-b").querySelectorAll("button").forEach(function (b) { b.classList.toggle("har", +b.dataset.v === B); });
+      $("fyra-tur").textContent = !aktiv ? "slut" : tur === "du" ? "din tur" : "datorn tänker";
+    }
+    function info(t) { $("fyra-info").textContent = t; }
+    function valjKlamma(rad, v) {
+      if (!aktiv || tur !== "du") return;
+      if (A === null || B === null) {
+        // första draget: båda klämmorna placeras
+        if (rad === "a") A = v; else B = v;
+        if (A !== null && B !== null) { fas = "markera"; info("Klämmorna står på " + A + " och " + B + ". Tryck på " + A + " × " + B + " på brickan."); }
+        else info("Välj ett tal för klämma " + (A === null ? "A" : "B") + " också.");
+        rita(); return;
+      }
+      if (flytt && flytt.rad !== rad) { if (flytt.rad === "a") A = flytt.fran; else B = flytt.fran; flytt = null; }
+      var nu = rad === "a" ? A : B;
+      if (!flytt) { if (v === nu) { info("Flytta klämman till ett annat tal."); return; } flytt = { rad: rad, fran: nu }; }
+      else if (v === flytt.fran) { if (rad === "a") A = v; else B = v; flytt = null; fas = "flytta"; info("Flytta en klämma."); rita(); return; }
+      if (rad === "a") A = v; else B = v;
+      fas = "markera";
+      info("Klämmorna står på " + A + " och " + B + ". Tryck på " + A + " × " + B + " på brickan.");
+      rita();
+    }
+    function markera(i, b) {
+      if (!aktiv || tur !== "du") return;
+      if (fas !== "markera") { info(A === null || B === null ? "Välj tal för klämmorna först." : "Flytta en klämma först."); return; }
+      var p = A * B;
+      if (PROD[i] !== p) {
+        b.classList.add("fel"); setTimeout(function () { b.classList.remove("fel"); }, 450);
+        info(A + " × " + B + " är inte " + PROD[i] + ". Försök igen.");
+        return;
+      }
+      if (agare[i]) {
+        info(A + " × " + B + " = " + p + " är redan tagen. Flytta klämman till ett annat tal.");
+        if (flytt) { if (flytt.rad === "a") A = flytt.fran; else B = flytt.fran; flytt = null; fas = "flytta"; }
+        else { A = null; B = null; fas = "flytta"; }
+        rita(); return;
+      }
+      agare[i] = "du"; flytt = null; fas = "flytta";
+      if (kollaVinst("du")) return;
+      tur = "dator"; info(A + " × " + B + " = " + p + ". Nu är det datorns tur."); rita();
+      setTimeout(datorDrag, 800);
+    }
+    function vinstLinje(vem) { for (var j = 0; j < LINJER.length; j++) if (LINJER[j].every(function (x) { return agare[x] === vem; })) return LINJER[j]; return null; }
+    function kollaVinst(vem) {
+      var l = vinstLinje(vem);
+      if (l) { slut(vem, l); return true; }
+      if (!drag(vem === "du" ? "dator" : "du").length) { slut(null); return true; }
+      return false;
+    }
+    function drag() {
+      var x = [];
+      for (var v = 1; v <= 9; v++) {
+        if (v !== A) { var i = index(v * B); if (i >= 0 && !agare[i]) x.push({ rad: "a", v: v, i: i }); }
+        if (v !== B) { var j = index(A * v); if (j >= 0 && !agare[j]) x.push({ rad: "b", v: v, i: j }); }
+      }
+      return x;
+    }
+    function skulleVinna(vem, i) {
+      agare[i] = vem; var ok = !!vinstLinje(vem); agare[i] = null; return ok;
+    }
+    function poang(d) {
+      if (skulleVinna("dator", d.i)) return 1000;
+      var s = Math.random();
+      if (skulleVinna("du", d.i)) s += 400;
+      LINJER.forEach(function (l) {
+        if (l.indexOf(d.i) < 0) return;
+        if (l.some(function (x) { return agare[x] === "du"; })) return;
+        var egna = l.filter(function (x) { return agare[x] === "dator"; }).length;
+        s += (egna + 1) * (egna + 1);
+      });
+      // ge inte bort ett vinnande drag
+      var gA = A, gB = B; if (d.rad === "a") A = d.v; else B = d.v;
+      agare[d.i] = "dator";
+      var ger = drag().some(function (m) { return skulleVinna("du", m.i); });
+      agare[d.i] = null; A = gA; B = gB;
+      if (ger) s -= 500;
+      return s;
+    }
+    function datorDrag() {
+      if (!aktiv) return;
+      var mojliga = drag();
+      if (!mojliga.length) return slut(null);
+      var val;
+      if (inst.fyraniva === "latt") {
+        val = mojliga.filter(function (d) { return skulleVinna("dator", d.i); })[0] || valj(mojliga);
+      } else {
+        mojliga.forEach(function (d) { d.s = poang(d); });
+        mojliga.sort(function (x, y) { return y.s - x.s; });
+        val = mojliga[0];
+      }
+      if (val.rad === "a") A = val.v; else B = val.v;
+      agare[val.i] = "dator";
+      info("Datorn flyttade klämma " + val.rad.toUpperCase() + " till " + val.v + ": " + A + " × " + B + " = " + A * B + ". Din tur: flytta en klämma.");
+      if (kollaVinst("dator")) return;
+      tur = "du"; rita();
+    }
+    function slut(vem, linje) {
+      aktiv = false; rita(linje);
+      $("fyra-sluttitel").textContent = vem === "du" ? "Fyra i rad" : vem === "dator" ? "Datorn vann" : "Oavgjort";
+      $("fyra-sluttext").textContent = vem === "du" ? "Du fick fyra i rad. Datorn har fått något att tänka på."
+        : vem === "dator" ? "Datorn fick fyra i rad den här gången. Titta på vilka tal klämmorna lämnar öppna för den andra." : "Inga drag kvar.";
+      $("fyra-slut").hidden = false;
+    }
+    return {
+      starta: function () {
+        if (!inst.fyraniva) inst.fyraniva = "lagom";
+        agare = PROD.map(function () { return null; }); A = null; B = null; tur = "du"; fas = "flytta"; flytt = null; aktiv = true;
+        $("fyra-start").hidden = true; $("fyra-slut").hidden = true; $("fyra-spel").hidden = false;
+        info("Välj ett tal för klämma A och ett för klämma B. Markera sedan produkten.");
+        rita();
+      },
+      visa: function () {},
+      stopp: function () { aktiv = false; $("fyra-start").hidden = false; $("fyra-spel").hidden = true; $("fyra-slut").hidden = true; }
+    };
+  })();
+
+  // ================= KREDIT I PUNKTMATRIS =================
+  (function () {
+    var G = {
+      M: ["10001", "11011", "10101", "10101", "10001", "10001", "10001"],
+      B: ["11110", "10001", "10001", "11110", "10001", "10001", "11110"],
+      N: ["10001", "11001", "10101", "10011", "10001", "10001", "10001"],
+      a: ["00000", "00000", "01110", "00001", "01111", "10001", "01111"],
+      d: ["00001", "00001", "01101", "10011", "10001", "10011", "01101"],
+      e: ["00000", "00000", "01110", "10001", "11111", "10000", "01110"],
+      y: ["00000", "00000", "10001", "10001", "10001", "10011", "01101", "00001", "01110"],
+      g: ["00000", "00000", "01111", "10001", "10001", "01111", "00001", "10001", "01110"],
+      n: ["00000", "00000", "10110", "11001", "10001", "10001", "10001"],
+      u: ["00000", "00000", "10001", "10001", "10001", "10011", "01101"],
+      s: ["00000", "00000", "01111", "10000", "01110", "00001", "11110"],
+      c: ["00000", "00000", "01110", "10000", "10000", "10001", "01110"],
+      i: ["00100", "00000", "01100", "00100", "00100", "00100", "01110"],
+      l: ["01100", "00100", "00100", "00100", "00100", "00100", "01110"]
+    };
+    var text = "Made By Magnus MacNeil", S = 4, x = 0, prickar = "";
+    for (var i = 0; i < text.length; i++) {
+      var ch = text.charAt(i);
+      if (ch === " ") { x += 3; continue; }
+      var g = G[ch] || [];
+      for (var r = 0; r < g.length; r++) for (var c = 0; c < 5; c++) {
+        if (g[r].charAt(c) === "1") prickar += '<circle cx="' + ((x + c) * S + S / 2) + '" cy="' + (r * S + S / 2) + '" r="1.45"/>';
+      }
+      x += 6;
+    }
+    $("kredit").innerHTML = '<svg viewBox="0 0 ' + (x * S) + ' ' + (9 * S) + '" fill="currentColor" aria-hidden="true">' + prickar + '</svg>';
   })();
 
   // ================= KALKYLBLAD =================
