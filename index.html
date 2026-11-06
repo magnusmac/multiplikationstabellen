@@ -124,6 +124,17 @@ margin:var(--sv-steg-3) 0;white-space:nowrap}
 border-radius:var(--sv-radie);font-size:16px;margin-bottom:var(--sv-steg-3);padding:0 var(--sv-steg-2)}
 .aterkoppling--ratt{background:var(--sv-signal-klart-yta);color:var(--sv-signal-klart)}
 .aterkoppling--fel{background:var(--sv-signal-fel-yta);color:var(--sv-signal-fel)}
+.aterkoppling--neutral{background:var(--sv-yta-1);border:var(--sv-harlinje) solid var(--sv-linje-stark);color:var(--sv-text)}
+.ledtrad{display:flex;gap:var(--sv-steg-3);align-items:center;justify-content:center;flex-wrap:wrap;
+background:var(--sv-yta-1);border-radius:var(--sv-radie);padding:var(--sv-steg-2);margin-bottom:var(--sv-steg-3)}
+.ledtrad .prickar{display:grid;gap:2px}
+.ledtrad .prickar i{width:10px;height:10px;border-radius:2px}
+.ledtrad .prickar i.a{background:var(--lila-djup)}
+.ledtrad .prickar i.b{background:var(--amber)}
+.ledtrad .prickar i.tom{background:transparent;border:1px dashed var(--sv-linje-stark)}
+.ledtrad-text{font-family:var(--sv-mono);font-size:15px;line-height:1.6}
+.ledtrad-text .a{color:var(--lila-djup)}
+.ledtrad-text .b{color:var(--amber-djup)}
 .knappsats{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sv-steg-1);max-width:340px;margin:0 auto}
 .knappsats button{min-height:56px;font-family:var(--sv-mono);font-size:22px}
 .knappsats .ok{font-family:var(--sv-sans);font-size:16px}
@@ -147,6 +158,7 @@ border:0;border-radius:4px;background:transparent;color:var(--sv-text);font:inhe
 .rutnat .rubrik{color:var(--tema-djup);cursor:pointer;font-weight:500}
 .rutnat .rubrik.vald{background:var(--tema-djup);color:#fff}
 .rutnat .ruta.markerad{background:var(--tema);color:var(--tema-text)}
+.rutnat .ruta.hopp{background:var(--tema-djup);color:#fff}
 .rutnat .ruta.vald{outline:2px solid var(--sv-text);outline-offset:-2px;font-weight:500}
 .utlasning{font-family:var(--sv-mono);font-size:28px;letter-spacing:-.5px;text-align:center;
 margin-top:var(--sv-steg-3);min-height:40px}
@@ -325,10 +337,10 @@ max-width:760px;color:#000}
         </div>
       </div>
       <div class="grupp">
-        <p class="etikett">Ordning</p>
-        <div class="rad" data-grupp="ordning">
-          <button class="val val--text" data-v="blandad">Blandad</button>
-          <button class="val val--text" data-v="ordning">I ordning</button>
+        <p class="etikett">Tid</p>
+        <div class="rad" data-grupp="tid">
+          <button class="val val--text" data-v="dold">Dölj tiden</button>
+          <button class="val val--text" data-v="visa">Visa tiden</button>
         </div>
       </div>
       <div class="grupp">
@@ -339,6 +351,7 @@ max-width:760px;color:#000}
           <button class="val val--text" data-v="alla">Hela tabellen</button>
           <button class="val val--text" data-v="60s">60 sekunder</button>
         </div>
+        <p class="sv-notis" style="margin-top:var(--sv-steg-1)">Frågorna kommer alltid blandade. Att öva i ordning gör tabellen till en ramsa.</p>
       </div>
       <div class="rad" style="gap:var(--sv-steg-3)">
         <button class="sv-knapp sv-knapp--primar" id="starta">Starta</button>
@@ -348,9 +361,10 @@ max-width:760px;color:#000}
 
     <div id="ova-pass" class="sv-kort" hidden>
       <div class="status"><span id="raknare">1 / 10</span><span id="tid">0:00</span></div>
-      <div class="matare" aria-hidden="true"><span id="matare"></span></div>
+      <div class="matare" id="ova-matare" aria-hidden="true"><span id="matare"></span></div>
       <div class="uppgift" aria-live="polite"><span id="fraga"></span> = <span class="svar" id="svar"></span></div>
       <div class="aterkoppling" id="aterkoppling" role="status"></div>
+      <div id="ledtrad"></div>
       <div class="knappsats" id="ova-knappsats"></div>
       <div class="rad" style="justify-content:center;margin-top:var(--sv-steg-4)">
         <button class="sv-knapp" id="avbryt">Avbryt</button>
@@ -362,7 +376,7 @@ max-width:760px;color:#000}
       <div class="siffror">
         <div class="siffra"><b id="res-ratt">0</b><span>rätt</span></div>
         <div class="siffra"><b id="res-fel">0</b><span>fel</span></div>
-        <div class="siffra"><b id="res-tid">0:00</b><span>tid</span></div>
+        <div class="siffra"><b id="res-tid">0:00</b><span id="res-tid-etikett">tid</span></div>
       </div>
       <div id="res-fel-block">
         <p class="etikett">Att öva mer på</p>
@@ -400,12 +414,12 @@ max-width:760px;color:#000}
     <div class="sv-kort">
       <div class="spelhuvud">
         <h2>Bubblor</h2>
-        <div class="matvarden"><span id="bub-poang">0 poäng</span><span class="liv" id="bub-liv"></span></div>
+        <div class="matvarden"><span id="bub-poang">fråga 0 / 20</span></div>
       </div>
       <div class="bubbelyta" id="bub-yta">
         <div class="bubbelfraga" id="bub-fraga" hidden></div>
         <div class="startpanel" id="bub-start">
-          <p>Svaren stiger uppåt i bubblor. Tryck på rätt bubbla innan den försvinner. Tre missar och spelet är slut.</p>
+          <p>Svaren stiger uppåt i bubblor. Tryck på rätt bubbla. Missar du kommer frågan tillbaka senare. 20 frågor.</p>
           <button class="sv-knapp sv-knapp--primar" data-starta="bubblor">Starta</button>
         </div>
         <div class="slutpanel" id="bub-slut" hidden>
@@ -569,11 +583,13 @@ max-width:760px;color:#000}
   <section id="vy-tabell" class="vy tema-bla" hidden>
     <div class="sidrubrik">
       <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="1"/><line x1="10" y1="3" x2="10" y2="17"/><line x1="3" y1="10" x2="17" y2="10"/></svg></div>
-      <div><h2>Tabellen</h2><p>Tryck på en siffra i kanten för att se hela tabellen, eller på en ruta för uträkningen.</p></div>
+      <div><h2>Tabellen</h2><p>Tryck på en siffra i kanten för att se en tabell och hoppräkna, eller på en ruta för att se ett sätt att räkna ut den.</p></div>
     </div>
     <div class="sv-kort">
       <div class="rutnat" id="rutnat"></div>
       <div class="utlasning" id="utlasning" aria-live="polite"></div>
+      <div class="rad" style="justify-content:center;margin-top:var(--sv-steg-2)"><button class="sv-knapp" id="hoppknapp" hidden></button></div>
+      <div id="tabell-ledtrad" style="margin-top:var(--sv-steg-3)"></div>
     </div>
   </section>
 
@@ -627,7 +643,7 @@ max-width:760px;color:#000}
 
   // ================= Gemensamma inställningar =================
   var inst = Object.assign({
-    tabeller: [2, 3, 4, 5], raknesatt: "mult", ordning: "blandad", langd: "10",
+    tabeller: [2, 3, 4, 5], raknesatt: "mult", tid: "dold", langd: "10",
     loppfart: "snigel", kbtyp: "mult", kbantal: "40", kbfacit: "ja"
   }, lasa("gangertabellen-inst", {}));
   if (!Array.isArray(inst.tabeller)) inst.tabeller = [2, 3, 4, 5];
@@ -715,6 +731,60 @@ max-width:760px;color:#000}
     return lista;
   }
   function text(u) { return u.a + (u.typ === "div" ? " / " : " × ") + u.b; }
+  // Faktumet bakom en uppgift, med mindre faktorn först (3×7 och 7×3 är samma faktum).
+  function faktum(u) {
+    var x = u.typ === "div" ? u.b : u.a, y = u.typ === "div" ? u.svar : u.b;
+    return { a: Math.min(x, y), b: Math.max(x, y) };
+  }
+  function faktumNyckel(u) { var f = faktum(u); return f.a + "x" + f.b; }
+
+  // Tyst mätning av svarstid per faktum. Grund för det adaptiva passet senare.
+  function sparaSvarstid(u, ms, ratt) {
+    var logg = lasa("gt-svarstider", {});
+    var k = faktumNyckel(u);
+    var lista = logg[k] || [];
+    lista.push({ ms: Math.round(ms), r: ratt ? 1 : 0, d: new Date().toISOString().slice(0, 10) });
+    logg[k] = lista.slice(-10);
+    skriva("gt-svarstider", logg);
+  }
+
+  // ---------- Strategiledtråd ----------
+  // Väljer en strategi för faktumet och beskriver den som ett rutnät:
+  // rader × kolumner där de första "delning" raderna får en färg och resten en annan.
+  function strategi(a, b) {
+    var f = { a: Math.min(a, b), b: Math.max(a, b) }, p = f.a * f.b;
+    function med(s) { return f.a === s ? f.b : f.b === s ? f.a : null; }
+    var o;
+    if ((o = med(1)) !== null) return { rader: 1, kol: o, del: 1, rader_text: ["1 × " + o + " = " + o, "Gånger 1 är talet självt."] };
+    if ((o = med(10)) !== null) return { text: [o + " × 10 = " + o * 10, "Gånger 10: talet får en nolla på slutet."] };
+    if ((o = med(2)) !== null) return { rader: 2, kol: o, del: 1, rader_text: [o + " + " + o + " = " + 2 * o, "Gånger 2 är dubbelt."] };
+    if ((o = med(5)) !== null) return { rader: 5, kol: o, del: 5, rader_text: ["10 × " + o + " = " + 10 * o, "Hälften av " + 10 * o + " är " + 5 * o, "Gånger 5 är halva gånger 10."] };
+    if (f.a === f.b) return { rader: f.a, kol: f.a, del: f.a, rader_text: [f.a + " × " + f.a + " = " + p, "Ett kvadrattal: lika många rader som kolumner."] };
+    if (f.b === f.a + 1) return { rader: f.b, kol: f.a, del: f.a, rader_text: [f.a + " × " + f.a + " = " + f.a * f.a, "+ en " + f.a + ":a till", f.a * f.a + " + " + f.a + " = " + p] };
+    if ((o = med(9)) !== null) return { rader: 10, kol: o, del: 9, sista_tom: true, rader_text: ["10 × " + o + " = " + 10 * o, "− en " + o + ":a", 10 * o + " − " + o + " = " + p] };
+    if ((o = med(4)) !== null) return { rader: 4, kol: o, del: 2, rader_text: ["2 × " + o + " = " + 2 * o, "dubbelt igen", 2 * o + " + " + 2 * o + " = " + p] };
+    if ((o = med(8)) !== null) return { rader: 8, kol: o, del: 4, rader_text: ["4 × " + o + " = " + 4 * o, "dubbelt igen", 4 * o + " + " + 4 * o + " = " + p] };
+    if ((o = med(3)) !== null) return { rader: 3, kol: o, del: 2, rader_text: ["2 × " + o + " = " + 2 * o, "+ en " + o + ":a till", 2 * o + " + " + o + " = " + p] };
+    if ((o = med(6)) !== null) return { rader: 6, kol: o, del: 5, rader_text: ["5 × " + o + " = " + 5 * o, "+ en " + o + ":a till", 5 * o + " + " + o + " = " + p] };
+    o = med(7);
+    return { rader: 7, kol: o, del: 5, rader_text: ["5 × " + o + " = " + 5 * o, "2 × " + o + " = " + 2 * o, 5 * o + " + " + 2 * o + " = " + p] };
+  }
+  function ledtradHtml(u) {
+    var f = faktum(u), s = strategi(f.a, f.b);
+    var rader = s.rader_text || s.text, h = '<div class="ledtrad">';
+    if (s.rader) {
+      h += '<div class="prickar" aria-hidden="true" style="grid-template-columns:repeat(' + s.kol + ',10px)">';
+      for (var r = 0; r < s.rader; r++) for (var c = 0; c < s.kol; c++) {
+        var cls = s.sista_tom && r === s.rader - 1 ? "tom" : r < s.del ? "a" : "b";
+        h += '<i class="' + cls + '"></i>';
+      }
+      h += '</div>';
+    }
+    h += '<div class="ledtrad-text">';
+    if (u.typ === "div") h += '<div>' + u.a + ' / ' + u.b + ': vilket tal gånger ' + u.b + ' blir ' + u.a + '?</div>';
+    rader.forEach(function (t, i) { h += '<div' + (i === 0 && s.rader ? ' class="a"' : i === 1 && s.rader && s.del < s.rader ? ' class="b"' : "") + '>' + t + '</div>'; });
+    return h + '</div></div>';
+  }
 
   var pass = null, timer = null;
   var okKnapp = byggKnappsats($("ova-knappsats"), tryckOva);
@@ -725,11 +795,15 @@ max-width:760px;color:#000}
 
   function startaPass(fast) {
     var bas = fast ? fast.slice() : byggUppgifter();
-    if (fast || inst.ordning !== "ordning") blanda(bas);
+    blanda(bas);
     var antal = inst.langd === "10" ? 10 : inst.langd === "20" ? 20 : bas.length;
     if (fast) antal = bas.length;
     pass = { bas: bas, ko: [], antal: antal, tidsgrans: !fast && inst.langd === "60s" ? 60 : 0,
-      nr: 0, ratt: 0, fel: [], start: Date.now(), slut: 0, aktuell: null, inmatning: "", lasta: false, fast: fast || null };
+      nr: 0, ratt: 0, fel: [], felPer: {}, start: Date.now(), slut: 0, aktuell: null, inmatning: "",
+      lasta: false, omskrivning: false, fragaStart: 0, fast: fast || null };
+    $("tid").hidden = inst.tid !== "visa";
+    // vid 60 sekunder syns alltid mätaren, så att tiden inte är oviss
+    $("ova-matare").hidden = false;
     ovaDel("pass");
     clearInterval(timer);
     timer = setInterval(tick, 250);
@@ -738,10 +812,7 @@ max-width:760px;color:#000}
   }
 
   function hamta() {
-    if (pass.ko.length === 0) {
-      pass.ko = pass.bas.slice();
-      if (inst.ordning !== "ordning" || pass.fast) blanda(pass.ko);
-    }
+    if (pass.ko.length === 0) { pass.ko = pass.bas.slice(); blanda(pass.ko); }
     return pass.ko.shift();
   }
 
@@ -749,11 +820,13 @@ max-width:760px;color:#000}
     if (!pass.tidsgrans && pass.nr >= pass.antal) return avslutaPass();
     var u = hamta();
     if (pass.aktuell && pass.bas.length > 1 && text(u) === text(pass.aktuell)) { pass.ko.push(u); u = hamta(); }
-    pass.aktuell = u; pass.nr++; pass.inmatning = ""; pass.lasta = false;
+    pass.aktuell = u; pass.nr++; pass.inmatning = ""; pass.lasta = false; pass.omskrivning = false;
+    pass.fragaStart = performance.now();
     $("fraga").textContent = text(u);
     $("svar").textContent = "";
     $("aterkoppling").className = "aterkoppling";
     $("aterkoppling").textContent = "";
+    $("ledtrad").innerHTML = "";
     okKnapp.textContent = "Svara";
     $("raknare").textContent = pass.tidsgrans ? pass.ratt + " rätt" : pass.nr + " / " + pass.antal;
     if (!pass.tidsgrans) $("matare").style.width = ((pass.nr - 1) / pass.antal * 100) + "%";
@@ -771,8 +844,7 @@ max-width:760px;color:#000}
   }
 
   function tryckOva(s) {
-    if (!pass || pass.slut || $("ova-pass").hidden) return;
-    if (pass.lasta) { if (s === "ok" && $("aterkoppling").classList.contains("aterkoppling--fel")) nasta(); return; }
+    if (!pass || pass.slut || $("ova-pass").hidden || pass.lasta) return;
     if (s === "sudda") pass.inmatning = pass.inmatning.slice(0, -1);
     else if (s === "ok") return svaraOva();
     else if (pass.inmatning.length < 3) pass.inmatning += s;
@@ -782,20 +854,50 @@ max-width:760px;color:#000}
   function svaraOva() {
     if (pass.inmatning === "") return;
     var u = pass.aktuell, givet = +pass.inmatning, fb = $("aterkoppling");
-    pass.lasta = true;
+
+    // Andra försöket: eleven skriver av rätt svar innan det går vidare.
+    if (pass.omskrivning) {
+      if (givet === u.svar) {
+        pass.lasta = true;
+        fb.className = "aterkoppling aterkoppling--ratt";
+        fb.innerHTML = IKON_RATT + "Ja, " + text(u) + " = " + u.svar;
+        setTimeout(function () { if (pass && pass.aktuell === u && !pass.slut) nasta(); }, 700);
+      } else {
+        pass.inmatning = ""; $("svar").textContent = "";
+        fb.className = "aterkoppling aterkoppling--neutral";
+        fb.textContent = text(u) + " = " + u.svar + ". Skriv " + u.svar + ".";
+        visaLedtrad(u);
+      }
+      return;
+    }
+
+    sparaSvarstid(u, performance.now() - pass.fragaStart, givet === u.svar);
     if (givet === u.svar) {
+      pass.lasta = true;
       pass.ratt++;
       fb.className = "aterkoppling aterkoppling--ratt";
       fb.innerHTML = IKON_RATT + "Rätt";
       setTimeout(function () { if (pass && pass.aktuell === u && !pass.slut) nasta(); }, 450);
     } else {
       pass.fel.push({ u: u, givet: givet });
-      fb.className = "aterkoppling aterkoppling--fel";
-      fb.innerHTML = IKON_FEL + "Fel. " + text(u) + " = " + u.svar;
-      okKnapp.textContent = "Nästa";
+      var k = faktumNyckel(u);
+      pass.felPer[k] = (pass.felPer[k] || 0) + 1;
+      pass.omskrivning = true;
+      pass.inmatning = ""; $("svar").textContent = "";
+      fb.className = "aterkoppling aterkoppling--neutral";
+      fb.textContent = text(u) + " = " + u.svar + ". Skriv svaret en gång till.";
+      okKnapp.textContent = "Svara";
+      // ledtråd från andra felet på samma faktum
+      if (pass.felPer[k] >= 2 || felTidigare(k)) visaLedtrad(u);
     }
     if (pass.tidsgrans) $("raknare").textContent = pass.ratt + " rätt";
   }
+  function felTidigare(k) {
+    var lista = lasa("gt-svarstider", {})[k] || [];
+    // senaste posten är det här felet; titta på de före
+    return lista.slice(0, -1).some(function (x) { return !x.r; });
+  }
+  function visaLedtrad(u) { $("ledtrad").innerHTML = ledtradHtml(u); }
 
   function avslutaPass() {
     clearInterval(timer);
@@ -803,7 +905,13 @@ max-width:760px;color:#000}
     var besvarade = pass.ratt + pass.fel.length;
     $("res-ratt").textContent = pass.ratt;
     $("res-fel").textContent = pass.fel.length;
-    $("res-tid").textContent = format(Math.round((pass.slut - pass.start) / 1000));
+    if (inst.tid === "visa") {
+      $("res-tid").textContent = format(Math.round((pass.slut - pass.start) / 1000));
+      $("res-tid-etikett").textContent = "tid";
+    } else {
+      $("res-tid").textContent = besvarade;
+      $("res-tid-etikett").textContent = "frågor";
+    }
     var rubrik = $("res-rubrik");
     if (besvarade > 0 && pass.fel.length === 0) {
       rubrik.innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="currentColor"/></svg>Alla rätt. Tabellen gav upp till slut.';
@@ -856,19 +964,18 @@ max-width:760px;color:#000}
   });
 
   // ---------- Bubblor ----------
+  // Inga liv. En missad eller felklickad fråga kommer tillbaka senare i omgången.
   spel.bubblor = (function () {
-    var yta = $("bub-yta"), bubblor = [], liv, poang, fart, raf = null, senast = 0, fraga = null, aktiv = false;
-    var STL = 76;
-    function ritaLiv() {
-      var h = "";
-      for (var i = 0; i < 3; i++) h += '<i class="' + (i < liv ? "" : "borta") + '"></i>';
-      $("bub-liv").innerHTML = h;
-      $("bub-liv").setAttribute("aria-label", liv + " liv kvar");
-    }
+    var yta = $("bub-yta"), bubblor = [], fart, raf = null, senast = 0, fraga = null, aktiv = false;
+    var STL = 76, ANTAL = 20, nr = 0, direkt = 0, igen = [], missadNu = false, paus = null;
     function rensa() { bubblor.forEach(function (b) { b.el.remove(); }); bubblor = []; }
+    function status() { $("bub-poang").textContent = "fråga " + Math.min(nr, ANTAL) + " / " + ANTAL; }
     function nyFraga() {
       rensa();
-      fraga = slumpFaktum();
+      if (nr >= ANTAL) return slut();
+      nr++; missadNu = false; status();
+      // var tredje fråga: ta tillbaka en tidigare missad, om det finns någon
+      fraga = (igen.length && nr % 3 === 0) || (igen.length && ANTAL - nr < igen.length) ? igen.shift() : slumpFaktum();
       $("bub-fraga").textContent = multText(fraga);
       var varden = blanda([fraga.svar].concat(distraktorer(fraga, 3)));
       var w = yta.clientWidth, h = yta.clientHeight, fack = w / 4;
@@ -886,23 +993,30 @@ max-width:760px;color:#000}
         bubblor.push(b);
       });
     }
+    function markeraMiss() {
+      if (missadNu) return;
+      missadNu = true;
+      igen.push(fraga);
+    }
+    function visaSvar() {
+      // visa rätt svar en stund, sedan nästa fråga
+      aktiv = false; rensa();
+      $("bub-fraga").textContent = multText(fraga) + " = " + fraga.svar;
+      clearTimeout(paus);
+      paus = setTimeout(function () { aktiv = true; senast = 0; nyFraga(); raf = requestAnimationFrame(loop); }, 1400);
+    }
     function klick(b) {
       if (!aktiv || b.borta) return;
       if (b.ratt) {
-        poang++; fart += 4;
-        $("bub-poang").textContent = poang + " poäng";
+        if (!missadNu) direkt++;
+        fart += 3;
         nyFraga();
       } else {
         b.borta = true;
         b.el.classList.add("fel");
-        b.el.innerHTML = IKON_FEL;
-        setTimeout(function () { b.el.remove(); }, 350);
-        miss();
+        setTimeout(function () { b.el.remove(); }, 300);
+        markeraMiss();
       }
-    }
-    function miss() {
-      liv--; ritaLiv();
-      if (liv <= 0) slut();
     }
     function loop(ts) {
       if (!aktiv) return;
@@ -916,31 +1030,30 @@ max-width:760px;color:#000}
         b.el.style.transform = "translate(" + b.x + "px," + b.y + "px)";
         if (b.y < -STL) {
           b.borta = true;
-          if (b.ratt) { miss(); if (aktiv) nyFraga(); break; }
+          if (b.ratt) { markeraMiss(); cancelAnimationFrame(raf); visaSvar(); return; }
         }
       }
     }
     function slut() {
-      aktiv = false; cancelAnimationFrame(raf); rensa();
-      var rekord = lasa("gt-rekord-bubblor", 0);
-      if (poang > rekord) skriva("gt-rekord-bubblor", poang);
+      aktiv = false; cancelAnimationFrame(raf); clearTimeout(paus); rensa();
+      var rekord = lasa("gt-rekord-bubblor2", 0);
+      if (direkt > rekord) skriva("gt-rekord-bubblor2", direkt);
       $("bub-fraga").hidden = true;
-      $("bub-slutpoang").textContent = poang;
-      $("bub-sluttext").textContent = "poäng. " + (poang > rekord && rekord > 0
-        ? "Nytt rekord på den här datorn." : "Rekord på den här datorn: " + Math.max(rekord, poang) + ".");
+      $("bub-slutpoang").textContent = direkt + " / " + ANTAL;
+      $("bub-sluttext").textContent = "rätt på första försöket. " +
+        (direkt === ANTAL ? "Bubblorna hade ingen chans." : "Bästa hittills på den här datorn: " + Math.max(rekord, direkt) + ".");
       $("bub-slut").hidden = false;
     }
     return {
       starta: function () {
-        liv = 3; poang = 0; fart = 50; senast = 0; aktiv = true;
+        nr = 0; direkt = 0; igen = []; fart = 45; senast = 0; aktiv = true;
         $("bub-start").hidden = true; $("bub-slut").hidden = true; $("bub-fraga").hidden = false;
-        $("bub-poang").textContent = "0 poäng"; ritaLiv();
         nyFraga();
         cancelAnimationFrame(raf); raf = requestAnimationFrame(loop);
       },
-      visa: function () { liv = 3; ritaLiv(); },
+      visa: function () { nr = 0; status(); },
       stopp: function () {
-        aktiv = false; cancelAnimationFrame(raf); rensa();
+        aktiv = false; cancelAnimationFrame(raf); clearTimeout(paus); rensa();
         $("bub-start").hidden = false; $("bub-slut").hidden = true; $("bub-fraga").hidden = true;
       }
     };
@@ -1022,7 +1135,7 @@ max-width:760px;color:#000}
     }
     function rita() { spar($("lopp-du"), du); spar($("lopp-dator"), dator); }
     function nyFraga() {
-      f = slumpFaktum(); inmatning = ""; las = false;
+      f = slumpFaktum(); inmatning = ""; las = false; omskrivning = false;
       $("lopp-fraga").textContent = multText(f);
       $("lopp-svar").textContent = "";
       $("lopp-fb").className = "aterkoppling"; $("lopp-fb").textContent = "";
@@ -1034,19 +1147,28 @@ max-width:760px;color:#000}
       else if (inmatning.length < 3) inmatning += s;
       $("lopp-svar").textContent = inmatning;
     }
+    var omskrivning = false;
     function svara() {
       if (inmatning === "") return;
-      las = true;
       var fb = $("lopp-fb");
+      if (omskrivning) {
+        // eleven skriver av rätt svar innan nästa fråga; inget steg framåt
+        if (+inmatning === f.svar) { omskrivning = false; las = true; setTimeout(function () { if (aktiv) nyFraga(); }, 250); }
+        else { inmatning = ""; $("lopp-svar").textContent = ""; }
+        return;
+      }
       if (+inmatning === f.svar) {
+        las = true;
         ratt++; du++; rita();
         fb.className = "aterkoppling aterkoppling--ratt"; fb.innerHTML = IKON_RATT + "Rätt";
         if (du >= STEG - 1) return slut(true);
         setTimeout(function () { if (aktiv) nyFraga(); }, 300);
       } else {
         fel++;
-        fb.className = "aterkoppling aterkoppling--fel"; fb.innerHTML = IKON_FEL + multText(f) + " = " + f.svar;
-        setTimeout(function () { if (aktiv) nyFraga(); }, 1400);
+        omskrivning = true;
+        inmatning = ""; $("lopp-svar").textContent = "";
+        fb.className = "aterkoppling aterkoppling--neutral";
+        fb.textContent = multText(f) + " = " + f.svar + ". Skriv svaret en gång till.";
       }
     }
     function slut(vann) {
@@ -1319,19 +1441,32 @@ max-width:760px;color:#000}
     b.setAttribute("aria-label", "Visa " + n + ":ans tabell");
     return b;
   }
-  rutnat.addEventListener("click", function (e) {
-    var b = e.target.closest("button"); if (!b) return;
-    if (b.dataset.rt) { valdRad = valdRad === +b.dataset.rt ? 0 : +b.dataset.rt; valdRuta = null; }
-    else valdRuta = [+b.dataset.r, +b.dataset.c];
+  var hopp = 0;
+  function ritaTabell() {
     rutnat.querySelectorAll(".ruta").forEach(function (x) {
       var r = +x.dataset.r, c = +x.dataset.c;
       x.classList.toggle("markerad", valdRad > 0 && (r === valdRad || c === valdRad));
+      x.classList.toggle("hopp", valdRad > 0 && r === valdRad && c <= hopp);
       x.classList.toggle("vald", !!valdRuta && valdRuta[0] === r && valdRuta[1] === c);
     });
     rutnat.querySelectorAll(".rubrik[data-rt]").forEach(function (x) { x.classList.toggle("vald", +x.dataset.rt === valdRad); });
-    $("utlasning").textContent = valdRuta ? valdRuta[0] + " × " + valdRuta[1] + " = " + valdRuta[0] * valdRuta[1]
-      : valdRad ? valdRad + ":ans tabell" : "";
+    var ut = $("utlasning");
+    if (valdRuta) ut.textContent = valdRuta[0] + " × " + valdRuta[1] + " = " + valdRuta[0] * valdRuta[1];
+    else if (valdRad && hopp) {
+      var steg = []; for (var i = 1; i <= hopp; i++) steg.push(i * valdRad);
+      ut.textContent = steg.join(", ");
+    } else ut.textContent = valdRad ? valdRad + ":ans tabell" : "";
+    $("hoppknapp").hidden = !valdRad || !!valdRuta;
+    $("hoppknapp").textContent = hopp === 0 ? "Hoppräkna " + valdRad + " i taget" : hopp < MAX ? "Ett hopp till" : "Börja om";
+    $("tabell-ledtrad").innerHTML = valdRuta ? ledtradHtml({ typ: "mult", a: valdRuta[0], b: valdRuta[1], svar: valdRuta[0] * valdRuta[1] }) : "";
+  }
+  rutnat.addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.rt) { valdRad = valdRad === +b.dataset.rt ? 0 : +b.dataset.rt; valdRuta = null; hopp = 0; }
+    else valdRuta = valdRuta && valdRuta[0] === +b.dataset.r && valdRuta[1] === +b.dataset.c ? null : [+b.dataset.r, +b.dataset.c];
+    ritaTabell();
   });
+  $("hoppknapp").onclick = function () { hopp = hopp >= MAX ? 0 : hopp + 1; ritaTabell(); };
 
   // ================= Navigering =================
   var aktuellVy = "start";
