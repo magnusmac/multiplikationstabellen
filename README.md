@@ -6,6 +6,14 @@ Valda tabeller sparas och följer med mellan Öva, Spel och Kalkylblad.
 
 ## Delar
 
+**Dagens pass** – cirka 10 minuter (högst 30 frågor) som anpassas efter eleven.
+- 55 faktapar; 3 × 7 och 7 × 3 räknas som samma men frågas åt båda hållen.
+- Fyra lådor: *Ny*, *Övas*, *Nästan*, *Sitter*. Ett faktum sitter efter snabbt rätt svar (cirka 3 s) två olika dagar. Sitter-fakta repeteras med växande intervall (3, 6, 12 … dagar).
+- Nya fakta i strategiordning: 1, 2, 10, 5 → 4, 8, 3 → 9 och kvadrattal → 6 → 7 → 6×6, 6×7, 6×8, 7×7, 7×8, 8×8. Högst två nya per pass, och bara när det mesta går bra.
+- Ett nytt faktum visas först med strategi, skrivs sedan ur minnet och kommer tillbaka efter 2 och 5 frågor. Ungefär var fjärde fråga är ett svagt faktum, resten är sådant eleven kan.
+- Fel frågas igen efter 2 och 5 frågor. Är felet ett grannfaktum (54 för 7 × 8) övas även grannen.
+- Första gången: ett startprov med 20 frågor utan synlig tid.
+
 **Öva** – blandade frågor med direkt återkoppling. Multiplikation, division eller båda; 10/20 frågor, hela tabellen eller 60 sekunder. Klockan är dold som standard.
 - Vid fel visas rätt svar och eleven skriver det en gång till innan nästa fråga.
 - Vid andra felet på samma faktum visas en strategi i ett rutnät (t.ex. 7 × 8 = 7 × 7 + 7).
@@ -25,7 +33,7 @@ Valda tabeller sparas och följer med mellan Öva, Spel och Kalkylblad.
 
 ## Data
 
-Ingen elevdata lämnar datorn. Inställningar, rekord och svarstider sparas bara lokalt i webbläsaren.
+Ingen elevdata lämnar datorn. Framsteg, inställningar, rekord och svarstider sparas bara lokalt i webbläsaren. Varje elev bör därför logga in på Chromebooken med sitt eget konto.
 
 ## Använda
 
