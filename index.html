@@ -150,6 +150,34 @@ border-bottom:var(--sv-harlinje) solid var(--sv-linje)}
 .fellista li span:last-child{color:var(--sv-text-dampad)}
 .klar-rubrik{display:flex;align-items:center;gap:var(--sv-steg-1)}
 
+/* ---------- dagens pass ---------- */
+.lador{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sv-steg-1);margin-bottom:var(--sv-steg-3)}
+.lador div{border-radius:var(--sv-radie);padding:var(--sv-steg-2);display:flex;flex-direction:column}
+.lador b{font-family:var(--sv-mono);font-weight:400;font-size:28px;line-height:1.2;letter-spacing:-1px}
+.lador span{font-size:13px}
+.lador .l0{border:var(--sv-harlinje) dashed var(--sv-linje-stark);color:var(--sv-text-sekundar)}
+.lador .l1{background:var(--amber-yta);color:var(--amber-text)}
+.lador .l2{background:var(--bla-yta);color:var(--bla-text)}
+.lador .l3{background:var(--teal-yta);color:var(--teal-text)}
+.minikarta{display:grid;grid-template-columns:repeat(10,1fr);gap:2px;width:180px;flex:none}
+.minikarta.stor{width:260px;max-width:100%}
+.minikarta i{aspect-ratio:1;border-radius:2px;display:block}
+.l0{background:var(--sv-yta-1);box-shadow:inset 0 0 0 .5px var(--sv-linje-stark)}
+.l1{background:var(--amber)}
+.l2{background:var(--bla)}
+.l3{background:var(--teal-djup)}
+.karta-rad{display:flex;gap:var(--sv-steg-4);align-items:flex-start;flex-wrap:wrap}
+.karta-rad .forklaring{display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--sv-text-sekundar);flex:1;min-width:180px}
+.karta-rad .forklaring span{display:flex;align-items:center;gap:8px}
+.karta-rad .forklaring i{width:14px;height:14px;border-radius:3px;display:inline-block}
+.chip-nytt{font-family:var(--sv-sans);font-size:12px;background:var(--amber-yta);color:var(--amber-text);border-radius:999px;padding:2px 10px}
+.flytt{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;max-width:420px}
+.flytt li{display:flex;justify-content:space-between;align-items:center;gap:var(--sv-steg-2);background:var(--sv-yta-1);border-radius:var(--sv-radie);padding:6px 12px}
+.flytt li span:first-child{font-family:var(--sv-mono)}
+.flytt li span:last-child{font-size:13px;color:var(--sv-text-sekundar)}
+.valkommen .minikarta{margin-left:auto}
+@media (max-width:620px){.lador b{font-size:22px}.valkommen .minikarta{margin-left:0}}
+
 /* ---------- tabellen ---------- */
 .rutnat{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;font-family:var(--sv-mono);font-size:15px;max-width:640px;margin:0 auto}
 .rutnat button,.rutnat div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;
@@ -273,7 +301,8 @@ max-width:760px;color:#000}
       Gångertabellen
     </a>
     <nav class="meny" aria-label="Huvudmeny">
-      <a href="#ova" class="tema-teal" data-sektion="ova">Öva</a>
+      <a href="#pass" class="tema-teal" data-sektion="pass">Dagens pass</a>
+      <a href="#ova" class="tema-korall" data-sektion="ova">Öva</a>
       <a href="#spel" class="tema-lila" data-sektion="spel">Spel</a>
       <a href="#kalkylblad" class="tema-amber" data-sektion="kalkylblad">Kalkylblad</a>
       <a href="#tabell" class="tema-bla" data-sektion="tabell">Tabellen</a>
@@ -282,20 +311,18 @@ max-width:760px;color:#000}
 
   <!-- ================= START ================= -->
   <section id="vy-start" class="vy">
-    <div class="valkommen">
+    <div class="valkommen tema-teal">
       <div>
-        <h2>Träna gångertabellen</h2>
-        <p>Öva i lugn takt, spela spel, skriv ut kalkylblad eller titta i tabellen. Välj tabeller en gång – valet följer med överallt.</p>
+        <h2>Dagens pass</h2>
+        <p id="start-pass-text">Ungefär 10 minuter. Frågorna anpassas efter vad du redan kan.</p>
+        <div class="rad" style="margin-top:var(--sv-steg-3)"><a class="sv-knapp sv-knapp--primar" href="#pass" id="start-pass-knapp">Starta dagens pass</a></div>
       </div>
-      <div class="prickar" aria-hidden="true">
-        <span style="background:var(--teal)"></span><span style="background:var(--amber)"></span><span style="background:var(--lila)"></span><span style="background:var(--bla)"></span>
-        <span style="background:var(--korall)"></span><span style="background:var(--teal)"></span><span style="background:var(--amber)"></span><span style="background:var(--lila)"></span>
-      </div>
+      <div class="minikarta" id="start-karta" aria-hidden="true"></div>
     </div>
     <div class="rutor">
-      <a class="ruta-kort tema-teal" href="#ova">
+      <a class="ruta-kort tema-korall" href="#ova">
         <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="40" y1="38" x2="60" y2="58"/><line x1="60" y1="38" x2="40" y2="58"/><line x1="80" y1="42" x2="104" y2="42"/><line x1="80" y1="54" x2="104" y2="54"/></g><rect x="114" y="30" width="28" height="36" rx="4" fill="#fff"/><line x1="118" y1="62" x2="138" y2="62" stroke="currentColor" stroke-width="2"/></svg></div>
-        <span class="namn">Öva</span><span class="besk">Frågor i din takt med rätt svar direkt.</span>
+        <span class="namn">Öva fritt</span><span class="besk">Välj själv tabeller och räknesätt.</span>
       </a>
       <a class="ruta-kort tema-lila" href="#spel">
         <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><circle cx="50" cy="56" r="20" fill="#fff" stroke="currentColor" stroke-width="2.5"/><circle cx="92" cy="38" r="14" fill="#fff" stroke="currentColor" stroke-width="2.5"/><circle cx="118" cy="66" r="11" fill="currentColor"/><text x="50" y="63" text-anchor="middle" font-family="monospace" font-size="18" fill="currentColor">42</text></svg></div>
@@ -312,11 +339,66 @@ max-width:760px;color:#000}
     </div>
   </section>
 
+  <!-- ================= DAGENS PASS ================= -->
+  <section id="vy-pass" class="vy tema-teal" hidden>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><circle cx="10" cy="10" r="7"/><polyline points="10,6 10,10 13,12"/></svg></div>
+      <div><h2>Dagens pass</h2><p>Ungefär 10 minuter. Nya fakta kommer ett i taget, blandat med sådant du redan kan.</p></div>
+    </div>
+
+    <div id="pass-hem" class="sv-kort">
+      <div class="lador" id="pass-lador"></div>
+      <div class="karta-rad">
+        <div class="minikarta stor" id="pass-karta"></div>
+        <div class="forklaring">
+          <span><i class="l0"></i>Ny</span><span><i class="l1"></i>Övas</span><span><i class="l2"></i>Nästan</span><span><i class="l3"></i>Sitter</span>
+          <p class="sv-notis" style="margin-top:var(--sv-steg-1)">Ett faktum sitter när du svarat rätt och snabbt två olika dagar. 3 × 7 och 7 × 3 räknas som samma.</p>
+        </div>
+      </div>
+      <p id="pass-hem-text" style="margin:var(--sv-steg-3) 0"></p>
+      <div class="rad">
+        <button class="sv-knapp sv-knapp--primar" id="pass-starta">Starta dagens pass</button>
+        <button class="sv-knapp" id="pass-nollstall">Börja om från början</button>
+      </div>
+      <p class="sv-notis" style="margin-top:var(--sv-steg-2)">Framstegen sparas i den här webbläsaren. Logga in med ditt eget konto, så följer de med dig på den här datorn.</p>
+    </div>
+
+    <div id="pass-fraga" class="sv-kort" hidden>
+      <div class="status"><span id="pass-raknare">fråga 1</span><span id="pass-chip"></span></div>
+      <div class="matare" aria-hidden="true"><span id="pass-matare"></span></div>
+      <div id="pass-intro" hidden>
+        <p class="etikett" style="text-align:center">Nytt att lära</p>
+        <div class="uppgift" id="pass-intro-faktum"></div>
+        <div id="pass-intro-ledtrad"></div>
+        <div class="rad" style="justify-content:center"><button class="sv-knapp sv-knapp--primar" id="pass-intro-ok">Jag har tittat</button></div>
+      </div>
+      <div id="pass-uppgift">
+        <div class="uppgift" aria-live="polite"><span id="pass-text"></span> = <span class="svar" id="pass-svar"></span></div>
+        <div class="aterkoppling" id="pass-fb" role="status"></div>
+        <div id="pass-ledtrad"></div>
+        <div class="knappsats" id="pass-knappsats"></div>
+      </div>
+      <div class="rad" style="justify-content:center;margin-top:var(--sv-steg-4)">
+        <button class="sv-knapp" id="pass-avsluta">Avsluta passet</button>
+      </div>
+    </div>
+
+    <div id="pass-klart" class="sv-kort" hidden>
+      <h2 class="klar-rubrik" id="pass-klart-rubrik"></h2>
+      <p id="pass-klart-text" style="color:var(--sv-text-sekundar);margin:0 0 var(--sv-steg-3)"></p>
+      <div id="pass-flytt"></div>
+      <div class="rad" style="margin-top:var(--sv-steg-3)">
+        <button class="sv-knapp sv-knapp--primar" id="pass-klart-vidare">Till passet</button>
+        <a class="sv-knapp" href="#spel">Spela ett spel</a>
+      </div>
+    </div>
+  </section>
+
   <!-- ================= ÖVA ================= -->
-  <section id="vy-ova" class="vy tema-teal" hidden>
+  <section id="vy-ova" class="vy tema-korall" hidden>
     <div class="sidrubrik">
       <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg></div>
-      <div><h2>Öva</h2><p>Välj tabeller och hur du vill öva.</p></div>
+      <div><h2>Öva fritt</h2><p>Välj själv tabeller och räknesätt. För övning som anpassas efter dig, använd Dagens pass.</p></div>
     </div>
 
     <div id="ova-installning" class="sv-kort">
@@ -593,7 +675,7 @@ max-width:760px;color:#000}
     </div>
   </section>
 
-  <p class="sv-notis fot" style="text-align:center">Gångertabellen · fungerar utan nät · ingen elevdata sparas</p>
+  <p class="sv-notis fot" style="text-align:center">Gångertabellen · fungerar utan nät · inget lämnar den här datorn</p>
 </main>
 
 <script>
@@ -940,6 +1022,340 @@ max-width:760px;color:#000}
   $("igen").onclick = function () { startaPass(pass && pass.fast); };
   $("ova-fel").onclick = function () { var f = pass.felUppgifter; startaPass(f.concat(f)); };
   $("andra").onclick = function () { pass = null; ovaDel("installning"); };
+
+  // ================= DAGENS PASS =================
+  // 55 faktapar (a ≤ b). Ordningen följer strategierna: 1, 2, 10, 5 → 4, 8, 3 → 9 och kvadrattal → 6 → 7 → de sex sista.
+  var RANG = { 1: 0, 2: 1, 10: 2, 5: 3, 4: 4, 8: 5, 3: 6, 9: 7, 6: 8, 7: 9 };
+  var SEX_SISTA = { "6x6": 1, "6x7": 1, "6x8": 1, "7x7": 1, "7x8": 1, "8x8": 1 };
+  var LADNAMN = ["Ny", "Övas", "Nästan", "Sitter"];
+  var FAKTA = [];
+  for (var fa = 1; fa <= MAX; fa++) for (var fb = fa; fb <= MAX; fb++) {
+    var fk = fa + "x" + fb;
+    FAKTA.push({ k: fk, a: fa, b: fb, rang: SEX_SISTA[fk] ? 10 : (fa === fb && fa >= 6 ? 7.5 : Math.min(RANG[fa], RANG[fb])) });
+  }
+  FAKTA.sort(function (x, y) { return x.rang - y.rang || x.a * x.b - y.a * y.b; });
+  var FAKTA_MAP = {}; FAKTA.forEach(function (f) { FAKTA_MAP[f.k] = f; });
+
+  function idag() { return new Date().toLocaleDateString("sv-SE"); }
+  function plusDagar(d, n) { var t = new Date(d + "T12:00:00"); t.setDate(t.getDate() + n); return t.toLocaleDateString("sv-SE"); }
+  function tomDb() { return { v: 1, fakta: {}, startprov: false, passDagar: [] }; }
+  var DB = lasa("gt-fakta", null);
+  if (!DB || DB.v !== 1) DB = tomDb();
+  function dbSpara() { skriva("gt-fakta", DB); }
+  function post(k) { return DB.fakta[k] || (DB.fakta[k] = { l: 0, fs: [], due: idag(), st: 0 }); }
+  function lada(k) { return DB.fakta[k] ? DB.fakta[k].l : 0; }
+  function snabbGrans(svar) { return String(svar).length > 1 ? 3500 : 3000; }
+
+  // Leitner-regler. Rätt och snabbt flyttar upp ett steg; Sitter kräver snabbt rätt två olika dagar.
+  function uppdateraFaktum(k, ratt, ms, felIPass) {
+    var f = post(k), fore = f.l, d = idag();
+    if (!ratt) { f.l = 1; f.st = 0; f.due = d; }
+    else if (ms <= snabbGrans(FAKTA_MAP[k].a * FAKTA_MAP[k].b)) {
+      var tidigareDag = f.fs.some(function (x) { return x !== d; });
+      if (f.fs.indexOf(d) < 0) f.fs.push(d);
+      f.fs = f.fs.slice(-5);
+      if (felIPass) f.l = Math.max(f.l, 1);
+      else if (f.l <= 1) f.l = 2;
+      else if (f.l === 2 && tidigareDag) f.l = 3;
+      if (f.l === 3) { f.st = (f.st || 0) + 1; f.due = plusDagar(d, Math.min(30, 3 * Math.pow(2, f.st - 1))); }
+      else f.due = f.l === 2 ? plusDagar(d, 1) : d;
+    } else {
+      f.l = f.l === 3 ? 2 : Math.max(f.l, 1);
+      f.st = 0; f.due = f.l === 2 ? plusDagar(d, 1) : d;
+    }
+    return { fore: fore, efter: f.l };
+  }
+
+  function raknaLador() {
+    var n = [0, 0, 0, 0];
+    FAKTA.forEach(function (f) { n[lada(f.k)]++; });
+    return n;
+  }
+  function ritaMinikarta(el) {
+    var h = "";
+    for (var r = 1; r <= MAX; r++) for (var c = 1; c <= MAX; c++) {
+      var k = Math.min(r, c) + "x" + Math.max(r, c), l = lada(k);
+      h += '<i class="l' + l + '" title="' + r + " × " + c + ": " + LADNAMN[l] + '"></i>';
+    }
+    el.innerHTML = h;
+  }
+  function nastaNya() { for (var i = 0; i < FAKTA.length; i++) if (lada(FAKTA[i].k) === 0) return FAKTA[i]; return null; }
+
+  function ritaPassHem() {
+    var n = raknaLador();
+    $("pass-lador").innerHTML = [0, 1, 2, 3].map(function (l) {
+      return '<div class="l' + l + '"><b>' + n[l] + '</b><span>' + LADNAMN[l] + '</span></div>';
+    }).join("");
+    ritaMinikarta($("pass-karta"));
+    var gjortIdag = DB.passDagar.indexOf(idag()) >= 0, ny = nastaNya(), text, knapp;
+    if (!DB.startprov) {
+      text = "Första gången börjar du med ett kort startprov: 20 frågor, utan tid. Det visar vad du redan kan, så att du slipper öva på det.";
+      knapp = "Gör startprovet";
+    } else if (n[3] === 55) {
+      text = "Alla 55 sitter. Passet repeterar nu bara det som är dags att friska upp.";
+      knapp = gjortIdag ? "Ett pass till" : "Starta dagens pass";
+    } else {
+      text = (gjortIdag ? "Dagens pass är gjort. Du kan köra ett till om du vill. " : "") +
+        (ny ? "Nästa nya att lära: " + ny.a + " × " + ny.b + "." : "Inga nya kvar, bara repetition.");
+      knapp = gjortIdag ? "Ett pass till" : "Starta dagens pass";
+    }
+    $("pass-hem-text").textContent = text;
+    $("pass-starta").textContent = knapp;
+  }
+  function ritaStartkort() {
+    var n = raknaLador();
+    ritaMinikarta($("start-karta"));
+    var gjort = DB.passDagar.indexOf(idag()) >= 0;
+    $("start-pass-text").textContent = !DB.startprov
+      ? "Ungefär 10 minuter. Frågorna anpassas efter vad du redan kan. Första gången gör du ett kort startprov."
+      : n[3] + " av 55 fakta sitter. " + (gjort ? "Dagens pass är gjort." : "Ungefär 10 minuter.");
+    $("start-pass-knapp").textContent = !DB.startprov ? "Börja" : gjort ? "Se dina framsteg" : "Starta dagens pass";
+  }
+
+  var pp = null;
+  var passOk = byggKnappsats($("pass-knappsats"), tryckPassKnapp);
+
+  function passDel(namn) { ["hem", "fraga", "klart"].forEach(function (d) { $("pass-" + d).hidden = d !== namn; }); }
+
+  function uppgiftFor(k) {
+    var f = FAKTA_MAP[k], vand = Math.random() < 0.5;
+    return { typ: "mult", a: vand ? f.b : f.a, b: vand ? f.a : f.b, svar: f.a * f.b, k: k };
+  }
+
+  function startaPassKnapp() {
+    if (!DB.startprov) return startaStartprov();
+    pp = { prov: false, i: 0, max: 30, maxMs: 10 * 60000, start: Date.now(), reask: [], fragad: {}, senaste: [],
+      felPer: {}, flytt: {}, nyaKvar: 2, ratt: 0, svar: 0, aktuell: null, inmatning: "", lage: "", t0: 0 };
+    passDel("fraga"); nastaPassfraga();
+  }
+
+  function startaStartprov() {
+    // två fakta ur varje strategifamilj
+    var grupper = {}, ko = [];
+    FAKTA.forEach(function (f) { (grupper[f.rang] = grupper[f.rang] || []).push(f.k); });
+    Object.keys(grupper).map(Number).sort(function (x, y) { return x - y; }).forEach(function (g) {
+      blanda(grupper[g]).slice(0, 2).forEach(function (k) { ko.push(k); });
+    });
+    ko = ko.slice(0, 20);
+    pp = { prov: true, ko: ko, provSvar: {}, i: 0, max: ko.length, start: Date.now(), ratt: 0, svar: 0,
+      felPer: {}, flytt: {}, senaste: [], fragad: {}, reask: [], aktuell: null, inmatning: "", lage: "", t0: 0 };
+    passDel("fraga"); nastaPassfraga();
+  }
+
+  function minstNyligen(lista) {
+    var kand = lista.filter(function (k) { return pp.senaste.indexOf(k) < 0; });
+    if (!kand.length) return null;
+    blanda(kand);
+    kand.sort(function (x, y) { return (pp.fragad[x] === undefined ? -1 : pp.fragad[x]) - (pp.fragad[y] === undefined ? -1 : pp.fragad[y]); });
+    return kand[0];
+  }
+
+  function valjNasta() {
+    if (pp.prov) return { k: pp.ko.shift(), typ: "prov" };
+    var i = pp.i, d = idag();
+    for (var j = 0; j < pp.reask.length; j++) {
+      if (pp.reask[j].vid <= i && pp.senaste[0] !== pp.reask[j].k) return { k: pp.reask.splice(j, 1)[0].k, typ: "igen" };
+    }
+    var svaga = [], repetera = [], kanda = [], nya = [];
+    FAKTA.forEach(function (f) {
+      var l = lada(f.k);
+      if (l === 0) nya.push(f.k);
+      else if (l === 1) svaga.push(f.k);
+      else { kanda.push(f.k); if (DB.fakta[f.k].due <= d) repetera.push(f.k); }
+    });
+    var andel = pp.svar ? pp.ratt / pp.svar : 1;
+    var tomt = !svaga.length && !kanda.length;
+    if (nya.length && (tomt || (pp.nyaKvar > 0 && svaga.length < 7 && andel >= 0.8 && (i === 2 || i === 13)))) {
+      pp.nyaKvar--; return { k: nya[0], typ: "ny" };
+    }
+    var k = null;
+    if (i % 4 === 1 || !kanda.length) k = minstNyligen(svaga) || minstNyligen(repetera);
+    if (!k) k = minstNyligen(repetera) || minstNyligen(kanda) || minstNyligen(svaga);
+    if (!k && nya.length) { pp.nyaKvar--; return { k: nya[0], typ: "ny" }; }
+    if (!k) k = svaga[0] || kanda[0];
+    return { k: k, typ: "vanlig" };
+  }
+
+  function nastaPassfraga() {
+    if (pp.i >= pp.max || (!pp.prov && Date.now() - pp.start >= pp.maxMs)) return avslutaDagensPass();
+    var val = valjNasta();
+    var u = uppgiftFor(val.k);
+    pp.aktuell = u; pp.typ = val.typ; pp.inmatning = "";
+    $("pass-chip").innerHTML = val.typ === "ny" ? '<span class="chip-nytt">nytt</span>' : pp.prov ? "startprov" : "";
+    $("pass-matare").style.width = (pp.i / pp.max * 100) + "%";
+    $("pass-raknare").textContent = "fråga " + (pp.i + 1) + (pp.prov ? " av " + pp.max : "");
+    if (val.typ === "ny") {
+      // introduktion: titta först, sedan frågas faktumet direkt och igen efter 2 och 5 frågor
+      var f = post(val.k); f.l = 1; f.due = idag(); dbSpara();
+      pp.flytt[val.k] = pp.flytt[val.k] || { fran: 0, till: 1 };
+      pp.lage = "intro";
+      $("pass-intro").hidden = false; $("pass-uppgift").hidden = true;
+      $("pass-intro-faktum").textContent = text(u) + " = " + u.svar;
+      $("pass-intro-ledtrad").innerHTML = ledtradHtml(u);
+      pp.reask.push({ k: val.k, vid: pp.i + 2 }, { k: val.k, vid: pp.i + 5 });
+      $("pass-intro-ok").focus();
+      return;
+    }
+    visaPassUppgift(u);
+  }
+
+  function visaPassUppgift(u) {
+    pp.lage = "svara"; pp.inmatning = ""; pp.t0 = performance.now();
+    $("pass-intro").hidden = true; $("pass-uppgift").hidden = false;
+    $("pass-text").textContent = text(u);
+    $("pass-svar").textContent = "";
+    $("pass-fb").className = "aterkoppling"; $("pass-fb").textContent = "";
+    $("pass-ledtrad").innerHTML = "";
+  }
+
+  $("pass-intro-ok").onclick = function () {
+    if (!pp || pp.lage !== "intro") return;
+    // eleven skriver faktumet ur minnet direkt efter att ha sett det (räknas inte för lådan)
+    pp.typ = "kopia";
+    visaPassUppgift(pp.aktuell);
+  };
+
+  function tryckPassKnapp(s) {
+    if (!pp) return;
+    if (pp.lage === "intro") { if (s === "ok") $("pass-intro-ok").onclick(); return; }
+    if (pp.lage !== "svara" && pp.lage !== "omskriv") return;
+    if (s === "sudda") pp.inmatning = pp.inmatning.slice(0, -1);
+    else if (s === "ok") return svaraPass();
+    else if (pp.inmatning.length < 3) pp.inmatning += s;
+    $("pass-svar").textContent = pp.inmatning;
+  }
+
+  function grannfaktum(u, givet) {
+    // givet svar som hör till ett närliggande faktum, t.ex. 54 (6×9) för 7×8
+    var f = FAKTA_MAP[u.k], kand = [[f.a - 1, f.b], [f.a + 1, f.b], [f.a, f.b - 1], [f.a, f.b + 1]];
+    for (var i = 0; i < kand.length; i++) {
+      var x = kand[i][0], y = kand[i][1];
+      if (x >= 1 && y >= 1 && x <= MAX && y <= MAX && x * y === givet) return Math.min(x, y) + "x" + Math.max(x, y);
+    }
+    return null;
+  }
+
+  function svaraPass() {
+    if (pp.inmatning === "") return;
+    var u = pp.aktuell, givet = +pp.inmatning, fb = $("pass-fb"), ms = performance.now() - pp.t0;
+    if (pp.lage === "omskriv") {
+      if (givet === u.svar) { pp.lage = "vanta"; fb.className = "aterkoppling aterkoppling--ratt"; fb.innerHTML = IKON_RATT + "Ja, " + text(u) + " = " + u.svar; vidare(700); }
+      else { pp.inmatning = ""; $("pass-svar").textContent = ""; fb.textContent = text(u) + " = " + u.svar + ". Skriv " + u.svar + "."; $("pass-ledtrad").innerHTML = ledtradHtml(u); }
+      return;
+    }
+    var ratt = givet === u.svar;
+    if (pp.typ !== "kopia") {
+      pp.svar++; if (ratt) pp.ratt++;
+      sparaSvarstid(u, ms, ratt);
+      if (pp.prov) pp.provSvar[u.k] = { ratt: ratt, snabb: ms <= snabbGrans(u.svar) };
+      else {
+        var res = uppdateraFaktum(u.k, ratt, ms, !!pp.felPer[u.k]);
+        if (!pp.flytt[u.k]) pp.flytt[u.k] = { fran: res.fore, till: res.efter };
+        else pp.flytt[u.k].till = res.efter;
+        dbSpara();
+      }
+      pp.i++;
+      pp.fragad[u.k] = pp.i;
+      pp.senaste.unshift(u.k); pp.senaste = pp.senaste.slice(0, 2);
+    }
+    if (ratt) {
+      pp.lage = "vanta";
+      fb.className = "aterkoppling aterkoppling--ratt"; fb.innerHTML = IKON_RATT + "Rätt";
+      vidare(450);
+      return;
+    }
+    pp.felPer[u.k] = (pp.felPer[u.k] || 0) + 1;
+    pp.inmatning = ""; $("pass-svar").textContent = "";
+    fb.className = "aterkoppling aterkoppling--neutral";
+    if (pp.prov) {
+      // startprovet rättar inte, men visar svaret en kort stund
+      pp.lage = "vanta"; fb.textContent = text(u) + " = " + u.svar;
+      vidare(1300);
+      return;
+    }
+    pp.lage = "omskriv";
+    fb.textContent = text(u) + " = " + u.svar + ". Skriv svaret en gång till.";
+    if (pp.felPer[u.k] >= 2 || pp.typ === "kopia" || lada(u.k) <= 1 && felTidigare(u.k)) $("pass-ledtrad").innerHTML = ledtradHtml(u);
+    if (pp.typ !== "kopia") {
+      var finns = pp.reask.some(function (x) { return x.k === u.k; });
+      if (!finns) pp.reask.push({ k: u.k, vid: pp.i + 2 }, { k: u.k, vid: pp.i + 5 });
+      var granne = grannfaktum(u, givet);
+      if (granne && granne !== u.k && !pp.reask.some(function (x) { return x.k === granne; })) pp.reask.push({ k: granne, vid: pp.i + 3 });
+    }
+  }
+  function vidare(ms) { var u = pp.aktuell; setTimeout(function () { if (pp && pp.aktuell === u) nastaPassfraga(); }, ms); }
+
+  function avslutaStartprov() {
+    var grupper = {};
+    Object.keys(pp.provSvar).forEach(function (k) {
+      var r = pp.provSvar[k], f = post(k), g = FAKTA_MAP[k].rang;
+      (grupper[g] = grupper[g] || []).push(r.ratt && r.snabb);
+      if (r.ratt && r.snabb) { f.l = 2; f.fs = [idag()]; f.due = plusDagar(idag(), 1); }
+      else if (r.ratt) { f.l = 1; f.due = idag(); }
+    });
+    // fakta som inte frågades: om hela familjen satt, räkna dem som Nästan och repetera snart
+    var kan = 0;
+    FAKTA.forEach(function (f) {
+      var g = grupper[f.rang];
+      if (!pp.provSvar[f.k] && g && g.length && g.every(Boolean)) { var p = post(f.k); p.l = 2; p.due = idag(); }
+      if (lada(f.k) >= 2) kan++;
+    });
+    DB.startprov = true; dbSpara();
+    $("pass-klart-rubrik").textContent = "Startprovet är klart";
+    $("pass-klart-text").textContent = "Ungefär " + kan + " av 55 fakta verkar du redan kunna. De repeteras ibland, och resten tas in ett i taget.";
+    $("pass-flytt").innerHTML = "";
+    $("pass-klart-vidare").textContent = "Starta första passet";
+    $("pass-klart-vidare").dataset.mal = "starta";
+    pp = null;
+    passDel("klart");
+  }
+
+  function avslutaDagensPass() {
+    if (!pp) return;
+    if (pp.prov) {
+      if (pp.i >= pp.max) return avslutaStartprov();
+      pp = null; passDel("hem"); ritaPassHem(); return;
+    }
+    var min = Math.max(1, Math.round((Date.now() - pp.start) / 60000));
+    if (pp.i > 0 && DB.passDagar.indexOf(idag()) < 0) { DB.passDagar.push(idag()); DB.passDagar = DB.passDagar.slice(-60); dbSpara(); }
+    var upp = Object.keys(pp.flytt).filter(function (k) { return pp.flytt[k].till > pp.flytt[k].fran; });
+    var rubrik = $("pass-klart-rubrik");
+    rubrik.innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="currentColor"/></svg>' +
+      (pp.i >= pp.max || Date.now() - pp.start >= pp.maxMs ? "Klart för idag. Tabellen finns kvar i morgon." : "Passet avslutat");
+    $("pass-klart-text").textContent = pp.i + (pp.i === 1 ? " fråga" : " frågor") + " på " + min + (min === 1 ? " minut. " : " minuter. ") +
+      (upp.length ? upp.length + (upp.length === 1 ? " faktum flyttade upp." : " fakta flyttade upp.") : "Inget flyttade upp den här gången, men allt du övat räknas.");
+    var h = "";
+    if (upp.length) {
+      h = '<ul class="flytt">' + upp.slice(0, 8).map(function (k) {
+        var f = FAKTA_MAP[k], x = pp.flytt[k];
+        return "<li><span>" + f.a + " × " + f.b + "</span><span>" + LADNAMN[x.fran] + " → " + LADNAMN[x.till] + "</span></li>";
+      }).join("") + "</ul>";
+    }
+    $("pass-flytt").innerHTML = h;
+    $("pass-klart-vidare").textContent = "Se dina framsteg";
+    $("pass-klart-vidare").dataset.mal = "hem";
+    pp = null;
+    passDel("klart");
+  }
+
+  $("pass-starta").onclick = startaPassKnapp;
+  $("pass-avsluta").onclick = avslutaDagensPass;
+  $("pass-klart-vidare").onclick = function () {
+    if (this.dataset.mal === "starta") startaPassKnapp(); else { passDel("hem"); ritaPassHem(); }
+  };
+  var nollTimer = null;
+  $("pass-nollstall").onclick = function () {
+    var b = this;
+    if (b.dataset.saker !== "1") {
+      b.dataset.saker = "1"; b.textContent = "Tryck igen för att radera allt";
+      clearTimeout(nollTimer);
+      nollTimer = setTimeout(function () { b.dataset.saker = ""; b.textContent = "Börja om från början"; }, 4000);
+      return;
+    }
+    b.dataset.saker = ""; b.textContent = "Börja om från början";
+    DB = tomDb(); dbSpara(); ritaPassHem();
+  };
+  function visaPassVy() { if (!pp) { passDel("hem"); ritaPassHem(); } }
 
   // ================= SPEL =================
   var spel = {};
@@ -1476,7 +1892,7 @@ max-width:760px;color:#000}
     var delar = h.split("/");
     var vy = "start", sektion = "";
     if (delar[0] === "spel" && SPEL_IDS.indexOf(delar[1]) >= 0) { vy = delar[1]; sektion = "spel"; }
-    else if (["ova", "spel", "kalkylblad", "tabell"].indexOf(delar[0]) >= 0) { vy = sektion = delar[0]; }
+    else if (["pass", "ova", "spel", "kalkylblad", "tabell"].indexOf(delar[0]) >= 0) { vy = sektion = delar[0]; }
 
     Object.keys(spel).forEach(function (id) { if (id !== vy) spel[id].stopp(); });
     document.querySelectorAll(".vy").forEach(function (s) { s.hidden = s.id !== "vy-" + vy; });
@@ -1486,13 +1902,19 @@ max-width:760px;color:#000}
     aktuellVy = vy;
     if (spel[vy] && inst.tabeller.length) spel[vy].visa();
     if (vy === "kalkylblad") ritaKalkylblad();
+    if (vy === "pass") visaPassVy();
+    if (vy === "start") ritaStartkort();
     window.scrollTo(0, 0);
   }
   window.addEventListener("hashchange", route);
 
   document.addEventListener("keydown", function (e) {
     if (e.ctrlKey || e.metaKey || e.altKey) return;
-    if (aktuellVy === "ova" && !$("ova-pass").hidden) {
+    if (aktuellVy === "pass" && pp) {
+      if (e.key === "Escape") avslutaDagensPass();
+      else if (pp.lage === "intro" && e.key === "Enter") { e.preventDefault(); $("pass-intro-ok").onclick(); }
+      else tangentTillKnapp(e, tryckPassKnapp);
+    } else if (aktuellVy === "ova" && !$("ova-pass").hidden) {
       if (e.key === "Escape") avbrytPass(); else tangentTillKnapp(e, tryckOva);
     } else if (spel[aktuellVy] && spel[aktuellVy].tangent) spel[aktuellVy].tangent(e);
   });
