@@ -55,6 +55,8 @@ font-size:22px;font-weight:500}
 border:var(--sv-harlinje) solid var(--sv-linje-stark);border-radius:var(--sv-radie);
 color:var(--sv-text-sekundar);text-decoration:none;font-size:14px;background:var(--sv-yta-2)}
 .meny a::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--tema-djup)}
+.meny a.meny-hjalp::before{display:none}
+.meny a.meny-hjalp[aria-current="page"]{background:var(--sv-text);color:var(--sv-yta-2)}
 .meny a[aria-current="page"]{background:var(--tema);border-color:transparent;color:var(--tema-text);font-weight:500}
 
 /* ---------- grund ---------- */
@@ -273,6 +275,7 @@ body.stor-text .ledtrad-text{font-size:18px}
 .hjalp details p{margin:0 0 var(--sv-steg-2);color:var(--sv-text-sekundar)}
 .foraldrar{display:flex;gap:var(--sv-steg-3);align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:var(--sv-steg-4);
 background:var(--sv-yta-2);border:var(--sv-harlinje) solid var(--sv-linje);border-radius:var(--sv-radie-kort);padding:var(--sv-steg-3) var(--sv-steg-4)}
+.foraldrar--topp{margin:0 0 var(--sv-steg-3);padding:var(--sv-steg-2) var(--sv-steg-4)}
 .foraldrar p{margin:0;color:var(--sv-text-sekundar);font-size:14px;max-width:56ch}
 .fot a{color:inherit}
 
@@ -457,11 +460,16 @@ max-width:760px;color:#000}
       <a href="#spel" class="tema-lila" data-sektion="spel">Spel</a>
       <a href="#kalkylblad" class="tema-amber" data-sektion="kalkylblad">Kalkylblad</a>
       <a href="#tabell" class="tema-bla" data-sektion="tabell">Tabellen</a>
+      <a href="#sa-funkar-det" class="meny-hjalp" data-sektion="sa-funkar-det"><svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7.5"/><line x1="10" y1="9" x2="10" y2="14"/><circle cx="10" cy="6.2" r=".6" fill="currentColor"/></svg>Så funkar det</a>
     </nav>
   </header>
 
   <!-- ================= START ================= -->
   <section id="vy-start" class="vy">
+    <div class="foraldrar foraldrar--topp">
+      <div><b style="font-weight:500">För föräldrar och lärare</b><p>Hur passet fungerar, vad färgerna betyder och hur du kan hjälpa till hemma.</p></div>
+      <a class="sv-knapp" href="#sa-funkar-det">Så funkar det</a>
+    </div>
     <div class="valkommen tema-teal">
       <div>
         <h2>Dagens pass</h2>
@@ -491,10 +499,6 @@ max-width:760px;color:#000}
         <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><g fill="#fff"><rect x="44" y="18" width="18" height="18" rx="2"/><rect x="66" y="18" width="18" height="18" rx="2"/><rect x="88" y="18" width="18" height="18" rx="2"/><rect x="44" y="40" width="18" height="18" rx="2"/><rect x="88" y="40" width="18" height="18" rx="2"/><rect x="44" y="62" width="18" height="18" rx="2"/><rect x="66" y="62" width="18" height="18" rx="2"/><rect x="88" y="62" width="18" height="18" rx="2"/></g><rect x="66" y="40" width="18" height="18" rx="2" fill="currentColor"/><rect x="110" y="18" width="18" height="62" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
         <span class="namn">Tabellen</span><span class="besk">Hela tabellen 1–10 att titta och klicka i.</span>
       </a>
-    </div>
-    <div class="foraldrar">
-      <div><b style="font-weight:500">För föräldrar och lärare</b><p>Hur passet fungerar, vad färgerna betyder och hur du kan hjälpa till hemma.</p></div>
-      <a class="sv-knapp" href="#sa-funkar-det">Så funkar det</a>
     </div>
   </section>
 
@@ -3178,7 +3182,8 @@ max-width:760px;color:#000}
     else if (delar[0] === "strategier") { vy = "strategier"; sektion = "pass"; }
     else if (delar[0] === "karta") { vy = "karta"; sektion = "pass"; }
     else if (delar[0] === "larare") { vy = "larare"; sektion = "pass"; }
-    else if (delar[0] === "installningar" || delar[0] === "sa-funkar-det") { vy = delar[0]; }
+    else if (delar[0] === "installningar") { vy = delar[0]; }
+    else if (delar[0] === "sa-funkar-det") { vy = sektion = delar[0]; }
     else if (["pass", "ova", "spel", "kalkylblad", "tabell"].indexOf(delar[0]) >= 0) { vy = sektion = delar[0]; }
 
     Object.keys(spel).forEach(function (id) { if (id !== vy) spel[id].stopp(); });
