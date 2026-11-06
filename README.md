@@ -16,7 +16,13 @@ Valda tabeller sparas och följer med mellan Öva, Spel och Kalkylblad.
 
 **Strategier** – sex korta moduler med ett rutnät som eleven ändrar själv, följt av fyra uppgifter med strategin som stöd:
 *Vrid* (kommutativitet), *Dubbelt* (2, 3, 4, 8), *Halva tian* (5), *Tian minus en* (9), *Kvadrat och granne* (6×6, 7×7, 8×8 och grannarna), *Dela upp* (6, 7).
-En modul låser upp nya fakta ur sin familj i Dagens pass. Fakta eleven redan kan påverkas inte, och 1:an och 10:an är alltid öppna.
+En modul låser upp nya fakta ur sin familj i Dagens pass. Under Dagens pass kan spärren stängas av med *Öppna alla tabeller*. Fakta eleven redan kan påverkas inte, och 1:an och 10:an är alltid öppna.
+
+**Min karta** – 10 × 10-karta där varje ruta visar sin låda med färg och siffra. Veckan jämförs bara med förra veckan (pass, frågor, andel rätt, nya som sitter).
+
+**Visning och ljud** – uppläsning av uppgifterna (webbläsarens talsyntes, svenska), större text och knappar, och rutnätsstöd vid varje fråga.
+
+**Så funkar det** – kapitel för föräldrar och lärare: hur passet går till, lådorna, strategierna, ordningen, tips för hemmet, var data sparas och vanliga frågor.
 
 **Öva** – blandade frågor med direkt återkoppling. Multiplikation, division eller båda; 10/20 frågor, hela tabellen eller 60 sekunder. Klockan är dold som standard.
 - Vid fel visas rätt svar och eleven skriver det en gång till innan nästa fråga.
@@ -31,7 +37,7 @@ En modul låser upp nya fakta ur sin familj i Dagens pass. Fakta eleven redan ka
 - *Bingo* – markera svaret på brickan, fyll en rad.
 - *Sant eller falskt* – så många du hinner på en minut (tangenter S/F).
 
-**Kalkylblad** – skapa utskrivbara blad: multiplikation, division, saknad faktor, blandat eller tom tabell. 20/40/60 uppgifter, facit på egen sida. Skriv ut eller välj ”Spara som PDF”.
+**Kalkylblad** – skapa utskrivbara blad: multiplikation, division, saknad faktor, blandat, tom tabell eller *Titta, täck, skriv, jämför* (20 rader per blad, eleven viker undan svaren och rättar själv). 20/40/60 uppgifter, facit på egen sida. Skriv ut eller välj ”Spara som PDF”.
 
 **Tabellen** – interaktiv 10 × 10-tabell. Hoppräkna steg för steg i en tabell, eller tryck på en ruta för att se en strategi.
 
