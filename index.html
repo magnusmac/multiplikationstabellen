@@ -9,71 +9,115 @@
 --sv-yta-0:#F4F3EF;--sv-yta-1:#FAF9F6;--sv-yta-2:#FFFFFF;
 --sv-text:#1A1A18;--sv-text-sekundar:#5F5E5A;--sv-text-dampad:#8A8880;
 --sv-linje:rgba(26,26,24,.14);--sv-linje-stark:rgba(26,26,24,.28);
---sv-id-teal:#9FE1CB;--sv-id-teal-text:#04342C;
+
+/* identitetsfärger: ljus yta / mellan / djup */
+--teal-yta:#E1F5EE;--teal:#9FE1CB;--teal-djup:#0F6E56;--teal-text:#04342C;
+--amber-yta:#FAEEDA;--amber:#FAC775;--amber-djup:#BA7517;--amber-text:#412402;
+--bla-yta:#E6F1FB;--bla:#B5D4F4;--bla-djup:#185FA5;--bla-text:#042C53;
+--korall-yta:#FAECE7;--korall:#F5C4B3;--korall-djup:#993C1D;--korall-text:#4A1B0C;
+--lila-yta:#EEEDFE;--lila:#CECBF6;--lila-djup:#534AB7;--lila-text:#26215C;
+
 --sv-signal-fel:#A32D2D;--sv-signal-fel-yta:#FCEBEB;
 --sv-signal-klart:#3B6D11;--sv-signal-klart-yta:#EAF3DE;
---sv-accent:var(--sv-id-teal);--sv-accent-text:var(--sv-id-teal-text);
+
 --sv-sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
 --sv-mono:ui-monospace,"SF Mono","Roboto Mono",Menlo,monospace;
 --sv-steg-1:8px;--sv-steg-2:12px;--sv-steg-3:16px;--sv-steg-4:24px;--sv-steg-5:32px;
 --sv-radie:8px;--sv-radie-kort:12px;--sv-harlinje:0.5px;--sv-tryckyta:44px;
+
+--tema-yta:var(--teal-yta);--tema:var(--teal);--tema-djup:var(--teal-djup);--tema-text:var(--teal-text);
 }
+.tema-teal{--tema-yta:var(--teal-yta);--tema:var(--teal);--tema-djup:var(--teal-djup);--tema-text:var(--teal-text)}
+.tema-amber{--tema-yta:var(--amber-yta);--tema:var(--amber);--tema-djup:var(--amber-djup);--tema-text:var(--amber-text)}
+.tema-bla{--tema-yta:var(--bla-yta);--tema:var(--bla);--tema-djup:var(--bla-djup);--tema-text:var(--bla-text)}
+.tema-korall{--tema-yta:var(--korall-yta);--tema:var(--korall);--tema-djup:var(--korall-djup);--tema-text:var(--korall-text)}
+.tema-lila{--tema-yta:var(--lila-yta);--tema:var(--lila);--tema-djup:var(--lila-djup);--tema-text:var(--lila-text)}
+
 *{box-sizing:border-box}
 html,body{background:var(--sv-yta-0)}
 body{margin:0;padding:var(--sv-steg-4) var(--sv-steg-3);color:var(--sv-text);
 font-family:var(--sv-sans);font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased}
-main{max-width:720px;margin:0 auto}
+main{max-width:900px;margin:0 auto}
 h1,h2,h3{font-weight:500;line-height:1.3;margin:0 0 var(--sv-steg-2)}
 h1{font-size:22px}h2{font-size:18px}h3{font-size:16px}
 [hidden]{display:none !important}
+:focus-visible{outline:2px solid var(--sv-text);outline-offset:2px}
+.sv-piktogram{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;flex:none}
 
-/* sidhuvud */
+/* ---------- sidhuvud ---------- */
 .huvud{display:flex;align-items:center;justify-content:space-between;gap:var(--sv-steg-3);
 flex-wrap:wrap;margin-bottom:var(--sv-steg-4)}
-.huvud h1{margin:0;display:flex;align-items:center;gap:var(--sv-steg-1)}
-.flikar{display:flex;gap:var(--sv-steg-1)}
-.flik{min-height:var(--sv-tryckyta);padding:0 var(--sv-steg-3);background:transparent;
+.logga{display:flex;align-items:center;gap:var(--sv-steg-1);color:var(--sv-text);text-decoration:none;
+font-size:22px;font-weight:500}
+.logga svg{width:28px;height:28px}
+.meny{display:flex;gap:var(--sv-steg-1);flex-wrap:wrap}
+.meny a{display:flex;align-items:center;gap:var(--sv-steg-1);min-height:var(--sv-tryckyta);padding:0 var(--sv-steg-3);
 border:var(--sv-harlinje) solid var(--sv-linje-stark);border-radius:var(--sv-radie);
-color:var(--sv-text-sekundar);font:inherit;font-size:14px;cursor:pointer}
-.flik[aria-selected="true"]{color:var(--sv-text);border-color:var(--sv-text);font-weight:500}
+color:var(--sv-text-sekundar);text-decoration:none;font-size:14px;background:var(--sv-yta-2)}
+.meny a::before{content:"";width:10px;height:10px;border-radius:50%;background:var(--tema-djup)}
+.meny a[aria-current="page"]{background:var(--tema);border-color:transparent;color:var(--tema-text);font-weight:500}
 
-/* grund */
+/* ---------- grund ---------- */
 .sv-kort{background:var(--sv-yta-2);border:var(--sv-harlinje) solid var(--sv-linje);
 border-radius:var(--sv-radie-kort);padding:var(--sv-steg-4);margin-bottom:var(--sv-steg-4)}
-.sv-knapp{min-height:var(--sv-tryckyta);padding:0 var(--sv-steg-3);background:transparent;
+.sidrubrik{display:flex;align-items:center;gap:var(--sv-steg-2);margin-bottom:var(--sv-steg-4)}
+.sidrubrik .bricka{width:44px;height:44px;border-radius:var(--sv-radie);background:var(--tema);color:var(--tema-djup);
+display:flex;align-items:center;justify-content:center}
+.sidrubrik .bricka svg{width:24px;height:24px}
+.sidrubrik h2{margin:0;font-size:22px}
+.sidrubrik p{margin:0;font-size:14px;color:var(--sv-text-sekundar)}
+.sv-knapp{min-height:var(--sv-tryckyta);padding:0 var(--sv-steg-3);background:var(--sv-yta-2);
 border:var(--sv-harlinje) solid var(--sv-linje-stark);border-radius:var(--sv-radie);
-color:var(--sv-text);font-family:inherit;font-size:14px;cursor:pointer;transition:background 120ms ease}
+color:var(--sv-text);font-family:inherit;font-size:14px;cursor:pointer;transition:background 120ms ease;
+display:inline-flex;align-items:center;justify-content:center;gap:var(--sv-steg-1);text-decoration:none}
 .sv-knapp:hover{background:var(--sv-yta-1)}
 .sv-knapp:active{transform:scale(.98)}
 .sv-knapp:disabled{opacity:.4;cursor:default}
-.sv-knapp--primar{background:var(--sv-accent);border-color:transparent;color:var(--sv-accent-text);font-weight:500}
-.sv-knapp--primar:hover{background:var(--sv-accent);filter:brightness(.97)}
+.sv-knapp--primar{background:var(--tema-djup);border-color:transparent;color:#fff;font-weight:500}
+.sv-knapp--primar:hover{background:var(--tema-djup);filter:brightness(1.08)}
 .sv-notis{font-size:13px;color:var(--sv-text-dampad);margin:0}
 .etikett{font-size:13px;color:var(--sv-text-sekundar);margin:0 0 var(--sv-steg-1)}
-.rad{display:flex;gap:var(--sv-steg-1);flex-wrap:wrap}
+.rad{display:flex;gap:var(--sv-steg-1);flex-wrap:wrap;align-items:center}
 .grupp{margin-bottom:var(--sv-steg-4)}
 .grupp:last-child{margin-bottom:0}
-.sv-piktogram{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.5;flex:none}
-:focus-visible{outline:2px solid var(--sv-text);outline-offset:2px}
+.tillbaka{margin-bottom:var(--sv-steg-3)}
 
-/* val-knappar (toggle) */
+/* val-knappar */
 .val{min-width:var(--sv-tryckyta);min-height:var(--sv-tryckyta);padding:0 var(--sv-steg-2);
-background:transparent;border:var(--sv-harlinje) solid var(--sv-linje-stark);border-radius:var(--sv-radie);
+background:var(--sv-yta-2);border:var(--sv-harlinje) solid var(--sv-linje-stark);border-radius:var(--sv-radie);
 color:var(--sv-text);font-family:var(--sv-mono);font-size:16px;cursor:pointer}
 .val--text{font-family:var(--sv-sans);font-size:14px}
-.val[aria-pressed="true"]{background:var(--sv-accent);border-color:transparent;color:var(--sv-accent-text);font-weight:500}
+.val[aria-pressed="true"]{background:var(--tema);border-color:transparent;color:var(--tema-text);font-weight:500}
 .val:active{transform:scale(.98)}
-.tabellval{display:grid;grid-template-columns:repeat(6,1fr);gap:var(--sv-steg-1)}
-@media (max-width:480px){.tabellval{grid-template-columns:repeat(4,1fr)}}
+.tabellval{display:grid;grid-template-columns:repeat(10,1fr);gap:var(--sv-steg-1)}
+@media (max-width:620px){.tabellval{grid-template-columns:repeat(5,1fr)}}
 
-/* övning */
+/* ---------- startsida ---------- */
+.valkommen{background:var(--sv-yta-2);border:var(--sv-harlinje) solid var(--sv-linje);border-radius:var(--sv-radie-kort);
+padding:var(--sv-steg-5) var(--sv-steg-4);margin-bottom:var(--sv-steg-4);display:flex;gap:var(--sv-steg-4);align-items:center;flex-wrap:wrap}
+.valkommen h2{font-size:26px;margin-bottom:var(--sv-steg-1)}
+.valkommen p{margin:0;color:var(--sv-text-sekundar);max-width:46ch}
+.valkommen .prickar{display:grid;grid-template-columns:repeat(4,22px);gap:8px;margin-left:auto}
+.valkommen .prickar span{width:22px;height:22px;border-radius:6px}
+.rutor{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:var(--sv-steg-3)}
+.ruta-kort{display:flex;flex-direction:column;background:var(--sv-yta-2);border:var(--sv-harlinje) solid var(--sv-linje);
+border-radius:var(--sv-radie-kort);overflow:hidden;color:var(--sv-text);text-decoration:none;cursor:pointer;
+font:inherit;text-align:left;padding:0}
+.ruta-kort:active{transform:scale(.98)}
+.ruta-kort:hover .bild{filter:brightness(.98)}
+.ruta-kort .bild{background:var(--tema);color:var(--tema-djup);aspect-ratio:16/10;display:flex;align-items:center;justify-content:center}
+.ruta-kort .bild svg{width:100%;height:100%}
+.ruta-kort .namn{padding:var(--sv-steg-2) var(--sv-steg-3) 0;font-weight:500;font-size:16px}
+.ruta-kort .besk{padding:0 var(--sv-steg-3) var(--sv-steg-3);font-size:13px;color:var(--sv-text-sekundar);line-height:1.5}
+
+/* ---------- övning ---------- */
 .status{display:flex;justify-content:space-between;align-items:baseline;gap:var(--sv-steg-2);
 font-family:var(--sv-mono);font-size:13px;color:var(--sv-text-dampad);margin-bottom:var(--sv-steg-3)}
-.matare{height:4px;background:var(--sv-yta-0);border-radius:2px;margin-bottom:var(--sv-steg-4);overflow:hidden}
-.matare>span{display:block;height:100%;width:0;background:var(--sv-text-sekundar)}
+.matare{height:6px;background:var(--tema-yta);border-radius:3px;margin-bottom:var(--sv-steg-4);overflow:hidden}
+.matare>span{display:block;height:100%;width:0;background:var(--tema-djup)}
 .uppgift{font-family:var(--sv-mono);font-size:56px;letter-spacing:-1px;line-height:1.1;text-align:center;
 margin:var(--sv-steg-3) 0;white-space:nowrap}
-.svar{display:inline-block;min-width:2.2ch;border-bottom:2px solid var(--sv-linje-stark);text-align:center}
+.svar{display:inline-block;min-width:2.2ch;border-bottom:3px solid var(--tema);text-align:center}
 .svar:empty::before{content:"\00a0"}
 @media (max-width:480px){.uppgift{font-size:40px}}
 .aterkoppling{min-height:48px;display:flex;align-items:center;justify-content:center;gap:var(--sv-steg-1);
@@ -86,27 +130,117 @@ border-radius:var(--sv-radie);font-size:16px;margin-bottom:var(--sv-steg-3);padd
 
 /* resultat */
 .siffror{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--sv-steg-2);margin-bottom:var(--sv-steg-4)}
-.siffra{border:var(--sv-harlinje) solid var(--sv-linje);border-radius:var(--sv-radie);padding:var(--sv-steg-2)}
-.siffra b{display:block;font-family:var(--sv-mono);font-weight:400;font-size:32px;letter-spacing:-1px;line-height:1.2}
-.siffra span{font-size:13px;color:var(--sv-text-dampad)}
+.siffra{background:var(--tema-yta);border-radius:var(--sv-radie);padding:var(--sv-steg-2)}
+.siffra b{display:block;font-family:var(--sv-mono);font-weight:400;font-size:32px;letter-spacing:-1px;line-height:1.2;color:var(--tema-text)}
+.siffra span{font-size:13px;color:var(--sv-text-sekundar)}
 .fellista{list-style:none;padding:0;margin:0 0 var(--sv-steg-4);font-family:var(--sv-mono);font-size:16px}
 .fellista li{display:flex;justify-content:space-between;padding:var(--sv-steg-1) 0;
 border-bottom:var(--sv-harlinje) solid var(--sv-linje)}
 .fellista li span:last-child{color:var(--sv-text-dampad)}
 .klar-rubrik{display:flex;align-items:center;gap:var(--sv-steg-1)}
 
-/* tabellen */
-.rutnat{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;font-family:var(--sv-mono);font-size:15px}
+/* ---------- tabellen ---------- */
+.rutnat{display:grid;grid-template-columns:repeat(11,1fr);gap:2px;font-family:var(--sv-mono);font-size:15px;max-width:640px;margin:0 auto}
 .rutnat button,.rutnat div{aspect-ratio:1;display:flex;align-items:center;justify-content:center;
 border:0;border-radius:4px;background:transparent;color:var(--sv-text);font:inherit;padding:0}
 .rutnat .ruta{background:var(--sv-yta-1);cursor:pointer}
-.rutnat .rubrik{color:var(--sv-text-dampad)}
-.rutnat .rubrik.vald{color:var(--sv-text);font-weight:500}
-.rutnat .ruta.markerad{background:var(--sv-accent);color:var(--sv-accent-text)}
+.rutnat .rubrik{color:var(--tema-djup);cursor:pointer;font-weight:500}
+.rutnat .rubrik.vald{background:var(--tema-djup);color:#fff}
+.rutnat .ruta.markerad{background:var(--tema);color:var(--tema-text)}
 .rutnat .ruta.vald{outline:2px solid var(--sv-text);outline-offset:-2px;font-weight:500}
 .utlasning{font-family:var(--sv-mono);font-size:28px;letter-spacing:-.5px;text-align:center;
 margin-top:var(--sv-steg-3);min-height:40px}
 @media (max-width:480px){.rutnat{font-size:12px;gap:1px}}
+
+/* ---------- spel: gemensamt ---------- */
+.spelhuvud{display:flex;justify-content:space-between;align-items:center;gap:var(--sv-steg-2);flex-wrap:wrap;margin-bottom:var(--sv-steg-3)}
+.spelhuvud h2{margin:0;display:flex;align-items:center;gap:var(--sv-steg-1)}
+.matvarden{display:flex;gap:var(--sv-steg-1);font-family:var(--sv-mono);font-size:14px}
+.matvarden span{background:var(--tema-yta);color:var(--tema-text);border-radius:var(--sv-radie);padding:4px 10px}
+.liv{display:inline-flex;gap:4px;align-items:center}
+.liv i{width:12px;height:12px;border-radius:50%;background:var(--tema-djup);display:inline-block}
+.liv i.borta{background:transparent;border:1.5px solid var(--tema-djup)}
+.startpanel{text-align:center;padding:var(--sv-steg-4) 0}
+.startpanel p{color:var(--sv-text-sekundar);max-width:50ch;margin:0 auto var(--sv-steg-3)}
+.slutpanel{text-align:center;padding:var(--sv-steg-4) 0}
+.slutpanel .stor{font-family:var(--sv-mono);font-size:56px;letter-spacing:-1px;line-height:1.1;color:var(--tema-djup)}
+.slutpanel p{color:var(--sv-text-sekundar);margin:var(--sv-steg-1) 0 var(--sv-steg-3)}
+
+/* bubblor */
+.bubbelyta{position:relative;height:420px;background:var(--tema-yta);border-radius:var(--sv-radie-kort);overflow:hidden;touch-action:manipulation}
+.bubbelfraga{position:absolute;top:var(--sv-steg-2);left:50%;transform:translateX(-50%);z-index:2;
+background:var(--sv-yta-2);border-radius:var(--sv-radie);padding:4px 20px;font-family:var(--sv-mono);font-size:36px;letter-spacing:-1px}
+.bubbla{position:absolute;left:0;top:0;width:76px;height:76px;border-radius:50%;
+background:var(--sv-yta-2);border:2px solid var(--tema-djup);color:var(--tema-text);
+font-family:var(--sv-mono);font-size:24px;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;will-change:transform}
+.bubbla.fel{background:var(--sv-signal-fel-yta);border-color:var(--sv-signal-fel);color:var(--sv-signal-fel)}
+
+/* memory */
+.memory{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--sv-steg-1);max-width:560px;margin:0 auto}
+.mkort{aspect-ratio:4/3;border-radius:var(--sv-radie);border:0;cursor:pointer;font-family:var(--sv-mono);font-size:22px;
+background:var(--tema);color:var(--tema-djup);display:flex;align-items:center;justify-content:center;padding:0}
+.mkort svg{width:32px;height:32px}
+.mkort.oppen{background:var(--sv-yta-2);border:1.5px solid var(--tema-djup);color:var(--sv-text)}
+.mkort.klar{background:var(--tema-djup);color:#fff;cursor:default}
+@media (max-width:480px){.mkort{font-size:17px}}
+
+/* kapplöpning */
+.bana{background:var(--tema-yta);border-radius:var(--sv-radie-kort);padding:var(--sv-steg-2);margin-bottom:var(--sv-steg-3)}
+.fil{display:grid;grid-template-columns:72px 1fr;align-items:center;gap:var(--sv-steg-1);margin:4px 0}
+.fil .vem{font-size:13px;color:var(--tema-text)}
+.spar{display:grid;grid-template-columns:repeat(12,1fr);gap:3px;position:relative}
+.spar b{height:36px;border-radius:4px;background:var(--sv-yta-2)}
+.spar b:last-child{background:repeating-linear-gradient(45deg,var(--sv-text) 0 5px,var(--sv-yta-2) 5px 10px)}
+.spar b.har{display:flex;align-items:center;justify-content:center}
+.spar b.har::after{content:"";width:22px;height:22px;background:var(--tema-djup);border-radius:50%}
+.spar.dator b.har::after{border-radius:4px;background:var(--sv-text-sekundar)}
+.lopuppgift{font-family:var(--sv-mono);font-size:44px;letter-spacing:-1px;text-align:center;margin:var(--sv-steg-1) 0}
+
+/* bingo */
+.bingoutrop{text-align:center;font-family:var(--sv-mono);font-size:44px;letter-spacing:-1px;margin-bottom:var(--sv-steg-3);
+background:var(--tema-yta);border-radius:var(--sv-radie-kort);padding:var(--sv-steg-2)}
+.bingo{display:grid;gap:var(--sv-steg-1);max-width:420px;margin:0 auto}
+.bingo button{aspect-ratio:1;border-radius:var(--sv-radie);border:1.5px solid var(--tema);background:var(--sv-yta-2);
+font-family:var(--sv-mono);font-size:26px;color:var(--sv-text);cursor:pointer;padding:0}
+.bingo button.markerad{background:var(--tema-djup);border-color:var(--tema-djup);color:#fff}
+.bingo button.vinst{outline:3px solid var(--sv-text);outline-offset:-3px}
+.bingo button.fel{background:var(--sv-signal-fel-yta);border-color:var(--sv-signal-fel);color:var(--sv-signal-fel)}
+
+/* sant eller falskt */
+.pastaende{text-align:center;font-family:var(--sv-mono);font-size:52px;letter-spacing:-1px;margin:var(--sv-steg-4) 0;white-space:nowrap}
+@media (max-width:480px){.pastaende{font-size:36px}}
+.sf-knappar{display:grid;grid-template-columns:1fr 1fr;gap:var(--sv-steg-2);max-width:420px;margin:0 auto var(--sv-steg-3)}
+.sf-knappar button{min-height:72px;font-size:18px}
+
+/* ---------- kalkylblad ---------- */
+.ark{background:#fff;border:var(--sv-harlinje) solid var(--sv-linje);border-radius:4px;padding:40px 44px;margin:0 auto var(--sv-steg-4);
+max-width:760px;color:#000}
+.ark-huvud{display:flex;justify-content:space-between;align-items:flex-end;gap:var(--sv-steg-3);border-bottom:1.5px solid #000;padding-bottom:var(--sv-steg-1);margin-bottom:var(--sv-steg-4);flex-wrap:wrap}
+.ark-huvud h3{font-size:22px;margin:0}
+.ark-huvud .info{font-size:13px;color:#444}
+.ark-namn{display:flex;gap:var(--sv-steg-4);font-size:14px;margin-bottom:var(--sv-steg-4)}
+.ark-namn span{flex:1;border-bottom:1px solid #000;padding-bottom:2px}
+.tal{display:grid;column-gap:var(--sv-steg-5);row-gap:14px;font-family:var(--sv-mono);font-size:18px}
+.tal div{display:flex;align-items:baseline;gap:8px}
+.tal .nr{font-size:11px;color:#777;width:20px;text-align:right}
+.tal .linje{display:inline-block;min-width:52px;border-bottom:1px solid #000;text-align:center}
+.tal .facit{color:var(--korall-djup)}
+.tomtabell{display:grid;grid-template-columns:repeat(11,1fr);border-top:1px solid #000;border-left:1px solid #000;font-family:var(--sv-mono);font-size:15px}
+.tomtabell div{aspect-ratio:1;border-right:1px solid #000;border-bottom:1px solid #000;display:flex;align-items:center;justify-content:center}
+.tomtabell .r{background:#eee;font-weight:500}
+.ark-fot{margin-top:var(--sv-steg-4);font-size:11px;color:#777;display:flex;justify-content:space-between}
+.facitrubrik{color:var(--korall-djup)}
+@media (max-width:620px){.ark{padding:20px}.tal{font-size:15px;column-gap:var(--sv-steg-3)}}
+
+@media print{
+  @page{size:A4;margin:14mm}
+  html,body{background:#fff;padding:0}
+  .huvud,.vy:not(#vy-kalkylblad),.kontroller,.fot,.sidrubrik{display:none !important}
+  #vy-kalkylblad{display:block !important}
+  .ark{border:0;padding:0;margin:0;max-width:none;border-radius:0}
+  .ark + .ark{break-before:page}
+  .tal{font-size:16pt}
+}
 
 @media (prefers-reduced-motion:reduce){*{transition:none !important;animation:none !important}}
 </style>
@@ -114,119 +248,336 @@ margin-top:var(--sv-steg-3);min-height:40px}
 <body>
 <main>
   <header class="huvud">
-    <h1>
-      <svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true">
-        <rect x="3" y="3" width="14" height="14" rx="1"/><line x1="10" y1="3" x2="10" y2="17"/><line x1="3" y1="10" x2="17" y2="10"/>
+    <a class="logga" href="#">
+      <svg viewBox="0 0 28 28" aria-hidden="true">
+        <rect x="1" y="1" width="12" height="12" rx="3" fill="var(--teal)"/>
+        <rect x="15" y="1" width="12" height="12" rx="3" fill="var(--amber)"/>
+        <rect x="1" y="15" width="12" height="12" rx="3" fill="var(--lila)"/>
+        <rect x="15" y="15" width="12" height="12" rx="3" fill="var(--bla)"/>
+        <g stroke="var(--sv-text)" stroke-width="1.6" stroke-linecap="round">
+          <line x1="4.5" y1="4.5" x2="9.5" y2="9.5"/><line x1="9.5" y1="4.5" x2="4.5" y2="9.5"/>
+        </g>
       </svg>
       Gångertabellen
-    </h1>
-    <nav class="flikar" role="tablist">
-      <button class="flik" role="tab" id="flik-ova" aria-selected="true">Öva</button>
-      <button class="flik" role="tab" id="flik-tabell" aria-selected="false">Tabellen</button>
+    </a>
+    <nav class="meny" aria-label="Huvudmeny">
+      <a href="#ova" class="tema-teal" data-sektion="ova">Öva</a>
+      <a href="#spel" class="tema-lila" data-sektion="spel">Spel</a>
+      <a href="#kalkylblad" class="tema-amber" data-sektion="kalkylblad">Kalkylblad</a>
+      <a href="#tabell" class="tema-bla" data-sektion="tabell">Tabellen</a>
     </nav>
   </header>
 
-  <!-- Inställningar -->
-  <section id="vy-installning" class="sv-kort">
-    <div class="grupp">
-      <p class="etikett" id="lbl-tabeller">Tabeller</p>
-      <div class="tabellval" id="tabeller" role="group" aria-labelledby="lbl-tabeller"></div>
+  <!-- ================= START ================= -->
+  <section id="vy-start" class="vy">
+    <div class="valkommen">
+      <div>
+        <h2>Träna gångertabellen</h2>
+        <p>Öva i lugn takt, spela spel, skriv ut kalkylblad eller titta i tabellen. Välj tabeller en gång – valet följer med överallt.</p>
+      </div>
+      <div class="prickar" aria-hidden="true">
+        <span style="background:var(--teal)"></span><span style="background:var(--amber)"></span><span style="background:var(--lila)"></span><span style="background:var(--bla)"></span>
+        <span style="background:var(--korall)"></span><span style="background:var(--teal)"></span><span style="background:var(--amber)"></span><span style="background:var(--lila)"></span>
+      </div>
+    </div>
+    <div class="rutor">
+      <a class="ruta-kort tema-teal" href="#ova">
+        <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="40" y1="38" x2="60" y2="58"/><line x1="60" y1="38" x2="40" y2="58"/><line x1="80" y1="42" x2="104" y2="42"/><line x1="80" y1="54" x2="104" y2="54"/></g><rect x="114" y="30" width="28" height="36" rx="4" fill="#fff"/><line x1="118" y1="62" x2="138" y2="62" stroke="currentColor" stroke-width="2"/></svg></div>
+        <span class="namn">Öva</span><span class="besk">Frågor i din takt med rätt svar direkt.</span>
+      </a>
+      <a class="ruta-kort tema-lila" href="#spel">
+        <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><circle cx="50" cy="56" r="20" fill="#fff" stroke="currentColor" stroke-width="2.5"/><circle cx="92" cy="38" r="14" fill="#fff" stroke="currentColor" stroke-width="2.5"/><circle cx="118" cy="66" r="11" fill="currentColor"/><text x="50" y="63" text-anchor="middle" font-family="monospace" font-size="18" fill="currentColor">42</text></svg></div>
+        <span class="namn">Spel</span><span class="besk">Fem spel som tränar samma tabeller.</span>
+      </a>
+      <a class="ruta-kort tema-amber" href="#kalkylblad">
+        <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><rect x="52" y="12" width="56" height="76" rx="3" fill="#fff"/><g stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="60" y1="28" x2="100" y2="28"/><line x1="60" y1="42" x2="84" y2="42"/><line x1="60" y1="54" x2="90" y2="54"/><line x1="60" y1="66" x2="80" y2="66"/><line x1="60" y1="78" x2="94" y2="78"/></g></svg></div>
+        <span class="namn">Kalkylblad</span><span class="besk">Skapa och skriv ut uppgifter med facit.</span>
+      </a>
+      <a class="ruta-kort tema-bla" href="#tabell">
+        <div class="bild"><svg viewBox="0 0 160 100" aria-hidden="true"><g fill="#fff"><rect x="44" y="18" width="18" height="18" rx="2"/><rect x="66" y="18" width="18" height="18" rx="2"/><rect x="88" y="18" width="18" height="18" rx="2"/><rect x="44" y="40" width="18" height="18" rx="2"/><rect x="88" y="40" width="18" height="18" rx="2"/><rect x="44" y="62" width="18" height="18" rx="2"/><rect x="66" y="62" width="18" height="18" rx="2"/><rect x="88" y="62" width="18" height="18" rx="2"/></g><rect x="66" y="40" width="18" height="18" rx="2" fill="currentColor"/><rect x="110" y="18" width="18" height="62" rx="2" fill="none" stroke="currentColor" stroke-width="2"/></svg></div>
+        <span class="namn">Tabellen</span><span class="besk">Hela tabellen 1–10 att titta och klicka i.</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- ================= ÖVA ================= -->
+  <section id="vy-ova" class="vy tema-teal" hidden>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg></div>
+      <div><h2>Öva</h2><p>Välj tabeller och hur du vill öva.</p></div>
+    </div>
+
+    <div id="ova-installning" class="sv-kort">
+      <div class="grupp">
+        <p class="etikett">Tabeller</p>
+        <div class="tabellval" data-tabellval></div>
+        <div class="rad" style="margin-top:var(--sv-steg-1)">
+          <button class="sv-knapp" data-alla>Alla</button>
+          <button class="sv-knapp" data-inga>Inga</button>
+        </div>
+      </div>
+      <div class="grupp">
+        <p class="etikett">Räknesätt</p>
+        <div class="rad" data-grupp="raknesatt">
+          <button class="val val--text" data-v="mult">Multiplikation</button>
+          <button class="val val--text" data-v="div">Division</button>
+          <button class="val val--text" data-v="bada">Båda</button>
+        </div>
+      </div>
+      <div class="grupp">
+        <p class="etikett">Ordning</p>
+        <div class="rad" data-grupp="ordning">
+          <button class="val val--text" data-v="blandad">Blandad</button>
+          <button class="val val--text" data-v="ordning">I ordning</button>
+        </div>
+      </div>
+      <div class="grupp">
+        <p class="etikett">Längd</p>
+        <div class="rad" data-grupp="langd">
+          <button class="val val--text" data-v="10">10 frågor</button>
+          <button class="val val--text" data-v="20">20 frågor</button>
+          <button class="val val--text" data-v="alla">Hela tabellen</button>
+          <button class="val val--text" data-v="60s">60 sekunder</button>
+        </div>
+      </div>
+      <div class="rad" style="gap:var(--sv-steg-3)">
+        <button class="sv-knapp sv-knapp--primar" id="starta">Starta</button>
+        <p class="sv-notis" id="starta-notis"></p>
+      </div>
+    </div>
+
+    <div id="ova-pass" class="sv-kort" hidden>
+      <div class="status"><span id="raknare">1 / 10</span><span id="tid">0:00</span></div>
+      <div class="matare" aria-hidden="true"><span id="matare"></span></div>
+      <div class="uppgift" aria-live="polite"><span id="fraga"></span> = <span class="svar" id="svar"></span></div>
+      <div class="aterkoppling" id="aterkoppling" role="status"></div>
+      <div class="knappsats" id="ova-knappsats"></div>
+      <div class="rad" style="justify-content:center;margin-top:var(--sv-steg-4)">
+        <button class="sv-knapp" id="avbryt">Avbryt</button>
+      </div>
+    </div>
+
+    <div id="ova-resultat" class="sv-kort" hidden>
+      <h2 class="klar-rubrik" id="res-rubrik">Klart</h2>
+      <div class="siffror">
+        <div class="siffra"><b id="res-ratt">0</b><span>rätt</span></div>
+        <div class="siffra"><b id="res-fel">0</b><span>fel</span></div>
+        <div class="siffra"><b id="res-tid">0:00</b><span>tid</span></div>
+      </div>
+      <div id="res-fel-block">
+        <p class="etikett">Att öva mer på</p>
+        <ul class="fellista" id="res-fellista"></ul>
+      </div>
+      <div class="rad">
+        <button class="sv-knapp sv-knapp--primar" id="ova-fel">Öva på felen</button>
+        <button class="sv-knapp" id="igen">Samma igen</button>
+        <button class="sv-knapp" id="andra">Ändra inställningar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SPEL ================= -->
+  <section id="vy-spel" class="vy tema-lila" hidden>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><circle cx="7" cy="12" r="4"/><circle cx="14" cy="7" r="3"/></svg></div>
+      <div><h2>Spel</h2><p>Alla spel använder tabellerna du väljer här.</p></div>
+    </div>
+    <div class="sv-kort">
+      <p class="etikett">Tabeller</p>
+      <div class="tabellval" data-tabellval></div>
       <div class="rad" style="margin-top:var(--sv-steg-1)">
-        <button class="sv-knapp" id="alla">Alla</button>
-        <button class="sv-knapp" id="inga">Inga</button>
+        <button class="sv-knapp" data-alla>Alla</button>
+        <button class="sv-knapp" data-inga>Inga</button>
+        <p class="sv-notis" data-tom-notis></p>
       </div>
     </div>
-    <div class="grupp">
-      <p class="etikett" id="lbl-rakne">Räknesätt</p>
-      <div class="rad" role="group" aria-labelledby="lbl-rakne" data-grupp="raknesatt">
-        <button class="val val--text" data-v="mult">Multiplikation</button>
-        <button class="val val--text" data-v="div">Division</button>
-        <button class="val val--text" data-v="bada">Båda</button>
+    <div class="rutor" id="spellista"></div>
+  </section>
+
+  <!-- Spel: Bubblor -->
+  <section id="vy-bubblor" class="vy tema-lila" hidden>
+    <a class="sv-knapp tillbaka" href="#spel">Alla spel</a>
+    <div class="sv-kort">
+      <div class="spelhuvud">
+        <h2>Bubblor</h2>
+        <div class="matvarden"><span id="bub-poang">0 poäng</span><span class="liv" id="bub-liv"></span></div>
       </div>
-    </div>
-    <div class="grupp">
-      <p class="etikett" id="lbl-ordning">Ordning</p>
-      <div class="rad" role="group" aria-labelledby="lbl-ordning" data-grupp="ordning">
-        <button class="val val--text" data-v="blandad">Blandad</button>
-        <button class="val val--text" data-v="ordning">I ordning</button>
+      <div class="bubbelyta" id="bub-yta">
+        <div class="bubbelfraga" id="bub-fraga" hidden></div>
+        <div class="startpanel" id="bub-start">
+          <p>Svaren stiger uppåt i bubblor. Tryck på rätt bubbla innan den försvinner. Tre missar och spelet är slut.</p>
+          <button class="sv-knapp sv-knapp--primar" data-starta="bubblor">Starta</button>
+        </div>
+        <div class="slutpanel" id="bub-slut" hidden>
+          <div class="stor" id="bub-slutpoang">0</div>
+          <p id="bub-sluttext"></p>
+          <button class="sv-knapp sv-knapp--primar" data-starta="bubblor">Spela igen</button>
+        </div>
       </div>
-    </div>
-    <div class="grupp">
-      <p class="etikett" id="lbl-langd">Längd</p>
-      <div class="rad" role="group" aria-labelledby="lbl-langd" data-grupp="langd">
-        <button class="val val--text" data-v="10">10 frågor</button>
-        <button class="val val--text" data-v="20">20 frågor</button>
-        <button class="val val--text" data-v="alla">Hela tabellen</button>
-        <button class="val val--text" data-v="60s">60 sekunder</button>
-      </div>
-    </div>
-    <div class="rad" style="align-items:center;gap:var(--sv-steg-3)">
-      <button class="sv-knapp sv-knapp--primar" id="starta">Starta</button>
-      <p class="sv-notis" id="starta-notis"></p>
     </div>
   </section>
 
-  <!-- Övning -->
-  <section id="vy-ova" class="sv-kort" hidden>
-    <div class="status">
-      <span id="raknare">1 / 10</span>
-      <span id="tid">0:00</span>
-    </div>
-    <div class="matare" aria-hidden="true"><span id="matare"></span></div>
-    <div class="uppgift" aria-live="polite">
-      <span id="fraga">7 × 8</span> = <span class="svar" id="svar"></span>
-    </div>
-    <div class="aterkoppling" id="aterkoppling" role="status"></div>
-    <div class="knappsats" id="knappsats">
-      <button class="sv-knapp" data-s="7">7</button>
-      <button class="sv-knapp" data-s="8">8</button>
-      <button class="sv-knapp" data-s="9">9</button>
-      <button class="sv-knapp" data-s="4">4</button>
-      <button class="sv-knapp" data-s="5">5</button>
-      <button class="sv-knapp" data-s="6">6</button>
-      <button class="sv-knapp" data-s="1">1</button>
-      <button class="sv-knapp" data-s="2">2</button>
-      <button class="sv-knapp" data-s="3">3</button>
-      <button class="sv-knapp" data-s="sudda" aria-label="Sudda">
-        <svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true">
-          <polyline points="8,5 3,10 8,15"/><line x1="3" y1="10" x2="17" y2="10"/>
-        </svg>
-      </button>
-      <button class="sv-knapp" data-s="0">0</button>
-      <button class="sv-knapp sv-knapp--primar ok" data-s="ok" id="ok">Svara</button>
-    </div>
-    <div class="rad" style="justify-content:center;margin-top:var(--sv-steg-4)">
-      <button class="sv-knapp" id="avbryt">Avbryt</button>
+  <!-- Spel: Memory -->
+  <section id="vy-memory" class="vy tema-amber" hidden>
+    <a class="sv-knapp tillbaka" href="#spel">Alla spel</a>
+    <div class="sv-kort">
+      <div class="spelhuvud">
+        <h2>Para ihop</h2>
+        <div class="matvarden"><span id="mem-drag">0 drag</span><span id="mem-par">0 / 6 par</span></div>
+      </div>
+      <div class="memory" id="mem-plan"></div>
+      <div class="slutpanel" id="mem-slut" hidden>
+        <div class="stor" id="mem-slutdrag">0</div>
+        <p id="mem-sluttext"></p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="memory">Spela igen</button>
+      </div>
     </div>
   </section>
 
-  <!-- Resultat -->
-  <section id="vy-resultat" class="sv-kort" hidden>
-    <h2 class="klar-rubrik" id="res-rubrik">Klart</h2>
-    <div class="siffror">
-      <div class="siffra"><b id="res-ratt">0</b><span>rätt</span></div>
-      <div class="siffra"><b id="res-fel">0</b><span>fel</span></div>
-      <div class="siffra"><b id="res-tid">0:00</b><span>tid</span></div>
-    </div>
-    <div id="res-fel-block">
-      <p class="etikett">Att öva mer på</p>
-      <ul class="fellista" id="res-fellista"></ul>
-    </div>
-    <div class="rad">
-      <button class="sv-knapp sv-knapp--primar" id="ova-fel">Öva på felen</button>
-      <button class="sv-knapp" id="igen">Samma igen</button>
-      <button class="sv-knapp" id="andra">Ändra inställningar</button>
+  <!-- Spel: Kapplöpning -->
+  <section id="vy-lopp" class="vy tema-bla" hidden>
+    <a class="sv-knapp tillbaka" href="#spel">Alla spel</a>
+    <div class="sv-kort">
+      <div class="spelhuvud">
+        <h2>Kapplöpning</h2>
+        <div class="matvarden"><span id="lopp-motstand">mot Snigeln</span></div>
+      </div>
+      <div class="bana">
+        <div class="fil"><span class="vem">Du</span><div class="spar" id="lopp-du"></div></div>
+        <div class="fil"><span class="vem" id="lopp-namn">Snigeln</span><div class="spar dator" id="lopp-dator"></div></div>
+      </div>
+      <div id="lopp-start" class="startpanel">
+        <p>Varje rätt svar flyttar dig ett steg. Motståndaren går i sin egen takt. Först i mål vinner.</p>
+        <div class="rad" style="justify-content:center;margin-bottom:var(--sv-steg-3)" data-grupp="loppfart">
+          <button class="val val--text" data-v="snigel">Snigeln (lugn)</button>
+          <button class="val val--text" data-v="katt">Katten (lagom)</button>
+          <button class="val val--text" data-v="hare">Haren (snabb)</button>
+        </div>
+        <button class="sv-knapp sv-knapp--primar" data-starta="lopp">Starta</button>
+      </div>
+      <div id="lopp-spel" hidden>
+        <div class="lopuppgift"><span id="lopp-fraga"></span> = <span class="svar" id="lopp-svar"></span></div>
+        <div class="aterkoppling" id="lopp-fb" role="status"></div>
+        <div class="knappsats" id="lopp-knappsats"></div>
+      </div>
+      <div class="slutpanel" id="lopp-slut" hidden>
+        <div class="stor" id="lopp-sluttitel"></div>
+        <p id="lopp-sluttext"></p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="lopp">Kör igen</button>
+        <button class="sv-knapp" id="lopp-byt">Byt motståndare</button>
+      </div>
     </div>
   </section>
 
-  <!-- Tabellen -->
-  <section id="vy-tabell" class="sv-kort" hidden>
-    <p class="sv-notis" style="margin-bottom:var(--sv-steg-3)">Tryck på en siffra i kanten för att se hela tabellen, eller på en ruta för att se uträkningen.</p>
-    <div class="rutnat" id="rutnat"></div>
-    <div class="utlasning" id="utlasning" aria-live="polite"></div>
+  <!-- Spel: Bingo -->
+  <section id="vy-bingo" class="vy tema-korall" hidden>
+    <a class="sv-knapp tillbaka" href="#spel">Alla spel</a>
+    <div class="sv-kort">
+      <div class="spelhuvud">
+        <h2>Bingo</h2>
+        <div class="matvarden"><span id="bingo-utrop">0 utrop</span><span id="bingo-fel">0 fel</span></div>
+      </div>
+      <div class="bingoutrop" id="bingo-fraga" aria-live="polite"></div>
+      <div class="bingo" id="bingo-plan"></div>
+      <div class="slutpanel" id="bingo-slut" hidden>
+        <p id="bingo-sluttext"></p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="bingo">Ny bricka</button>
+      </div>
+    </div>
   </section>
 
-  <p class="sv-notis" style="text-align:center">Tangentbord: siffror, Enter för att svara, Backsteg för att sudda.</p>
+  <!-- Spel: Sant eller falskt -->
+  <section id="vy-santfalskt" class="vy tema-teal" hidden>
+    <a class="sv-knapp tillbaka" href="#spel">Alla spel</a>
+    <div class="sv-kort">
+      <div class="spelhuvud">
+        <h2>Sant eller falskt</h2>
+        <div class="matvarden"><span id="sf-tid">60 s</span><span id="sf-poang">0 rätt</span></div>
+      </div>
+      <div class="matare" aria-hidden="true"><span id="sf-matare"></span></div>
+      <div id="sf-start" class="startpanel">
+        <p>Stämmer uträkningen? Svara så många du hinner på 60 sekunder. Tangenterna S och F fungerar också.</p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="santfalskt">Starta</button>
+      </div>
+      <div id="sf-spel" hidden>
+        <div class="pastaende" id="sf-pastaende"></div>
+        <div class="sf-knappar">
+          <button class="sv-knapp" data-sf="sant"><svg class="sv-piktogram" viewBox="0 0 20 20"><polyline points="4,10 8,14 16,6"/></svg>Sant</button>
+          <button class="sv-knapp" data-sf="falskt"><svg class="sv-piktogram" viewBox="0 0 20 20"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg>Falskt</button>
+        </div>
+        <div class="aterkoppling" id="sf-fb" role="status"></div>
+      </div>
+      <div class="slutpanel" id="sf-slut" hidden>
+        <div class="stor" id="sf-slutpoang">0</div>
+        <p id="sf-sluttext"></p>
+        <button class="sv-knapp sv-knapp--primar" data-starta="santfalskt">Spela igen</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= KALKYLBLAD ================= -->
+  <section id="vy-kalkylblad" class="vy tema-amber" hidden>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><rect x="4" y="2" width="12" height="16" rx="1"/><line x1="7" y1="7" x2="13" y2="7"/><line x1="7" y1="10" x2="13" y2="10"/><line x1="7" y1="13" x2="11" y2="13"/></svg></div>
+      <div><h2>Kalkylblad</h2><p>Skapa ett blad, skriv ut eller spara som PDF.</p></div>
+    </div>
+    <div class="sv-kort kontroller">
+      <div class="grupp">
+        <p class="etikett">Tabeller</p>
+        <div class="tabellval" data-tabellval></div>
+        <div class="rad" style="margin-top:var(--sv-steg-1)">
+          <button class="sv-knapp" data-alla>Alla</button>
+          <button class="sv-knapp" data-inga>Inga</button>
+          <p class="sv-notis" data-tom-notis></p>
+        </div>
+      </div>
+      <div class="grupp">
+        <p class="etikett">Typ av uppgifter</p>
+        <div class="rad" data-grupp="kbtyp">
+          <button class="val val--text" data-v="mult">Multiplikation</button>
+          <button class="val val--text" data-v="div">Division</button>
+          <button class="val val--text" data-v="lucka">Saknad faktor</button>
+          <button class="val val--text" data-v="blandat">Blandat</button>
+          <button class="val val--text" data-v="tabell">Tom tabell</button>
+        </div>
+      </div>
+      <div class="grupp" id="kb-antal-grupp">
+        <p class="etikett">Antal uppgifter</p>
+        <div class="rad" data-grupp="kbantal">
+          <button class="val val--text" data-v="20">20</button>
+          <button class="val val--text" data-v="40">40</button>
+          <button class="val val--text" data-v="60">60</button>
+        </div>
+      </div>
+      <div class="grupp">
+        <p class="etikett">Facit</p>
+        <div class="rad" data-grupp="kbfacit">
+          <button class="val val--text" data-v="ja">Med facit på egen sida</button>
+          <button class="val val--text" data-v="nej">Utan facit</button>
+        </div>
+      </div>
+      <div class="rad">
+        <button class="sv-knapp sv-knapp--primar" id="kb-skriv">Skriv ut</button>
+        <button class="sv-knapp" id="kb-nya">Nya tal</button>
+        <p class="sv-notis">På Chromebook: välj ”Spara som PDF” i utskriftsrutan för att spara bladet i Drive.</p>
+      </div>
+    </div>
+    <div id="kb-ark"></div>
+  </section>
+
+  <!-- ================= TABELLEN ================= -->
+  <section id="vy-tabell" class="vy tema-bla" hidden>
+    <div class="sidrubrik">
+      <div class="bricka"><svg class="sv-piktogram" viewBox="0 0 20 20"><rect x="3" y="3" width="14" height="14" rx="1"/><line x1="10" y1="3" x2="10" y2="17"/><line x1="3" y1="10" x2="17" y2="10"/></svg></div>
+      <div><h2>Tabellen</h2><p>Tryck på en siffra i kanten för att se hela tabellen, eller på en ruta för uträkningen.</p></div>
+    </div>
+    <div class="sv-kort">
+      <div class="rutnat" id="rutnat"></div>
+      <div class="utlasning" id="utlasning" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <p class="sv-notis fot" style="text-align:center">Gångertabellen · fungerar utan nät · ingen elevdata sparas</p>
 </main>
 
 <script>
@@ -236,45 +587,81 @@ margin-top:var(--sv-steg-3);min-height:40px}
   var $ = function (id) { return document.getElementById(id); };
   var MAX = 10;
 
-  // ---------- Inställningar ----------
-  var inst = { tabeller: [2, 3, 4, 5], raknesatt: "mult", ordning: "blandad", langd: "10" };
-  try {
-    var sparat = JSON.parse(localStorage.getItem("gangertabellen-inst") || "null");
-    if (sparat && Array.isArray(sparat.tabeller)) inst = Object.assign(inst, sparat);
-  } catch (e) { /* ingen lagring tillgänglig */ }
-  function spara() {
-    try { localStorage.setItem("gangertabellen-inst", JSON.stringify(inst)); } catch (e) {}
+  // ================= Hjälpfunktioner =================
+  function slump(n) { return Math.floor(Math.random() * n); }
+  function valj(a) { return a[slump(a.length)]; }
+  function blanda(a) {
+    for (var i = a.length - 1; i > 0; i--) { var j = slump(i + 1), x = a[i]; a[i] = a[j]; a[j] = x; }
+    return a;
+  }
+  function format(s) { return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+  function lasa(k, std) { try { var v = localStorage.getItem(k); return v === null ? std : JSON.parse(v); } catch (e) { return std; } }
+  function skriva(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+
+  var IKON_RATT = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><polyline points="4,10 8,14 16,6"/></svg>';
+  var IKON_FEL = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg>';
+
+  // Ett slumpat multiplikationsfaktum ur valda tabeller. Ordningen på faktorerna varierar.
+  function slumpFaktum() {
+    var t = valj(inst.tabeller), k = 1 + slump(MAX);
+    return Math.random() < 0.5 ? { a: k, b: t, svar: k * t } : { a: t, b: k, svar: k * t };
+  }
+  function multText(f) { return f.a + " × " + f.b; }
+
+  // Trovärdiga felsvar: grannar i tabellen, ±1, ±10.
+  function distraktorer(f, n) {
+    var finns = {}; finns[f.svar] = 1;
+    var ut = [];
+    var kand = blanda([f.svar + f.a, f.svar - f.a, f.svar + f.b, f.svar - f.b, f.svar + 1, f.svar - 1,
+      f.svar + 10, f.svar - 10, (f.a + 1) * (f.b + 1), f.svar + 2]);
+    kand.forEach(function (c) { if (ut.length < n && c > 0 && !finns[c]) { finns[c] = 1; ut.push(c); } });
+    while (ut.length < n) { var r = 1 + slump(100); if (!finns[r]) { finns[r] = 1; ut.push(r); } }
+    return ut;
   }
 
-  var tabellval = $("tabeller");
-  for (var t = 1; t <= MAX; t++) {
-    var b = document.createElement("button");
-    b.className = "val";
-    b.textContent = t;
-    b.dataset.t = t;
-    b.setAttribute("aria-label", t + ":ans tabell");
-    tabellval.appendChild(b);
+  function unikaProdukter() {
+    var s = {};
+    inst.tabeller.forEach(function (t) { for (var k = 1; k <= MAX; k++) s[k * t] = 1; });
+    return Object.keys(s).map(Number);
   }
-  tabellval.addEventListener("click", function (e) {
-    var b = e.target.closest("button"); if (!b) return;
-    var n = +b.dataset.t, i = inst.tabeller.indexOf(n);
-    if (i >= 0) inst.tabeller.splice(i, 1); else inst.tabeller.push(n);
-    inst.tabeller.sort(function (a, b) { return a - b; });
-    visaInst();
-  });
-  $("alla").onclick = function () { inst.tabeller = []; for (var i = 1; i <= MAX; i++) inst.tabeller.push(i); visaInst(); };
-  $("inga").onclick = function () { inst.tabeller = []; visaInst(); };
 
-  document.querySelectorAll("[data-grupp]").forEach(function (g) {
-    g.addEventListener("click", function (e) {
-      var b = e.target.closest("button"); if (!b) return;
-      inst[g.dataset.grupp] = b.dataset.v;
-      visaInst();
-    });
+  // ================= Gemensamma inställningar =================
+  var inst = Object.assign({
+    tabeller: [2, 3, 4, 5], raknesatt: "mult", ordning: "blandad", langd: "10",
+    loppfart: "snigel", kbtyp: "mult", kbantal: "40", kbfacit: "ja"
+  }, lasa("gangertabellen-inst", {}));
+  if (!Array.isArray(inst.tabeller)) inst.tabeller = [2, 3, 4, 5];
+
+  document.querySelectorAll("[data-tabellval]").forEach(function (el) {
+    for (var t = 1; t <= MAX; t++) {
+      var b = document.createElement("button");
+      b.className = "val"; b.textContent = t; b.dataset.t = t;
+      b.setAttribute("aria-label", t + ":ans tabell");
+      el.appendChild(b);
+    }
   });
 
-  function visaInst() {
-    tabellval.querySelectorAll("button").forEach(function (b) {
+  document.addEventListener("click", function (e) {
+    var b = e.target.closest("button");
+    if (!b || !b.parentElement) return;
+    if (b.parentElement.hasAttribute("data-tabellval")) {
+      var n = +b.dataset.t, i = inst.tabeller.indexOf(n);
+      if (i >= 0) inst.tabeller.splice(i, 1); else inst.tabeller.push(n);
+      inst.tabeller.sort(function (x, y) { return x - y; });
+      instAndrad();
+    } else if (b.hasAttribute("data-alla")) {
+      inst.tabeller = []; for (var j = 1; j <= MAX; j++) inst.tabeller.push(j); instAndrad();
+    } else if (b.hasAttribute("data-inga")) {
+      inst.tabeller = []; instAndrad();
+    } else if (b.parentElement.dataset.grupp) {
+      inst[b.parentElement.dataset.grupp] = b.dataset.v; instAndrad();
+    } else if (b.dataset.starta) {
+      if (inst.tabeller.length) spel[b.dataset.starta].starta();
+    }
+  });
+
+  function instAndrad() {
+    document.querySelectorAll("[data-tabellval] button").forEach(function (b) {
       b.setAttribute("aria-pressed", inst.tabeller.indexOf(+b.dataset.t) >= 0);
     });
     document.querySelectorAll("[data-grupp]").forEach(function (g) {
@@ -283,20 +670,40 @@ margin-top:var(--sv-steg-3);min-height:40px}
       });
     });
     var tom = inst.tabeller.length === 0;
+    document.querySelectorAll("[data-tom-notis]").forEach(function (p) { p.textContent = tom ? "Välj minst en tabell." : ""; });
+    document.querySelectorAll("[data-starta]").forEach(function (b) { b.disabled = tom; });
     $("starta").disabled = tom;
     $("starta-notis").textContent = tom ? "Välj minst en tabell." :
       (inst.langd === "alla" ? byggUppgifter().length + " frågor" : "");
-    spara();
+    $("kb-antal-grupp").hidden = inst.kbtyp === "tabell";
+    skriva("gangertabellen-inst", inst);
+    if (aktuellVy === "kalkylblad") ritaKalkylblad();
   }
 
-  // ---------- Uppgifter ----------
-  function blanda(a) {
-    for (var i = a.length - 1; i > 0; i--) {
-      var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x;
-    }
-    return a;
+  // ================= Knappsats =================
+  function byggKnappsats(el, tryck) {
+    ["7", "8", "9", "4", "5", "6", "1", "2", "3", "sudda", "0", "ok"].forEach(function (s) {
+      var b = document.createElement("button");
+      b.className = "sv-knapp" + (s === "ok" ? " sv-knapp--primar ok" : "");
+      b.dataset.s = s;
+      if (s === "sudda") {
+        b.setAttribute("aria-label", "Sudda");
+        b.innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><polyline points="8,5 3,10 8,15"/><line x1="3" y1="10" x2="17" y2="10"/></svg>';
+      } else b.textContent = s === "ok" ? "Svara" : s;
+      el.appendChild(b);
+    });
+    el.addEventListener("click", function (e) { var b = e.target.closest("button"); if (b) tryck(b.dataset.s); });
+    return el.querySelector(".ok");
+  }
+  function tangentTillKnapp(e, tryck) {
+    if (/^[0-9]$/.test(e.key)) tryck(e.key);
+    else if (e.key === "Backspace") { e.preventDefault(); tryck("sudda"); }
+    else if (e.key === "Enter") { e.preventDefault(); tryck("ok"); }
+    else return false;
+    return true;
   }
 
+  // ================= ÖVA =================
   function byggUppgifter() {
     var lista = [];
     inst.tabeller.forEach(function (t) {
@@ -307,30 +714,23 @@ margin-top:var(--sv-steg-3);min-height:40px}
     });
     return lista;
   }
+  function text(u) { return u.a + (u.typ === "div" ? " / " : " × ") + u.b; }
 
-  function text(u) { return u.a + (u.typ === "mult" ? " × " : " / ") + u.b; }
-
-  // ---------- Övning ----------
   var pass = null, timer = null;
+  var okKnapp = byggKnappsats($("ova-knappsats"), tryckOva);
 
-  function starta(fast) {
+  function ovaDel(namn) {
+    ["installning", "pass", "resultat"].forEach(function (d) { $("ova-" + d).hidden = d !== namn; });
+  }
+
+  function startaPass(fast) {
     var bas = fast ? fast.slice() : byggUppgifter();
-    var antal;
-    if (fast) {
-      antal = bas.length; blanda(bas);
-    } else if (inst.ordning === "ordning") {
-      antal = inst.langd === "10" ? 10 : inst.langd === "20" ? 20 : Infinity;
-    } else {
-      blanda(bas);
-      antal = inst.langd === "10" ? 10 : inst.langd === "20" ? 20 : Infinity;
-    }
-    pass = {
-      bas: bas, kö: [], antal: antal, tidsgrans: !fast && inst.langd === "60s" ? 60 : 0,
-      nr: 0, ratt: 0, fel: [], start: Date.now(), slut: 0, aktuell: null, inmatning: "", lasta: false,
-      fast: fast || null
-    };
-    if (pass.antal === Infinity && !pass.tidsgrans) pass.antal = bas.length;
-    visaVy("ova");
+    if (fast || inst.ordning !== "ordning") blanda(bas);
+    var antal = inst.langd === "10" ? 10 : inst.langd === "20" ? 20 : bas.length;
+    if (fast) antal = bas.length;
+    pass = { bas: bas, ko: [], antal: antal, tidsgrans: !fast && inst.langd === "60s" ? 60 : 0,
+      nr: 0, ratt: 0, fel: [], start: Date.now(), slut: 0, aktuell: null, inmatning: "", lasta: false, fast: fast || null };
+    ovaDel("pass");
     clearInterval(timer);
     timer = setInterval(tick, 250);
     tick();
@@ -338,30 +738,25 @@ margin-top:var(--sv-steg-3);min-height:40px}
   }
 
   function hamta() {
-    // Hämtar nästa uppgift. Vid tidsläge eller fler frågor än bas fylls kön på igen.
-    if (pass.kö.length === 0) {
-      pass.kö = pass.bas.slice();
-      if (inst.ordning !== "ordning" || pass.fast) blanda(pass.kö);
+    if (pass.ko.length === 0) {
+      pass.ko = pass.bas.slice();
+      if (inst.ordning !== "ordning" || pass.fast) blanda(pass.ko);
     }
-    return pass.kö.shift();
+    return pass.ko.shift();
   }
 
   function nasta() {
-    if (!pass.tidsgrans && pass.nr >= pass.antal) return avsluta();
+    if (!pass.tidsgrans && pass.nr >= pass.antal) return avslutaPass();
     var u = hamta();
-    // undvik samma uppgift två gånger i rad
-    if (pass.aktuell && pass.bas.length > 1 && text(u) === text(pass.aktuell)) { pass.kö.push(u); u = hamta(); }
-    pass.aktuell = u;
-    pass.nr++;
-    pass.inmatning = "";
-    pass.lasta = false;
+    if (pass.aktuell && pass.bas.length > 1 && text(u) === text(pass.aktuell)) { pass.ko.push(u); u = hamta(); }
+    pass.aktuell = u; pass.nr++; pass.inmatning = ""; pass.lasta = false;
     $("fraga").textContent = text(u);
     $("svar").textContent = "";
     $("aterkoppling").className = "aterkoppling";
     $("aterkoppling").textContent = "";
-    $("ok").textContent = "Svara";
+    okKnapp.textContent = "Svara";
     $("raknare").textContent = pass.tidsgrans ? pass.ratt + " rätt" : pass.nr + " / " + pass.antal;
-    $("matare").style.width = pass.tidsgrans ? $("matare").style.width : ((pass.nr - 1) / pass.antal * 100) + "%";
+    if (!pass.tidsgrans) $("matare").style.width = ((pass.nr - 1) / pass.antal * 100) + "%";
   }
 
   function tick() {
@@ -371,68 +766,49 @@ margin-top:var(--sv-steg-3);min-height:40px}
       var kvar = Math.max(0, pass.tidsgrans - s);
       $("tid").textContent = format(Math.ceil(kvar));
       $("matare").style.width = (s / pass.tidsgrans * 100) + "%";
-      if (kvar <= 0) avsluta();
-    } else {
-      $("tid").textContent = format(Math.floor(s));
-    }
+      if (kvar <= 0) avslutaPass();
+    } else $("tid").textContent = format(Math.floor(s));
   }
 
-  function format(s) { return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
-
-  function tryck(s) {
-    if (!pass || $("vy-ova").hidden) return;
-    if (pass.lasta) { if (s === "ok") nasta(); return; }
+  function tryckOva(s) {
+    if (!pass || pass.slut || $("ova-pass").hidden) return;
+    if (pass.lasta) { if (s === "ok" && $("aterkoppling").classList.contains("aterkoppling--fel")) nasta(); return; }
     if (s === "sudda") pass.inmatning = pass.inmatning.slice(0, -1);
-    else if (s === "ok") return svara();
+    else if (s === "ok") return svaraOva();
     else if (pass.inmatning.length < 3) pass.inmatning += s;
     $("svar").textContent = pass.inmatning;
   }
 
-  function svara() {
+  function svaraOva() {
     if (pass.inmatning === "") return;
     var u = pass.aktuell, givet = +pass.inmatning, fb = $("aterkoppling");
+    pass.lasta = true;
     if (givet === u.svar) {
       pass.ratt++;
       fb.className = "aterkoppling aterkoppling--ratt";
-      fb.innerHTML = ikon("ratt") + "Rätt";
-      pass.lasta = true;
-      setTimeout(function () { if (pass && pass.aktuell === u && pass.lasta) nasta(); }, 450);
+      fb.innerHTML = IKON_RATT + "Rätt";
+      setTimeout(function () { if (pass && pass.aktuell === u && !pass.slut) nasta(); }, 450);
     } else {
       pass.fel.push({ u: u, givet: givet });
       fb.className = "aterkoppling aterkoppling--fel";
-      fb.innerHTML = ikon("fel") + "Fel. " + text(u) + " = " + u.svar;
-      pass.lasta = true;
-      $("ok").textContent = "Nästa";
+      fb.innerHTML = IKON_FEL + "Fel. " + text(u) + " = " + u.svar;
+      okKnapp.textContent = "Nästa";
     }
     if (pass.tidsgrans) $("raknare").textContent = pass.ratt + " rätt";
   }
 
-  function ikon(typ) {
-    return typ === "ratt"
-      ? '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><polyline points="4,10 8,14 16,6"/></svg>'
-      : '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><line x1="5" y1="5" x2="15" y2="15"/><line x1="15" y1="5" x2="5" y2="15"/></svg>';
-  }
-
-  function avsluta() {
+  function avslutaPass() {
     clearInterval(timer);
     pass.slut = Date.now();
-    // räkna inte en obesvarad sista fråga i tidsläge
     var besvarade = pass.ratt + pass.fel.length;
     $("res-ratt").textContent = pass.ratt;
     $("res-fel").textContent = pass.fel.length;
     $("res-tid").textContent = format(Math.round((pass.slut - pass.start) / 1000));
-
-    // Ett ögonblick av lek: bara när allt var rätt.
     var rubrik = $("res-rubrik");
     if (besvarade > 0 && pass.fel.length === 0) {
-      rubrik.innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true">' +
-        '<circle cx="10" cy="10" r="7" fill="currentColor"/></svg>Alla rätt. Tabellen gav upp till slut.';
-    } else if (besvarade === 0) {
-      rubrik.textContent = "Inga svar den här gången";
-    } else {
-      rubrik.innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true">' +
-        '<circle cx="10" cy="10" r="7"/></svg>Klart';
-    }
+      rubrik.innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7" fill="currentColor"/></svg>Alla rätt. Tabellen gav upp till slut.';
+    } else if (besvarade === 0) rubrik.textContent = "Inga svar den här gången";
+    else rubrik.innerHTML = '<svg class="sv-piktogram" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="7"/></svg>Klart';
 
     var unika = {}, lista = $("res-fellista");
     lista.innerHTML = "";
@@ -447,58 +823,491 @@ margin-top:var(--sv-steg-3);min-height:40px}
     pass.felUppgifter = Object.keys(unika).map(function (k) { return unika[k]; });
     $("res-fel-block").hidden = pass.fel.length === 0;
     $("ova-fel").hidden = pass.fel.length === 0;
-    visaVy("resultat");
+    ovaDel("resultat");
   }
 
-  $("knappsats").addEventListener("click", function (e) {
-    var b = e.target.closest("button"); if (b) tryck(b.dataset.s);
-  });
-  document.addEventListener("keydown", function (e) {
-    if ($("vy-ova").hidden) return;
-    if (/^[0-9]$/.test(e.key)) tryck(e.key);
-    else if (e.key === "Backspace") { e.preventDefault(); tryck("sudda"); }
-    else if (e.key === "Enter") { e.preventDefault(); tryck("ok"); }
-    else if (e.key === "Escape") avbryt();
+  function avbrytPass() { clearInterval(timer); pass = null; ovaDel("installning"); }
+  $("starta").onclick = function () { startaPass(); };
+  $("avbryt").onclick = avbrytPass;
+  $("igen").onclick = function () { startaPass(pass && pass.fast); };
+  $("ova-fel").onclick = function () { var f = pass.felUppgifter; startaPass(f.concat(f)); };
+  $("andra").onclick = function () { pass = null; ovaDel("installning"); };
+
+  // ================= SPEL =================
+  var spel = {};
+  var SPELLISTA = [
+    { id: "bubblor", namn: "Bubblor", tema: "lila", besk: "Tryck på rätt svar innan bubblan flyger iväg.",
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><circle cx="44" cy="62" r="18" fill="#fff" stroke="currentColor" stroke-width="2.5"/><circle cx="82" cy="40" r="18" fill="#fff" stroke="currentColor" stroke-width="2.5"/><circle cx="120" cy="66" r="18" fill="currentColor"/><g font-family="monospace" font-size="15" text-anchor="middle"><text x="44" y="67" fill="currentColor">48</text><text x="82" y="45" fill="currentColor">54</text><text x="120" y="71" fill="#fff">56</text></g><circle cx="60" cy="20" r="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="132" cy="28" r="7" fill="none" stroke="currentColor" stroke-width="2"/></svg>' },
+    { id: "memory", namn: "Para ihop", tema: "amber", besk: "Hitta uträkningen och svaret som hör ihop.",
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><rect x="22" y="26" width="34" height="48" rx="4" fill="currentColor"/><rect x="63" y="26" width="34" height="48" rx="4" fill="#fff" stroke="currentColor" stroke-width="2"/><rect x="104" y="26" width="34" height="48" rx="4" fill="#fff" stroke="currentColor" stroke-width="2"/><g font-family="monospace" text-anchor="middle" fill="currentColor"><text x="80" y="55" font-size="12">6×7</text><text x="121" y="56" font-size="15">42</text></g></svg>' },
+    { id: "lopp", namn: "Kapplöpning", tema: "bla", besk: "Svara rätt för att springa ifrån snigeln, katten eller haren.",
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><rect x="16" y="28" width="128" height="18" rx="3" fill="#fff"/><rect x="16" y="54" width="128" height="18" rx="3" fill="#fff"/><circle cx="92" cy="37" r="7" fill="currentColor"/><rect x="50" y="56" width="14" height="14" rx="3" fill="currentColor" opacity=".45"/><g fill="currentColor"><rect x="134" y="28" width="5" height="5"/><rect x="139" y="33" width="5" height="5"/><rect x="134" y="38" width="5" height="5"/><rect x="139" y="43" width="5" height="3"/><rect x="134" y="54" width="5" height="5"/><rect x="139" y="59" width="5" height="5"/><rect x="134" y="64" width="5" height="5"/><rect x="139" y="69" width="5" height="3"/></g></svg>' },
+    { id: "bingo", namn: "Bingo", tema: "korall", besk: "Markera svaret på brickan. Fyll en rad för bingo.",
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><g fill="#fff"><rect x="47" y="14" width="20" height="20" rx="3"/><rect x="93" y="14" width="20" height="20" rx="3"/><rect x="47" y="40" width="20" height="20" rx="3"/><rect x="70" y="66" width="20" height="20" rx="3"/><rect x="93" y="66" width="20" height="20" rx="3"/><rect x="93" y="40" width="20" height="20" rx="3"/></g><g fill="currentColor"><rect x="70" y="14" width="20" height="20" rx="3"/><rect x="70" y="40" width="20" height="20" rx="3"/><rect x="47" y="66" width="20" height="20" rx="3"/></g></svg>' },
+    { id: "santfalskt", namn: "Sant eller falskt", tema: "teal", besk: "Stämmer det? Så många du hinner på en minut.",
+      bild: '<svg viewBox="0 0 160 100" aria-hidden="true"><rect x="34" y="28" width="40" height="40" rx="6" fill="#fff"/><rect x="86" y="28" width="40" height="40" rx="6" fill="currentColor"/><polyline points="44,48 51,56 64,40" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><g stroke="#fff" stroke-width="3" stroke-linecap="round"><line x1="98" y1="40" x2="114" y2="56"/><line x1="114" y1="40" x2="98" y2="56"/></g></svg>' }
+  ];
+  SPELLISTA.forEach(function (s) {
+    var a = document.createElement("a");
+    a.className = "ruta-kort tema-" + s.tema;
+    a.href = "#spel/" + s.id;
+    a.innerHTML = '<div class="bild">' + s.bild + '</div><span class="namn">' + s.namn + '</span><span class="besk">' + s.besk + '</span>';
+    $("spellista").appendChild(a);
   });
 
-  function avbryt() { clearInterval(timer); pass = null; visaVy("installning"); }
-  $("starta").onclick = function () { starta(); };
-  $("avbryt").onclick = avbryt;
-  $("igen").onclick = function () { starta(pass && pass.fast); };
-  $("ova-fel").onclick = function () {
-    var f = pass.felUppgifter;
-    // varje fel-uppgift två gånger, så att den sätter sig
-    starta(f.concat(f));
-  };
-  $("andra").onclick = function () { pass = null; visaVy("installning"); };
+  // ---------- Bubblor ----------
+  spel.bubblor = (function () {
+    var yta = $("bub-yta"), bubblor = [], liv, poang, fart, raf = null, senast = 0, fraga = null, aktiv = false;
+    var STL = 76;
+    function ritaLiv() {
+      var h = "";
+      for (var i = 0; i < 3; i++) h += '<i class="' + (i < liv ? "" : "borta") + '"></i>';
+      $("bub-liv").innerHTML = h;
+      $("bub-liv").setAttribute("aria-label", liv + " liv kvar");
+    }
+    function rensa() { bubblor.forEach(function (b) { b.el.remove(); }); bubblor = []; }
+    function nyFraga() {
+      rensa();
+      fraga = slumpFaktum();
+      $("bub-fraga").textContent = multText(fraga);
+      var varden = blanda([fraga.svar].concat(distraktorer(fraga, 3)));
+      var w = yta.clientWidth, h = yta.clientHeight, fack = w / 4;
+      STL = Math.min(76, Math.floor(fack - 6));
+      varden.forEach(function (v, i) {
+        var el = document.createElement("button");
+        el.className = "bubbla"; el.textContent = v;
+        el.style.width = el.style.height = STL + "px";
+        var b = { el: el, varde: v, ratt: v === fraga.svar,
+          x: i * fack + (fack - STL) / 2 + (Math.random() - 0.5) * Math.max(0, fack - STL - 8),
+          y: h - 20 + slump(90), v: fart * (0.85 + Math.random() * 0.3) };
+        el.style.transform = "translate(" + b.x + "px," + b.y + "px)";
+        el.onclick = function () { klick(b); };
+        yta.appendChild(el);
+        bubblor.push(b);
+      });
+    }
+    function klick(b) {
+      if (!aktiv || b.borta) return;
+      if (b.ratt) {
+        poang++; fart += 4;
+        $("bub-poang").textContent = poang + " poäng";
+        nyFraga();
+      } else {
+        b.borta = true;
+        b.el.classList.add("fel");
+        b.el.innerHTML = IKON_FEL;
+        setTimeout(function () { b.el.remove(); }, 350);
+        miss();
+      }
+    }
+    function miss() {
+      liv--; ritaLiv();
+      if (liv <= 0) slut();
+    }
+    function loop(ts) {
+      if (!aktiv) return;
+      raf = requestAnimationFrame(loop);
+      var dt = senast ? Math.min(0.05, (ts - senast) / 1000) : 0;
+      senast = ts;
+      for (var i = 0; i < bubblor.length; i++) {
+        var b = bubblor[i];
+        if (b.borta) continue;
+        b.y -= b.v * dt;
+        b.el.style.transform = "translate(" + b.x + "px," + b.y + "px)";
+        if (b.y < -STL) {
+          b.borta = true;
+          if (b.ratt) { miss(); if (aktiv) nyFraga(); break; }
+        }
+      }
+    }
+    function slut() {
+      aktiv = false; cancelAnimationFrame(raf); rensa();
+      var rekord = lasa("gt-rekord-bubblor", 0);
+      if (poang > rekord) skriva("gt-rekord-bubblor", poang);
+      $("bub-fraga").hidden = true;
+      $("bub-slutpoang").textContent = poang;
+      $("bub-sluttext").textContent = "poäng. " + (poang > rekord && rekord > 0
+        ? "Nytt rekord på den här datorn." : "Rekord på den här datorn: " + Math.max(rekord, poang) + ".");
+      $("bub-slut").hidden = false;
+    }
+    return {
+      starta: function () {
+        liv = 3; poang = 0; fart = 50; senast = 0; aktiv = true;
+        $("bub-start").hidden = true; $("bub-slut").hidden = true; $("bub-fraga").hidden = false;
+        $("bub-poang").textContent = "0 poäng"; ritaLiv();
+        nyFraga();
+        cancelAnimationFrame(raf); raf = requestAnimationFrame(loop);
+      },
+      visa: function () { liv = 3; ritaLiv(); },
+      stopp: function () {
+        aktiv = false; cancelAnimationFrame(raf); rensa();
+        $("bub-start").hidden = false; $("bub-slut").hidden = true; $("bub-fraga").hidden = true;
+      }
+    };
+  })();
 
-  // ---------- Vyer ----------
-  var aktivFlik = "ova";
-  function visaVy(namn) {
-    ["installning", "ova", "resultat", "tabell"].forEach(function (v) { $("vy-" + v).hidden = v !== namn; });
-    aktivFlik = namn === "tabell" ? "tabell" : "ova";
-    $("flik-ova").setAttribute("aria-selected", aktivFlik === "ova");
-    $("flik-tabell").setAttribute("aria-selected", aktivFlik === "tabell");
+  // ---------- Para ihop ----------
+  spel.memory = (function () {
+    var kort = [], oppna = [], drag = 0, par = 0, PAR = 6, las = false, start = 0;
+    var BAK = '<svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="4" y="4" width="5" height="5" rx="1"/><rect x="11" y="4" width="5" height="5" rx="1"/><rect x="4" y="11" width="5" height="5" rx="1"/><rect x="11" y="11" width="5" height="5" rx="1"/></svg>';
+    function rita() {
+      var plan = $("mem-plan"); plan.innerHTML = "";
+      kort.forEach(function (k, i) {
+        var b = document.createElement("button");
+        b.className = "mkort" + (k.klar ? " klar" : k.oppen ? " oppen" : "");
+        b.innerHTML = k.oppen || k.klar ? k.text : BAK;
+        b.setAttribute("aria-label", k.oppen || k.klar ? k.text : "Dolt kort " + (i + 1));
+        b.onclick = function () { vand(i); };
+        plan.appendChild(b);
+      });
+      $("mem-drag").textContent = drag + " drag";
+      $("mem-par").textContent = par + " / " + PAR + " par";
+    }
+    function vand(i) {
+      var k = kort[i];
+      if (las || k.oppen || k.klar) return;
+      k.oppen = true; oppna.push(k);
+      if (oppna.length === 2) {
+        drag++;
+        if (oppna[0].id === oppna[1].id) {
+          oppna.forEach(function (o) { o.klar = true; o.oppen = false; });
+          oppna = []; par++;
+          if (par === PAR) { rita(); return slut(); }
+        } else {
+          las = true;
+          setTimeout(function () { oppna.forEach(function (o) { o.oppen = false; }); oppna = []; las = false; rita(); }, 900);
+        }
+      }
+      rita();
+    }
+    function slut() {
+      var sek = Math.round((Date.now() - start) / 1000);
+      var rekord = lasa("gt-rekord-memory", 0);
+      if (!rekord || drag < rekord) skriva("gt-rekord-memory", drag);
+      $("mem-slutdrag").textContent = drag;
+      $("mem-sluttext").textContent = "drag på " + format(sek) + ". " +
+        (drag === PAR ? "Inte ett enda fel. Misstänkt." : "Minst antal drag hittills: " + (rekord ? Math.min(rekord, drag) : drag) + ".");
+      $("mem-slut").hidden = false;
+    }
+    return {
+      starta: function () {
+        var produkter = blanda(unikaProdukter());
+        PAR = Math.min(6, produkter.length);
+        kort = []; oppna = []; drag = 0; par = 0; las = false; start = Date.now();
+        produkter.slice(0, PAR).forEach(function (p, i) {
+          // välj ett faktorpar ur valda tabeller som ger produkten
+          var mojliga = [];
+          inst.tabeller.forEach(function (t) { if (p % t === 0 && p / t <= MAX) mojliga.push([p / t, t]); });
+          var f = valj(mojliga); if (Math.random() < 0.5) f.reverse();
+          kort.push({ id: i, text: f[0] + " × " + f[1] }, { id: i, text: String(p) });
+        });
+        blanda(kort);
+        $("mem-slut").hidden = true;
+        rita();
+      },
+      visa: function () { this.starta(); },
+      stopp: function () {}
+    };
+  })();
+
+  // ---------- Kapplöpning ----------
+  spel.lopp = (function () {
+    var STEG = 12, du = 0, dator = 0, timerL = null, f = null, inmatning = "", aktiv = false, las = false, fel = 0, ratt = 0;
+    var FART = { snigel: { ms: 5000, namn: "Snigeln" }, katt: { ms: 3200, namn: "Katten" }, hare: { ms: 2000, namn: "Haren" } };
+    var okL = byggKnappsats($("lopp-knappsats"), tryck);
+    function spar(el, pos) {
+      var h = "";
+      for (var i = 0; i < STEG; i++) h += "<b" + (i === Math.min(pos, STEG - 1) ? ' class="har"' : "") + "></b>";
+      el.innerHTML = h;
+    }
+    function rita() { spar($("lopp-du"), du); spar($("lopp-dator"), dator); }
+    function nyFraga() {
+      f = slumpFaktum(); inmatning = ""; las = false;
+      $("lopp-fraga").textContent = multText(f);
+      $("lopp-svar").textContent = "";
+      $("lopp-fb").className = "aterkoppling"; $("lopp-fb").textContent = "";
+    }
+    function tryck(s) {
+      if (!aktiv || las) return;
+      if (s === "sudda") inmatning = inmatning.slice(0, -1);
+      else if (s === "ok") return svara();
+      else if (inmatning.length < 3) inmatning += s;
+      $("lopp-svar").textContent = inmatning;
+    }
+    function svara() {
+      if (inmatning === "") return;
+      las = true;
+      var fb = $("lopp-fb");
+      if (+inmatning === f.svar) {
+        ratt++; du++; rita();
+        fb.className = "aterkoppling aterkoppling--ratt"; fb.innerHTML = IKON_RATT + "Rätt";
+        if (du >= STEG - 1) return slut(true);
+        setTimeout(function () { if (aktiv) nyFraga(); }, 300);
+      } else {
+        fel++;
+        fb.className = "aterkoppling aterkoppling--fel"; fb.innerHTML = IKON_FEL + multText(f) + " = " + f.svar;
+        setTimeout(function () { if (aktiv) nyFraga(); }, 1400);
+      }
+    }
+    function slut(vann) {
+      aktiv = false; clearInterval(timerL);
+      $("lopp-spel").hidden = true;
+      $("lopp-sluttitel").textContent = vann ? "Först i mål" : "Tvåa";
+      var namn = FART[inst.loppfart].namn;
+      $("lopp-sluttext").textContent = vann
+        ? (inst.loppfart === "snigel" ? "Snigeln tar det med ro. " : namn + " fick se dig gå i mål. ") + ratt + " rätt, " + fel + " fel."
+        : namn + " hann före. " + ratt + " rätt, " + fel + " fel. Försök igen eller välj en lugnare motståndare.";
+      $("lopp-slut").hidden = false;
+    }
+    function uppdateraNamn() {
+      var n = FART[inst.loppfart] || FART.snigel;
+      $("lopp-namn").textContent = n.namn;
+      $("lopp-motstand").textContent = "mot " + n.namn;
+    }
+    $("lopp-byt").onclick = function () { $("lopp-slut").hidden = true; $("lopp-start").hidden = false; du = dator = 0; rita(); };
+    return {
+      starta: function () {
+        if (!FART[inst.loppfart]) inst.loppfart = "snigel";
+        du = 0; dator = 0; fel = 0; ratt = 0; aktiv = true;
+        uppdateraNamn(); rita();
+        $("lopp-start").hidden = true; $("lopp-slut").hidden = true; $("lopp-spel").hidden = false;
+        nyFraga();
+        clearInterval(timerL);
+        timerL = setInterval(function () {
+          dator++; rita();
+          if (dator >= STEG - 1) slut(false);
+        }, FART[inst.loppfart].ms);
+      },
+      visa: function () { du = dator = 0; uppdateraNamn(); rita(); },
+      stopp: function () {
+        aktiv = false; clearInterval(timerL);
+        $("lopp-start").hidden = false; $("lopp-spel").hidden = true; $("lopp-slut").hidden = true;
+      },
+      tangent: function (e) { if (aktiv) tangentTillKnapp(e, tryck); }
+    };
+  })();
+
+  // ---------- Bingo ----------
+  spel.bingo = (function () {
+    var n, plan, markerad, utrop, felN, aktuell, aktiv = false, kvar;
+    function rita(vinstrad) {
+      var el = $("bingo-plan"); el.innerHTML = "";
+      el.style.gridTemplateColumns = "repeat(" + n + ",1fr)";
+      plan.forEach(function (v, i) {
+        var b = document.createElement("button");
+        b.textContent = v;
+        b.className = (markerad[i] ? "markerad" : "") + (vinstrad && vinstrad.indexOf(i) >= 0 ? " vinst" : "");
+        b.onclick = function () { klick(i, b); };
+        el.appendChild(b);
+      });
+      $("bingo-utrop").textContent = utrop + " utrop";
+      $("bingo-fel").textContent = felN + " fel";
+    }
+    function ropa() {
+      if (!kvar.length) return;
+      var p = kvar.splice(slump(kvar.length), 1)[0];
+      var mojliga = [];
+      inst.tabeller.forEach(function (t) { if (p % t === 0 && p / t <= MAX) mojliga.push([p / t, t]); });
+      var f = valj(mojliga); if (Math.random() < 0.5) f.reverse();
+      aktuell = p; utrop++;
+      $("bingo-fraga").textContent = f[0] + " × " + f[1];
+    }
+    function linjer() {
+      var L = [], i, j;
+      for (i = 0; i < n; i++) {
+        var r = [], c = []; for (j = 0; j < n; j++) { r.push(i * n + j); c.push(j * n + i); }
+        L.push(r, c);
+      }
+      var d1 = [], d2 = []; for (i = 0; i < n; i++) { d1.push(i * n + i); d2.push(i * n + (n - 1 - i)); }
+      L.push(d1, d2);
+      return L;
+    }
+    function klick(i, b) {
+      if (!aktiv || markerad[i]) return;
+      if (plan[i] === aktuell) {
+        markerad[i] = true;
+        var vinst = null;
+        linjer().forEach(function (l) { if (!vinst && l.every(function (x) { return markerad[x]; })) vinst = l; });
+        if (vinst) {
+          aktiv = false; rita(vinst);
+          $("bingo-fraga").textContent = "Bingo";
+          $("bingo-sluttext").textContent = "Efter " + utrop + " utrop och " + felN + (felN === 1 ? " fel." : " fel.");
+          $("bingo-slut").hidden = false;
+          return;
+        }
+        ropa(); rita();
+      } else {
+        felN++;
+        $("bingo-fel").textContent = felN + " fel";
+        b.classList.add("fel");
+        setTimeout(function () { b.classList.remove("fel"); }, 450);
+      }
+    }
+    return {
+      starta: function () {
+        var produkter = blanda(unikaProdukter());
+        n = produkter.length >= 16 ? 4 : 3;
+        plan = produkter.slice(0, n * n);
+        kvar = plan.slice();
+        markerad = plan.map(function () { return false; });
+        utrop = 0; felN = 0; aktiv = true;
+        $("bingo-slut").hidden = true;
+        ropa(); rita();
+      },
+      visa: function () { this.starta(); },
+      stopp: function () { aktiv = false; }
+    };
+  })();
+
+  // ---------- Sant eller falskt ----------
+  spel.santfalskt = (function () {
+    var TID = 60, start = 0, timerS = null, aktiv = false, ratt = 0, fel = 0, f = null, visat = 0;
+    function ny() {
+      f = slumpFaktum();
+      visat = Math.random() < 0.5 ? f.svar : distraktorer(f, 1)[0];
+      $("sf-pastaende").textContent = multText(f) + " = " + visat;
+    }
+    function svara(sant) {
+      if (!aktiv) return;
+      var stammer = visat === f.svar, fb = $("sf-fb");
+      if (sant === stammer) {
+        ratt++;
+        fb.className = "aterkoppling aterkoppling--ratt"; fb.innerHTML = IKON_RATT + "Rätt";
+      } else {
+        fel++;
+        fb.className = "aterkoppling aterkoppling--fel"; fb.innerHTML = IKON_FEL + multText(f) + " = " + f.svar;
+      }
+      $("sf-poang").textContent = ratt + " rätt";
+      ny();
+    }
+    function tick() {
+      var s = (Date.now() - start) / 1000, kvar = Math.max(0, TID - s);
+      $("sf-tid").textContent = Math.ceil(kvar) + " s";
+      $("sf-matare").style.width = (s / TID * 100) + "%";
+      if (kvar <= 0) slut();
+    }
+    function slut() {
+      aktiv = false; clearInterval(timerS);
+      var rekord = lasa("gt-rekord-sf", 0);
+      if (ratt > rekord) skriva("gt-rekord-sf", ratt);
+      $("sf-spel").hidden = true;
+      $("sf-slutpoang").textContent = ratt;
+      $("sf-sluttext").textContent = "rätt och " + fel + " fel på en minut. Rekord på den här datorn: " + Math.max(rekord, ratt) + ".";
+      $("sf-slut").hidden = false;
+    }
+    document.querySelectorAll("[data-sf]").forEach(function (b) {
+      b.onclick = function () { svara(b.dataset.sf === "sant"); };
+    });
+    return {
+      starta: function () {
+        ratt = 0; fel = 0; aktiv = true; start = Date.now();
+        $("sf-poang").textContent = "0 rätt";
+        $("sf-fb").className = "aterkoppling"; $("sf-fb").textContent = "";
+        $("sf-start").hidden = true; $("sf-slut").hidden = true; $("sf-spel").hidden = false;
+        ny(); clearInterval(timerS); timerS = setInterval(tick, 200); tick();
+      },
+      visa: function () {},
+      stopp: function () {
+        aktiv = false; clearInterval(timerS);
+        $("sf-start").hidden = false; $("sf-spel").hidden = true; $("sf-slut").hidden = true;
+        $("sf-tid").textContent = TID + " s"; $("sf-matare").style.width = "0";
+      },
+      tangent: function (e) {
+        if (e.key === "s" || e.key === "S") svara(true);
+        else if (e.key === "f" || e.key === "F") svara(false);
+      }
+    };
+  })();
+
+  // ================= KALKYLBLAD =================
+  var kbFro = Date.now();
+  function kbSlump(seed) {
+    // enkel deterministisk slump, så att bladet inte byts när man bara byter facit-läge
+    var s = seed % 2147483647; if (s <= 0) s += 2147483646;
+    return function () { s = s * 16807 % 2147483647; return (s - 1) / 2147483646; };
   }
-  $("flik-ova").onclick = function () {
-    if (aktivFlik === "ova") return;
-    visaVy(pass && !pass.slut ? "ova" : pass ? "resultat" : "installning");
-  };
-  $("flik-tabell").onclick = function () { visaVy("tabell"); };
+  function ritaKalkylblad() {
+    var behallare = $("kb-ark");
+    if (!inst.tabeller.length) { behallare.innerHTML = '<div class="ark"><p class="sv-notis">Välj minst en tabell för att skapa ett blad.</p></div>'; return; }
+    var r = kbSlump(kbFro);
+    var ri = function (n) { return Math.floor(r() * n); };
+    var tabText = inst.tabeller.length === MAX ? "1–10" : inst.tabeller.join(", ");
+    var typNamn = { mult: "Multiplikation", div: "Division", lucka: "Saknad faktor", blandat: "Blandat", tabell: "Fyll i tabellen" }[inst.kbtyp];
 
-  // ---------- Tabellen ----------
+    function huvud(facit) {
+      return '<div class="ark-huvud"><h3 class="' + (facit ? "facitrubrik" : "") + '">' + typNamn + (facit ? " · facit" : "") +
+        '</h3><span class="info">Tabeller: ' + tabText + '</span></div>' +
+        (facit ? "" : '<div class="ark-namn"><span>Namn</span><span>Datum</span></div>');
+    }
+    function fot(antal) {
+      return '<div class="ark-fot"><span>Gångertabellen</span><span>' + (antal ? antal + " uppgifter" : "") + '</span></div>';
+    }
+
+    if (inst.kbtyp === "tabell") {
+      var rader = inst.tabeller.length === MAX ? null : inst.tabeller;
+      var bygg = function (facit) {
+        var h = '<div class="tomtabell"><div class="r">×</div>';
+        for (var c = 1; c <= MAX; c++) h += '<div class="r">' + c + '</div>';
+        for (var rr = 1; rr <= MAX; rr++) {
+          h += '<div class="r">' + rr + '</div>';
+          for (var c2 = 1; c2 <= MAX; c2++) {
+            var visa = facit || (rader && rader.indexOf(rr) < 0 && rader.indexOf(c2) < 0) || rr === 1 || c2 === 1;
+            h += '<div' + (facit && !(rr === 1 || c2 === 1) ? ' class="facit" style="color:var(--korall-djup)"' : "") + '>' + (visa ? rr * c2 : "") + '</div>';
+          }
+        }
+        return h + '</div>';
+      };
+      var html = '<div class="ark">' + huvud(false) + bygg(false) +
+        '<p style="font-size:13px;margin-top:16px">' + (rader ? "Fyll i de tomma rutorna i " + tabText + ":ans tabell." : "Fyll i alla tomma rutor.") + '</p>' + fot() + '</div>';
+      if (inst.kbfacit === "ja") html += '<div class="ark">' + huvud(true) + bygg(true) + fot() + '</div>';
+      behallare.innerHTML = html;
+      return;
+    }
+
+    var antal = +inst.kbantal, uppg = [], forra = "";
+    while (uppg.length < antal) {
+      var t = inst.tabeller[ri(inst.tabeller.length)], k = 1 + ri(MAX);
+      var typ = inst.kbtyp === "blandat" ? ["mult", "div", "lucka"][ri(3)] : inst.kbtyp;
+      var u;
+      if (typ === "mult") u = r() < 0.5 ? { typ: typ, a: k, b: t, svar: k * t } : { typ: typ, a: t, b: k, svar: k * t };
+      else if (typ === "div") u = { typ: typ, a: k * t, b: t, svar: k };
+      else u = r() < 0.5 ? { typ: typ, a: t, b: null, c: k * t, svar: k } : { typ: typ, a: null, b: t, c: k * t, svar: k };
+      var nyckel = JSON.stringify(u);
+      if (nyckel === forra) continue;
+      forra = nyckel; uppg.push(u);
+    }
+    var kol = antal <= 20 ? 2 : 3;
+    function lista(facit) {
+      var h = '<div class="tal" style="grid-template-columns:repeat(' + kol + ',1fr)">';
+      uppg.forEach(function (u, i) {
+        var svar = facit ? '<span class="linje facit">' + u.svar + '</span>' : '<span class="linje"></span>';
+        var rad;
+        if (u.typ === "mult") rad = u.a + " × " + u.b + " = " + svar;
+        else if (u.typ === "div") rad = u.a + " / " + u.b + " = " + svar;
+        else rad = (u.a === null ? svar + " × " + u.b : u.a + " × " + svar) + " = " + u.c;
+        h += '<div><span class="nr">' + (i + 1) + '</span><span>' + rad + '</span></div>';
+      });
+      return h + '</div>';
+    }
+    var out = '<div class="ark">' + huvud(false) + lista(false) + fot(antal) + '</div>';
+    if (inst.kbfacit === "ja") out += '<div class="ark">' + huvud(true) + lista(true) + fot(antal) + '</div>';
+    behallare.innerHTML = out;
+  }
+  $("kb-nya").onclick = function () { kbFro = Date.now(); ritaKalkylblad(); };
+  $("kb-skriv").onclick = function () { window.print(); };
+
+  // ================= TABELLEN =================
   var rutnat = $("rutnat"), valdRad = 0, valdRuta = null;
-  (function bygg() {
-    var hörn = document.createElement("div");
-    hörn.className = "rubrik"; hörn.textContent = "×";
-    rutnat.appendChild(hörn);
+  (function () {
+    var horn = document.createElement("div");
+    horn.className = "rubrik"; horn.textContent = "×"; horn.style.cursor = "default";
+    rutnat.appendChild(horn);
     for (var c = 1; c <= MAX; c++) rutnat.appendChild(rubrikKnapp(c));
     for (var r = 1; r <= MAX; r++) {
       rutnat.appendChild(rubrikKnapp(r));
       for (var c2 = 1; c2 <= MAX; c2++) {
         var b = document.createElement("button");
-        b.className = "ruta"; b.dataset.r = r; b.dataset.c = c2;
-        b.textContent = r * c2;
+        b.className = "ruta"; b.dataset.r = r; b.dataset.c = c2; b.textContent = r * c2;
         b.setAttribute("aria-label", r + " gånger " + c2 + " är " + r * c2);
         rutnat.appendChild(b);
       }
@@ -506,32 +1315,55 @@ margin-top:var(--sv-steg-3);min-height:40px}
   })();
   function rubrikKnapp(n) {
     var b = document.createElement("button");
-    b.className = "rubrik"; b.dataset.t = n; b.textContent = n;
+    b.className = "rubrik"; b.dataset.rt = n; b.textContent = n;
     b.setAttribute("aria-label", "Visa " + n + ":ans tabell");
     return b;
   }
   rutnat.addEventListener("click", function (e) {
     var b = e.target.closest("button"); if (!b) return;
-    if (b.dataset.t) { valdRad = valdRad === +b.dataset.t ? 0 : +b.dataset.t; valdRuta = null; }
-    else { valdRuta = [+b.dataset.r, +b.dataset.c]; }
-    ritaTabell();
+    if (b.dataset.rt) { valdRad = valdRad === +b.dataset.rt ? 0 : +b.dataset.rt; valdRuta = null; }
+    else valdRuta = [+b.dataset.r, +b.dataset.c];
+    rutnat.querySelectorAll(".ruta").forEach(function (x) {
+      var r = +x.dataset.r, c = +x.dataset.c;
+      x.classList.toggle("markerad", valdRad > 0 && (r === valdRad || c === valdRad));
+      x.classList.toggle("vald", !!valdRuta && valdRuta[0] === r && valdRuta[1] === c);
+    });
+    rutnat.querySelectorAll(".rubrik[data-rt]").forEach(function (x) { x.classList.toggle("vald", +x.dataset.rt === valdRad); });
+    $("utlasning").textContent = valdRuta ? valdRuta[0] + " × " + valdRuta[1] + " = " + valdRuta[0] * valdRuta[1]
+      : valdRad ? valdRad + ":ans tabell" : "";
   });
-  function ritaTabell() {
-    rutnat.querySelectorAll(".ruta").forEach(function (b) {
-      var r = +b.dataset.r, c = +b.dataset.c;
-      b.classList.toggle("markerad", valdRad > 0 && (r === valdRad || c === valdRad));
-      b.classList.toggle("vald", !!valdRuta && valdRuta[0] === r && valdRuta[1] === c);
-    });
-    rutnat.querySelectorAll(".rubrik[data-t]").forEach(function (b) {
-      b.classList.toggle("vald", +b.dataset.t === valdRad);
-    });
-    var ut = $("utlasning");
-    if (valdRuta) ut.textContent = valdRuta[0] + " × " + valdRuta[1] + " = " + valdRuta[0] * valdRuta[1];
-    else if (valdRad) ut.textContent = valdRad + ":ans tabell";
-    else ut.textContent = "";
-  }
 
-  visaInst();
+  // ================= Navigering =================
+  var aktuellVy = "start";
+  var SPEL_IDS = SPELLISTA.map(function (s) { return s.id; });
+  function route() {
+    var h = location.hash.replace(/^#/, "");
+    var delar = h.split("/");
+    var vy = "start", sektion = "";
+    if (delar[0] === "spel" && SPEL_IDS.indexOf(delar[1]) >= 0) { vy = delar[1]; sektion = "spel"; }
+    else if (["ova", "spel", "kalkylblad", "tabell"].indexOf(delar[0]) >= 0) { vy = sektion = delar[0]; }
+
+    Object.keys(spel).forEach(function (id) { if (id !== vy) spel[id].stopp(); });
+    document.querySelectorAll(".vy").forEach(function (s) { s.hidden = s.id !== "vy-" + vy; });
+    document.querySelectorAll(".meny a").forEach(function (a) {
+      if (a.dataset.sektion === sektion) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+    });
+    aktuellVy = vy;
+    if (spel[vy] && inst.tabeller.length) spel[vy].visa();
+    if (vy === "kalkylblad") ritaKalkylblad();
+    window.scrollTo(0, 0);
+  }
+  window.addEventListener("hashchange", route);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.ctrlKey || e.metaKey || e.altKey) return;
+    if (aktuellVy === "ova" && !$("ova-pass").hidden) {
+      if (e.key === "Escape") avbrytPass(); else tangentTillKnapp(e, tryckOva);
+    } else if (spel[aktuellVy] && spel[aktuellVy].tangent) spel[aktuellVy].tangent(e);
+  });
+
+  instAndrad();
+  route();
 })();
 </script>
 </body>
