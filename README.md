@@ -20,6 +20,8 @@ En modul låser upp nya fakta ur sin familj i Dagens pass. Under Dagens pass kan
 
 **Min karta** – 10 × 10-karta där varje ruta visar sin låda med färg och siffra. Veckan jämförs bara med förra veckan (pass, frågor, andel rätt, nya som sitter).
 
+**Visa för läraren** – en sammanfattning som eleven visar eller skriver ut: lådor och karta, startprov, strategier, inställningar, veckan jämfört med förra, och saker att titta närmare på (långsamma svar på lätta fakta, andel rätt under 80 %, inga pass, nästa faktum som väntar på en strategi). Namnet som skrivs in sparas inte, och inget skickas någonstans.
+
 **Visning och ljud** – uppläsning av uppgifterna (webbläsarens talsyntes, svenska), större text och knappar, och rutnätsstöd vid varje fråga.
 
 **Så funkar det** – kapitel för föräldrar och lärare: hur passet går till, lådorna, strategierna, ordningen, tips för hemmet, var data sparas och vanliga frågor.
